@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.waiqar.AnkaurMaro;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class ViolentForces implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Unique, OnRangedAttack, AddAbility<Brutal> {
+public class ViolentForces implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Unique, AddAbility<Brutal> {
 
     @Override
     public int price() {

@@ -41,6 +41,7 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         this.setup = setup;
     }
 
+    public static void resetCounter() { atomicInteger.set(0); }
 //    public SimulationAttackLoop(InteractionManager firstInteraction, DeployableUnit firstUnit, InteractionManager secondInteraction, DeployableUnit secondUnit) {
 //        this.firstInteraction = firstInteraction;
 //        this.firstUnit = firstUnit;
@@ -79,6 +80,8 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         secondFormation = null;
         firstUnit = null;
         secondUnit = null;
+
+//        atomicInteger.set(0);
 
         return stats;
     }
@@ -120,8 +123,8 @@ public class SimulationAttackLoop implements Callable<Statistics> {
                 attackLoop.processAttack();
             }
 
-            firstFormation.endActivationPhase();
-            secondFormation.endActivationPhase();
+            firstFormation.endActivationPhase(rounds);
+            secondFormation.endActivationPhase(rounds);
 
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());

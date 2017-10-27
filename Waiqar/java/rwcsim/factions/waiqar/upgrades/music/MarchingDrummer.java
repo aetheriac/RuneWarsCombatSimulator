@@ -11,10 +11,9 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Music;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class MarchingDrummer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Music, InfantryUpgrade, OnMarch {
+public class MarchingDrummer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Music, InfantryUpgrade {
     public MarchingDrummer() {}
 
-    @Override
     public DialFace applyModifier() {
         return new DialFace(Face.MOVE_MOD_TURN);
     }

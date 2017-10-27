@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class FallenHero extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Champion, InfantryUpgrade, AvailableUpgrades {
+public class FallenHero extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Champion, InfantryUpgrade {
     public FallenHero() {
     }
 

@@ -13,7 +13,7 @@ import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class LordHawthorneUpgrade extends BaseFigure implements FigureUpgrade, Champion, Daqan, HeroUpgrade, InfantryUpgrade, CavalryUpgrade, Unique, AddDie, AfterAttacking, Cost {
+public class LordHawthorneUpgrade extends BaseFigure implements FigureUpgrade, Champion, Daqan, HeroUpgrade, InfantryUpgrade, CavalryUpgrade, Unique, AddDie, Cost {
     public LordHawthorneUpgrade() {
     }
 

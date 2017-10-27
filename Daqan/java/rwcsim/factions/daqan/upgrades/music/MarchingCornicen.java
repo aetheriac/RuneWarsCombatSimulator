@@ -11,12 +11,11 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Music;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class MarchingCornicen extends BaseFigure implements FigureUpgrade, Cost, Daqan, Music, InfantryUpgrade, OnMarch {
+public class MarchingCornicen extends BaseFigure implements FigureUpgrade, Cost, Daqan, Music, InfantryUpgrade {
     public MarchingCornicen() {
 
     }
 
-    @Override
     public DialFace applyModifier() {
         return new DialFace(Face.MOVE_MOD_TURN);
     }

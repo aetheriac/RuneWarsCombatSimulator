@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class CaptivatingHexer extends BaseFigure implements Figure, FigureUpgrade, Cost, Waiqar, Champion, InfantryUpgrade, Engaged {
+public class CaptivatingHexer extends BaseFigure implements Figure, FigureUpgrade, Cost, Waiqar, Champion, InfantryUpgrade {
     public CaptivatingHexer(){}
 
     @Override

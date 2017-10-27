@@ -5,7 +5,7 @@ import rwcsim.basicutils.stages.SpendMortalStrikes;
 import rwcsim.basicutils.upgrades.Artifact;
 import rwcsim.basicutils.upgrades.Unique;
 
-public class ReapingBlade implements Artifact, Cost, SpendMortalStrikes, Unique {
+public class ReapingBlade implements Artifact, Cost, Unique {
     @Override
     public int price() {
         return 4;

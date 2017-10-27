@@ -7,7 +7,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.daqan.LordHawthorne;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class SweepingStrikes implements Cost, Daqan, HeroSpecific<LordHawthorne>, Unique, OnMeleeAttack {
+public class SweepingStrikes implements Cost, Daqan, HeroSpecific<LordHawthorne>, Unique {
     @Override
     public int price() {
         return 5;

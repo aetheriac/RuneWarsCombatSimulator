@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class GreyhavenChanneler extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, AfterThrowRunes, Cost {
+public class GreyhavenChanneler extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, Cost {
     public GreyhavenChanneler() {}
 
     @Override

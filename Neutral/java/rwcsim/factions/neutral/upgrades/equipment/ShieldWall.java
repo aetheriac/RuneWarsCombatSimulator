@@ -4,7 +4,7 @@ import rwcsim.basicutils.concepts.Cost;
 import rwcsim.basicutils.stages.WhileDefending;
 import rwcsim.basicutils.upgrades.Equipment;
 
-public class ShieldWall implements Cost, Equipment, WhileDefending {
+public class ShieldWall implements Cost, Equipment {
     @Override
     public int price() {
         return 5;

@@ -14,7 +14,7 @@ import rwcsim.factions.latari.upgrades.Latari;
 import rwcsim.basicutils.runes.RuneFaces;
 import rwcsim.basicutils.runes.RuneManager;
 
-public class SupportAymhelinScion extends BaseFigure implements FigureUpgrade, Cost, Latari, Heavy, SiegeUpgrade, OnSkill, AfterActivation, AddAbility<Overgrow> {
+public class SupportAymhelinScion extends BaseFigure implements FigureUpgrade, Cost, Latari, Heavy, SiegeUpgrade, OnSkill, AddAbility<Overgrow> {
     public SupportAymhelinScion() {
     }
 

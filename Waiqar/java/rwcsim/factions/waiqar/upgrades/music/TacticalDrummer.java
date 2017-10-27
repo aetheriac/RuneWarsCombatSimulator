@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Music;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class TacticalDrummer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Music, InfantryUpgrade, OnDisengage {
+public class TacticalDrummer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Music, InfantryUpgrade {
     public TacticalDrummer(){
     }
 

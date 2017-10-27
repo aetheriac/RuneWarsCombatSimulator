@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class LanceCorporal extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, AfterCommandDialReveal, Cost {
+public class LanceCorporal extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, Cost {
     public LanceCorporal() {
 
     }

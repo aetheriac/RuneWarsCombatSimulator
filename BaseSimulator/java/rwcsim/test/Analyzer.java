@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by dsayles on 8/17/17.
  */
-public class Analyzer {
+public class  Analyzer {
     private static Logger log = Logger.getLogger(Analyzer.class);
     public static void analyze(List<Statistics> stats) {
         AtomicInteger totrounds = new AtomicInteger(0);
@@ -20,6 +20,10 @@ public class Analyzer {
         System.out.println("Avg Rounds: "+ totrounds.get()/stats.size());
 
         Map<String, Long> unitLife = new HashMap<>();
+        AtomicInteger fmaxregencount = new AtomicInteger(0);
+        AtomicInteger fusedregencount = new AtomicInteger(0);
+        AtomicInteger smaxregencount = new AtomicInteger(0);
+        AtomicInteger susedregencount = new AtomicInteger(0);
 
         stats.stream().forEach( s -> {
             if (!unitLife.containsKey(s.first.unit.getName())) {
@@ -56,11 +60,26 @@ public class Analyzer {
             if (!s.first.isAlive && s.second.isAlive) {
                 unitLife.put("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")", unitLife.get("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")") + 1);
             }
+
+            int[] fregen = s.first.getRegen();
+            int[] sregen = s.second.getRegen();
+            for (int i=0; i<8; i++) {
+                fmaxregencount.getAndAdd(fregen[i]);
+                fusedregencount.getAndAdd(fregen[i+8]);
+
+                smaxregencount.getAndAdd(sregen[i]);
+                susedregencount.getAndAdd(sregen[i+8]);
+            }
         });
 
         for (Map.Entry<String,Long> ul : unitLife.entrySet()) {
             int value = ul.getValue().intValue();
             log.info(ul.getKey() + " (isAlive): " + value+ " (delta): " + ((double)value)/stats.size()*100);
         }
+
+        log.info("First regen: Max("+fmaxregencount.get()+") Used("+fusedregencount.get()+")");
+        log.info("Second regen: Max("+smaxregencount.get()+") Used("+susedregencount.get()+")");
+
+        // used regeneration
     }
 }

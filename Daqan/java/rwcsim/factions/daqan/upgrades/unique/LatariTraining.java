@@ -7,7 +7,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.daqan.KariWraithstalker;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class LatariTraining implements Cost, Daqan, HeroSpecific<KariWraithstalker>, Unique, OnRangedAttack {
+public class LatariTraining implements Cost, Daqan, HeroSpecific<KariWraithstalker>, Unique {
     @Override
     public int price() {
         return 6;

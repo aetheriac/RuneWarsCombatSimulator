@@ -7,7 +7,7 @@ import rwcsim.basicutils.upgrades.Artifact;
 import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.latari.upgrades.Latari;
 
-public class PackleadersSpear implements Cost, Latari, Artifact, Unique, Exhaustable, OnMeleeAttack {
+public class PackleadersSpear implements Cost, Latari, Artifact, Unique, Exhaustable {
     @Override
     public int price() {
         return 8;

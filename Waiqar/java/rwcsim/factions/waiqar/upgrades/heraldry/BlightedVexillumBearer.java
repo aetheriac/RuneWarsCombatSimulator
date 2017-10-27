@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Heraldry;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class BlightedVexillumBearer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Heraldry, InfantryUpgrade, OnCollision {
+public class BlightedVexillumBearer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Heraldry, InfantryUpgrade {
     public BlightedVexillumBearer(){}
 
     @Override

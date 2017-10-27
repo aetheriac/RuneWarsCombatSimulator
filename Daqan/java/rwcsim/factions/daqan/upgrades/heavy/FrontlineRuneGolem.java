@@ -12,7 +12,7 @@ import rwcsim.basicutils.upgrades.Heavy;
 import rwcsim.factions.daqan.upgrades.Daqan;
 import rwcsim.basicutils.runes.RuneFaces;
 
-public class FrontlineRuneGolem extends BaseFigure implements FigureUpgrade, Daqan, Heavy, SiegeUpgrade, WhileAttacking, AddAbility<Brutal>, Cost {
+public class FrontlineRuneGolem extends BaseFigure implements FigureUpgrade, Daqan, Heavy, SiegeUpgrade, AddAbility<Brutal>, Cost {
     public FrontlineRuneGolem() {
     }
 

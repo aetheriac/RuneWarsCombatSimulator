@@ -12,7 +12,7 @@ import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class KariWraithstalkerUpgrade extends BaseFigure implements FigureUpgrade, Champion, Daqan, HeroUpgrade, InfantryUpgrade, Unique, AddDie, SpendSurges, Cost {
+public class KariWraithstalkerUpgrade extends BaseFigure implements FigureUpgrade, Champion, Daqan, HeroUpgrade, InfantryUpgrade, Unique, AddDie, Cost {
     public KariWraithstalkerUpgrade() {
     }
 

@@ -12,7 +12,7 @@ import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class ArdusIxErebusUpgrade extends BaseFigure implements Figure, FigureUpgrade, Cost, Waiqar, Champion, HeroUpgrade, InfantryUpgrade, Unique, AddDie, SpendSurges {
+public class ArdusIxErebusUpgrade extends BaseFigure implements Figure, FigureUpgrade, Cost, Waiqar, Champion, HeroUpgrade, InfantryUpgrade, Unique, AddDie {
     public ArdusIxErebusUpgrade() {
     }
 

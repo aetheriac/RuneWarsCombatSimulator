@@ -10,7 +10,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Heraldry;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class RavenPennonBearer extends BaseFigure implements FigureUpgrade, Cost, Daqan, Heraldry, InfantryUpgrade, Exhaustable, OnActivation {
+public class RavenPennonBearer extends BaseFigure implements FigureUpgrade, Cost, Daqan, Heraldry, InfantryUpgrade, Exhaustable {
     public RavenPennonBearer() {
 
     }

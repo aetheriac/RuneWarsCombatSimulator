@@ -14,7 +14,7 @@ import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.latari.upgrades.Latari;
 
-public class AlianaOfSummersongUpgrade extends BaseFigure implements FigureUpgrade, Champion, HeroUpgrade, InfantryUpgrade, Unique, AddDie, SpendSurges, AddAbility<Impact>, Latari, Cost {
+public class AlianaOfSummersongUpgrade extends BaseFigure implements FigureUpgrade, Champion, HeroUpgrade, InfantryUpgrade, Unique, AddDie, AddAbility<Impact>, Latari, Cost {
     public AlianaOfSummersongUpgrade() {
     }
 

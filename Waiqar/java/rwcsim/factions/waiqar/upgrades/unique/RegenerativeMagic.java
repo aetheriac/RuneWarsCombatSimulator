@@ -7,7 +7,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.factions.waiqar.AnkaurMaro;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class RegenerativeMagic implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Unique, SpendSurges {
+public class RegenerativeMagic implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Unique {
     @Override
     public int price() {
         return 5;

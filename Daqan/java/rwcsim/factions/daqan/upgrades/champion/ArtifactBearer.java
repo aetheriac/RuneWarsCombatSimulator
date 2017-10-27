@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Champion;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class ArtifactBearer extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, AvailableUpgrades, Cost {
+public class ArtifactBearer extends BaseFigure implements FigureUpgrade, Champion, Daqan, InfantryUpgrade, Cost {
     public ArtifactBearer() {
     }
 

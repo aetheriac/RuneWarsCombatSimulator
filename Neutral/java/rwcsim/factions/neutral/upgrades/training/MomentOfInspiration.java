@@ -6,7 +6,7 @@ import rwcsim.basicutils.modifiers.Exhaustable;
 import rwcsim.basicutils.stages.OnAttack;
 import rwcsim.basicutils.upgrades.Training;
 
-public class MomentOfInspiration implements Cost, Training, Exhaustable, AddDie, OnAttack {
+public class MomentOfInspiration implements Cost, Training, Exhaustable, AddDie {
     @Override
     public int[] modifyDiePool() {
         return new int[]{0,0,1};

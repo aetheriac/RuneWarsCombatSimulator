@@ -83,6 +83,7 @@ public class MassAttackLoopTest {
         log.info("Size: "+ stats.size());
 
         Analyzer.analyze(stats);
+        SimulationAttackLoop.resetCounter();
     }
 
 

@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.SiegeUpgrade;
 import rwcsim.basicutils.upgrades.Heavy;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class FrontLineCarrionLancer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Heavy, SiegeUpgrade, SpendSurges {
+public class FrontLineCarrionLancer extends BaseFigure implements FigureUpgrade, Cost, Waiqar, Heavy, SiegeUpgrade {
     public FrontLineCarrionLancer() {}
 
 

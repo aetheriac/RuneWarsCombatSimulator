@@ -9,7 +9,7 @@ import rwcsim.basicutils.upgrades.InfantryUpgrade;
 import rwcsim.basicutils.upgrades.Heraldry;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class EagleBannerBearer extends BaseFigure implements FigureUpgrade, Cost, Daqan, Heraldry, InfantryUpgrade, OnAttack {
+public class EagleBannerBearer extends BaseFigure implements FigureUpgrade, Cost, Daqan, Heraldry, InfantryUpgrade {
     public EagleBannerBearer() {
     }
 

@@ -5,6 +5,7 @@ import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Abilities;
 import rwcsim.basicutils.abilities.Brutal;
+import rwcsim.basicutils.abilities.Regenerate;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
@@ -207,11 +208,18 @@ public class UnitFormationManager implements Manager {
     }
 
 
-    public void endActivationPhase() {
+    public void endActivationPhase(int round) {
         if (isAlive() && hasEmptySlots()) {
-            Set<Map.Entry<Integer, Ability<?>>> abilities = unit.getAbilities().entrySet();
-            for (Map.Entry<Integer, Ability<?>> ability : abilities) {
-
+            Integer key = new Regenerate(0).getKey();
+            if (unit.getAbilities().keySet().contains(key)) {
+                int regenCount = unit.getAbilities().get(key).getValue();
+                int startingRegens = regenCount;
+                if (regenCount>0) {
+                    for (Tray t : trayLayout) {
+                        regenCount = t.refillEmptySlots(unit, regenCount);
+                    }
+                }
+                deployableUnit.unitStateManager.recordRegeneration(round, startingRegens, regenCount);
             }
         }
     }
