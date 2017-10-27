@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface ResolveMorale extends Stage<ResolveMorale> {
+public class ResolveMorale extends NullStage<ResolveMorale> {
     Key<ResolveMorale> key = new Key<>();
-    default Key<ResolveMorale> key() { return key; };
+//    default Key<ResolveMorale> key() { return key; };
 }

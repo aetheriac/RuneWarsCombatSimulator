@@ -8,6 +8,7 @@ import rwcsim.basicutils.abilities.Brutal;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
+import rwcsim.basicutils.stages.EndOfActivation;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.basicutils.dice.DiePool;
 
@@ -191,5 +192,13 @@ public class UnitFormationManager implements Manager {
         usm.setFormation(formation);
         usm.setUnit(unit);
         return usm;
+    }
+
+    public void reconfigure() {
+//        for (Ability<?> ability : unit.getAbilities().values()) {
+//            if (ability.getStage() instanceof EndOfActivation) {
+//
+//            }
+//        }
     }
 }

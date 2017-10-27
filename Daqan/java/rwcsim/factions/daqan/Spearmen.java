@@ -72,6 +72,7 @@ public class Spearmen extends DaqanUnit implements Infantry {
         legalFormations.add(Formation.TWO_BY_TWO);
         legalFormations.add(Formation.THREE_BY_TWO);
         legalFormations.add(Formation.THREE_BY_THREE);
+        legalFormations.add(Formation.FOUR_BY_ONE);
     }
 
 

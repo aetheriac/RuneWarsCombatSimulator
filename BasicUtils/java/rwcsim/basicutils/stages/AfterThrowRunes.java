@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface AfterThrowRunes extends Stage<AfterThrowRunes> {
+public class AfterThrowRunes extends NullStage<AfterThrowRunes> {
     Key<AfterThrowRunes> key = new Key<>();
-    default Key<AfterThrowRunes> key() { return key; }
+//    default Key<AfterThrowRunes> key() { return key; }
 }

@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface SpendMortalStrikes extends Stage<SpendMortalStrikes> {
+public class SpendMortalStrikes extends NullStage<SpendMortalStrikes> {
     Key<SpendMortalStrikes> key = new Key<>();
-    default Key<SpendMortalStrikes> key() { return key; };
+//    default Key<SpendMortalStrikes> key() { return key; };
 }

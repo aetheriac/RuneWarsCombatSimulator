@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface BeginningEndPhase extends Stage<BeginningEndPhase> {
+public class BeginningEndPhase extends NullStage<BeginningEndPhase> {
     Key<BeginningEndPhase> key = new Key<>();
-    default Key<BeginningEndPhase> key() { return key; };
+//    default Key<BeginningEndPhase> key() { return key; };
 }

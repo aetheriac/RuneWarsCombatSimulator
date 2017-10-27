@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface Reconfigure extends Stage<Reconfigure> {
+public class Reconfigure extends NullStage<Reconfigure> {
     Key<Reconfigure> key = new Key<>();
-    default Key<Reconfigure> key() { return key; };
+//    default Key<Reconfigure> key() { return key; };
 }

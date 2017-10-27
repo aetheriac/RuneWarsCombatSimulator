@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface WhileMoving extends Stage<WhileMoving> {
+public class WhileMoving extends NullStage<WhileMoving> {
     Key<WhileMoving> key = new Key<>();
-    default Key<WhileMoving> key() { return key; };
+//    default Key<WhileMoving> key() { return key; };
 }

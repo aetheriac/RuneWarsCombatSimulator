@@ -73,6 +73,7 @@ public class OathswornCavalry extends DaqanUnit implements Cavalry {
         legalFormations.add(Formation.TWO_BY_TWO);
         legalFormations.add(Formation.TWO_BY_THREE);
         legalFormations.add(Formation.THREE_BY_THREE);
+        legalFormations.add(Formation.FOUR_BY_ONE);
     }
 
 

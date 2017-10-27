@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface AfterDefending extends Stage<AfterDefending> {
+public class AfterDefending extends NullStage<AfterDefending> {
     Key<AfterDefending> key = new Key<>();
-    default Key<AfterDefending> key() { return key; }
+//    default Key<AfterDefending> key() { return key; }
 }

@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface ModifyDice extends Stage<ModifyDice> {
+public class ModifyDice extends NullStage<ModifyDice> {
     Key<ModifyDice> key = new Key<>();
-    default Key<ModifyDice> key() { return key; }
+//    default Key<ModifyDice> key() { return key; }
 }

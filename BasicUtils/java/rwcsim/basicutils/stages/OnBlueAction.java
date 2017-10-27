@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface OnBlueAction extends Stage<OnBlueAction> {
+public class OnBlueAction extends NullStage<OnBlueAction> {
     Key<OnBlueAction> key = new Key<>();
-    default Key<OnBlueAction> key() { return key; };
+//    default Key<OnBlueAction> key() { return key; };
 }

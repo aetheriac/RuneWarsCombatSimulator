@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface AfterActivation extends Stage<AfterActivation> {
+public class AfterActivation extends NullStage<AfterActivation> {
     Key<AfterActivation> key = new Key<>();
-    default Key<AfterActivation> key() { return key; }
+//    default Key<AfterActivation> key() { return key; }
 }

@@ -122,7 +122,8 @@ public class AttackLoop {
 
     private void reconfigure() {
         log.debug("reconfigure()");
-
+        attackingUnit.reconfigure();
+        defendingUnit.reconfigure();
     }
 
     private void resolveMorale() {

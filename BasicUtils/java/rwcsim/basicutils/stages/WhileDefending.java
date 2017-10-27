@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface WhileDefending extends Stage<WhileDefending> {
+public class WhileDefending extends NullStage<WhileDefending> {
     Key<WhileDefending> key = new Key<>();
-    default Key<WhileDefending> key() { return key; };
+//    default Key<WhileDefending> key() { return key; };
 }

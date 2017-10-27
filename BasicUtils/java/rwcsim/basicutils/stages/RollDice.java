@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface RollDice extends Stage<RollDice> {
+public class RollDice extends NullStage<RollDice> {
     Key<RollDice> key = new Key<>();
-    default Key<RollDice> key() { return key; };
+//    default Key<RollDice> key() { return key; };
 }

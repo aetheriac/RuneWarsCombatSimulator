@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface OnEmptyTray extends Stage<OnEmptyTray> {
+public class OnEmptyTray extends NullStage<OnEmptyTray> {
     Key<OnEmptyTray> key = new Key<>();
-    default Key<OnEmptyTray> key() { return key; };
+//    default Key<OnEmptyTray> key() { return key; };
 }

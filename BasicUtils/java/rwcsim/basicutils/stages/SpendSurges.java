@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface SpendSurges extends Stage<SpendSurges> {
+public class SpendSurges extends NullStage<SpendSurges> {
     Key<SpendSurges> key = new Key<>();
-    default Key<SpendSurges> key() { return key; };
+//    default Key<SpendSurges> key() { return key; };
 }

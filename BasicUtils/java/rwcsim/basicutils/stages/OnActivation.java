@@ -2,7 +2,7 @@ package rwcsim.basicutils.stages;
 
 import rwcsim.basicutils.concepts.Stage;
 
-public interface OnActivation extends Stage<OnActivation> {
+public class OnActivation extends NullStage<OnActivation> {
     Key<OnActivation> key = new Key<>();
-    default Key<OnActivation> key() { return key; }
+//    default Key<OnActivation> key() { return key; }
 }

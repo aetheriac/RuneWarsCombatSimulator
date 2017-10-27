@@ -74,6 +74,7 @@ public class RuneGolems extends DaqanUnit implements Siege {
         legalFormations.add(Formation.TWO_BY_ONE);
         legalFormations.add(Formation.TWO_BY_TWO);
         legalFormations.add(Formation.THREE_BY_TWO);
+        legalFormations.add(Formation.FOUR_BY_ONE);
     }
 
 

@@ -11,6 +11,7 @@ public interface Ability<T> {
     void setValue(int v);
     int getKey();
     void setKey(int key);
+//    default boolean hasStage(){return false;}
 //    T getAbility(int v);
 
 //    interface Null extends Ability<T> {}
