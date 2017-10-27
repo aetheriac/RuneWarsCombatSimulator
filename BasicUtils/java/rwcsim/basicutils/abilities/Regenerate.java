@@ -1,9 +1,8 @@
 package rwcsim.basicutils.abilities;
 
 import rwcsim.basicutils.runes.RuneFaces;
-import rwcsim.basicutils.stages.EndOfActivation;
 
-public class Regenerate extends NullAbility<Regenerate> implements EndOfActivation {
+public class Regenerate extends NullAbility<Regenerate> {
     public Regenerate(int v) {
         setValue(v);
         setKey(Abilities.REGENERATE);
