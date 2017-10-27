@@ -120,6 +120,9 @@ public class SimulationAttackLoop implements Callable<Statistics> {
                 attackLoop.processAttack();
             }
 
+            firstFormation.endActivationPhase();
+            secondFormation.endActivationPhase();
+
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());
 

@@ -27,5 +27,6 @@ public interface Tray {
     boolean hasEmptySlots();
     int[] getEmptySlots();
     int getFigureCount();
+    int refillEmptySlots(Unit unit, int count);
 
 }

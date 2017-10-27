@@ -152,6 +152,18 @@ public abstract class BaseTray implements Tray {
     }
 
     @Override
+    public int refillEmptySlots(Unit unit, int count) {
+        for (int i = 0; (count>0&&i<trayLayout.length); i++) {
+            if (!trayLayout[i].isAlive()) {
+                trayLayout[i] = unit.getFigure();
+                count--;
+            }
+        }
+        return count;
+    }
+
+
+    @Override
     public int[] getEmptySlots() {
         int counter = 0;
         int j = 0;
@@ -165,6 +177,9 @@ public abstract class BaseTray implements Tray {
         }
         return empty;
     }
+
+
+
 
     @Override
     public int getFigureCount() {

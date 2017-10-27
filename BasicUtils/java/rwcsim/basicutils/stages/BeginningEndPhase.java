@@ -3,6 +3,7 @@ package rwcsim.basicutils.stages;
 import rwcsim.basicutils.concepts.Stage;
 
 public class BeginningEndPhase extends NullStage<BeginningEndPhase> {
-    Key<BeginningEndPhase> key = new Key<>();
-//    default Key<BeginningEndPhase> key() { return key; };
+    public BeginningEndPhase() {
+        setKey(Stages.BEGINNING_OF_END_PHASE);
+    }
 }

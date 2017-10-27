@@ -56,5 +56,5 @@ public interface Unit {
     Map<Integer, Ability<?>> getAbilities();
 
     void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot);
-    Map<Stage.Key, List<UpgradeSlot>> getStageRegister();
+    Map<Integer, List<UpgradeSlot>> getStageRegister();
 }

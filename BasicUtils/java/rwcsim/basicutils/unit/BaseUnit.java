@@ -16,7 +16,7 @@ public abstract class BaseUnit implements Unit {
     public List<Formation> legalFormations=null;// = new ArrayList<>();
     public List<UpgradeType> legalUpgrades=null;// = new ArrayList<>();
     public Map<Integer, Ability<?>> abilities = new HashMap<>();
-    public Map<Stage.Key,List<UpgradeSlot>> upgradeRegister = new HashMap<>();
+    public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
 
     public static class NullUnit extends BaseUnit {
         @Override
@@ -147,10 +147,12 @@ public abstract class BaseUnit implements Unit {
     public Map<Integer, Ability<?>> getAbilities() { return abilities; }
 
     public void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot) {
-        if (!upgradeRegister.containsKey(stage.key())) {
-            upgradeRegister.put(stage.key(), new ArrayList<UpgradeSlot>());
+        if (!upgradeRegister.containsKey(stage.getKey())) {
+            upgradeRegister.put(stage.getKey(), new ArrayList<UpgradeSlot>());
         }
-        upgradeRegister.get(stage.key()).add(upgradeSlot);
+        upgradeRegister.get(stage.getKey()).add(upgradeSlot);
     }
-    public Map<Stage.Key, List<UpgradeSlot>> getStageRegister() { return upgradeRegister; }
+    public Map<Integer, List<UpgradeSlot>> getStageRegister() {
+        return upgradeRegister;
+    }
 }

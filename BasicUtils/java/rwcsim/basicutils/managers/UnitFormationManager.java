@@ -15,6 +15,7 @@ import rwcsim.basicutils.dice.DiePool;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class UnitFormationManager implements Manager {
     private static final Logger log = Logger.getLogger(UnitFormationManager.class);
@@ -170,6 +171,17 @@ public class UnitFormationManager implements Manager {
         return true;
     }
 
+    public boolean hasEmptySlots() {
+        ((ArrayList)trayLayout).trimToSize();
+        for (Tray t : trayLayout) {
+            if (t.hasEmptySlots()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public int figuresRemaining() {
         int result = 0;
         ((ArrayList)trayLayout).trimToSize();
@@ -192,6 +204,16 @@ public class UnitFormationManager implements Manager {
         usm.setFormation(formation);
         usm.setUnit(unit);
         return usm;
+    }
+
+
+    public void endActivationPhase() {
+        if (isAlive() && hasEmptySlots()) {
+            Set<Map.Entry<Integer, Ability<?>>> abilities = unit.getAbilities().entrySet();
+            for (Map.Entry<Integer, Ability<?>> ability : abilities) {
+
+            }
+        }
     }
 
     public void reconfigure() {
