@@ -209,7 +209,7 @@ public class UnitFormationManager implements Manager {
 
 
     public void endActivationPhase(int round) {
-        if (isAlive() && hasEmptySlots()) {
+        if (isAlive() && hasEmptySlots() && RuleSetManager.isEnabled("REGENERATION")) {
             Integer key = new Regenerate(0).getKey();
             if (unit.getAbilities().keySet().contains(key)) {
                 int regenCount = unit.getAbilities().get(key).getValue();

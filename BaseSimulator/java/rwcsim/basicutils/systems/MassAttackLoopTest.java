@@ -3,7 +3,11 @@ package rwcsim.basicutils.systems;
 import org.apache.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Configuration;
+import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
+import rwcsim.basicutils.ruleset.AutomaticallyRerollBlanks;
+import rwcsim.basicutils.ruleset.Regeneration;
+import rwcsim.basicutils.ruleset.Reroll;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.interactions.InteractionManager;
 import rwcsim.test.Analyzer;
@@ -47,6 +51,16 @@ public class MassAttackLoopTest {
     UnitFormationManager daqanFormation;
 
     List<String> messages = new ArrayList<>();
+
+    public MassAttackLoopTest() {
+        initEngine();
+    }
+
+    public static void initEngine() {
+        RuleSetManager.addRule(new Reroll(), false);
+        RuleSetManager.addRule(new AutomaticallyRerollBlanks(), true);
+        RuleSetManager.addRule(new Regeneration(), true);
+    }
 
 
     public void setupLoops(SimSetup ss) {
