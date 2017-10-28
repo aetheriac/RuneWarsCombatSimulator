@@ -1,6 +1,7 @@
 package rwcsim.basicutils.managers;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.Configuration;
 import rwcsim.basicutils.Factions;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FactionManager {
-    private Logger log = Logger.getLogger(FactionManager.class);
+    private Logger log = LogManager.getLogger(FactionManager.class);
     private static FactionManager factionManager = new FactionManager();
     Map<Factions, UnitManager> registeredFactions = new HashMap<>();
     String[] factionList=null;

@@ -1,6 +1,7 @@
 package rwcsim.basicutils.dice;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.managers.RuleSetManager;
 
 import java.util.*;
@@ -9,7 +10,7 @@ import java.util.*;
  * Created by dsayles on 5/14/15.
  */
 public class Roller {
-    private static final Logger logger = Logger.getLogger(Roller.class);
+    private static final Logger logger = LogManager.getLogger(Roller.class);
     public static RedDie redDie = new RedDie();
     public static WhiteDie whiteDie = new WhiteDie();
     public static BlueDie blueDie = new BlueDie();

@@ -1,0 +1,3 @@
+rootProject.name = 'RuneWarsCombatSimulator'
+include 'BaseSimulator','BasicUtils','Daqan','GUI','Interactions',"Latari",'Neutral','TestBed','Uthuk','Waiqar'
+

@@ -1,12 +1,14 @@
 package rwcsim.utils.statistics;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RuneStatistics {
-    private static Logger log = Logger.getLogger(RuneStatistics.class);
+    private static Logger log = LogManager.getLogger(RuneStatistics.class);
     private static boolean showRecordings = false;
     private static List<String> recording = new ArrayList<>();
 

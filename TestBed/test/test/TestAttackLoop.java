@@ -1,4 +1,4 @@
-package rwcsim.test;
+package test;
 
 import junit.framework.TestCase;
 import rwcsim.basicutils.AttackType;

@@ -1,6 +1,7 @@
 package rwcsim.basicutils.systems;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Configuration;
 import rwcsim.basicutils.managers.RuleSetManager;
@@ -22,7 +23,7 @@ import java.util.concurrent.Future;
 
 
 public class MassAttackLoopTest {
-    private static Logger log = Logger.getLogger(MassAttackLoopTest.class);
+    private static Logger log = LogManager.getLogger(MassAttackLoopTest.class);
 
     private static List<Statistics> stats = new ArrayList<>();
 

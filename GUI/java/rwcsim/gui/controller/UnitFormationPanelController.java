@@ -1,6 +1,7 @@
 package rwcsim.gui.controller;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.Factions;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.Unit;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UnitFormationPanelController {
-    private final Logger log = Logger.getLogger(UnitFormationPanelController.class);
+    private final Logger log = LogManager.getLogger(UnitFormationPanelController.class);
     private UnitFormationPanel    unitFormationPanelFrame;
     private JPanel    unitFormationPanel;
     private JComboBox formationComboBox;

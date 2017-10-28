@@ -1,16 +1,11 @@
 package rwcsim.basicutils;
 
 
-import org.apache.log4j.xml.DOMConfigurator;
-
 import java.io.IOException;
 import java.util.Properties;
 
 public class Configuration  {
     public static final int CONFIGURATION_ERROR = 1;
-
-
-
 
 
     private static Configuration.NullableConfiguration INSTANCE = null;
@@ -19,10 +14,6 @@ public class Configuration  {
         if (INSTANCE == null) {
             INSTANCE = new Configuration.NullableConfiguration();
         }
-
-        String log4jConfigFile = "resources/log4j.xml";
-        DOMConfigurator.configure(log4jConfigFile);
-
         return INSTANCE;
     }
 

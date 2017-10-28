@@ -1,6 +1,7 @@
 package rwcsim.basicutils.systems;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.dice.*;
 import rwcsim.basicutils.managers.UnitFormationManager;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 public class AttackLoop {
 
-    private static final Logger log = Logger.getLogger(AttackLoop.class);
+    private static final Logger log = LogManager.getLogger(AttackLoop.class);
     AttackType attackType;
 
     // AI or UI

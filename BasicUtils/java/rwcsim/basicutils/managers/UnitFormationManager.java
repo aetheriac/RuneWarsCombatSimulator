@@ -1,6 +1,8 @@
 package rwcsim.basicutils.managers;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Abilities;
@@ -19,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class UnitFormationManager implements Manager {
-    private static final Logger log = Logger.getLogger(UnitFormationManager.class);
+    private static final Logger log = LogManager.getLogger(UnitFormationManager.class);
     /**
      * 1: [0]  1x2:  [0]    1x3:  [0]
      *               [1]          [1]

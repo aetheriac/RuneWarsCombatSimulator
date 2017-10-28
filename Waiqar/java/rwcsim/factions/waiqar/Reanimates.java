@@ -1,6 +1,7 @@
 package rwcsim.factions.waiqar;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Regenerate;
 import rwcsim.basicutils.abilities.SteadfastDoubt;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by dsayles on 8/18/17.
  */
 public class Reanimates extends WaiqarUnit implements Infantry {
-    private static final Logger logger = Logger.getLogger(Reanimates.class);
+    private static final Logger logger = LogManager.getLogger(Reanimates.class);
     Formation formation;
 
     public Reanimates() {

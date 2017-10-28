@@ -1,6 +1,7 @@
 package rwcsim.interactions;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.dice.Die;
@@ -12,7 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DefaultInteractionManager extends BaseInteractionManager {
-    private static final Logger logger = Logger.getLogger(DefaultInteractionManager.class);
+    private static final Logger logger = LogManager.getLogger(DefaultInteractionManager.class);
     private static DefaultInteractionManager dim = new DefaultInteractionManager();
 
     public static InteractionManager instance() {

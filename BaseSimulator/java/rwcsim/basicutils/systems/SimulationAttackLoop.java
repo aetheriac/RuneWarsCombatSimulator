@@ -1,6 +1,7 @@
 package rwcsim.basicutils.systems;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
@@ -17,7 +18,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SimulationAttackLoop implements Callable<Statistics> {
-    private static Logger log = Logger.getLogger(SimulationAttackLoop.class);
+    private static Logger log = LogManager.getLogger(SimulationAttackLoop.class);
 
     private static int DEMARKATION = 10000;
     private static AtomicInteger atomicInteger = new AtomicInteger(0);

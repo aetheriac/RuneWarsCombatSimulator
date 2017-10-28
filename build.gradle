@@ -1,0 +1,102 @@
+version '1.0-SNAPSHOT'
+
+
+subprojects {
+    apply plugin: 'groovy'
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile files("../resources/")
+        compile 'org.codehaus.groovy:groovy-all:2.3.11'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.1'
+        testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.0.1'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.1'
+        testCompile group: 'org.jmock', name: 'jmock-junit4', version: '2+'
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'java'
+            }
+        }
+        test {
+            java {
+                srcDir 'test'
+            }
+        }
+    }
+}
+
+project(':Daqan') {
+    dependencies {
+        compile project(':BasicUtils'), project(':Neutral')
+    }
+}
+
+project(':Latari') {
+    dependencies {
+        compile project(':BasicUtils'), project(':Neutral')
+    }
+}
+
+project(':Uthuk') {
+    dependencies {
+        compile project(':BasicUtils'), project(':Neutral')
+    }
+}
+
+project(':Waiqar') {
+    dependencies {
+        compile project(':BasicUtils'), project(':Neutral')
+    }
+}
+
+project(':GUI') {
+    dependencies {
+        compile project(':BasicUtils'), project(':BaseSimulator')
+    }
+}
+
+project(':Interactions') {
+    dependencies {
+        compile project(':BasicUtils')
+    }
+}
+
+project(':BasicUtils') {
+    dependencies {
+        compile project(':BasicUtils')
+    }
+}
+
+project(':BaseSimulator') {
+    dependencies {
+        compile project(':BasicUtils'), project(':Interactions'), project(':Daqan'), project(':Waiqar'), project(':Uthuk'), project(':Latari')
+    }
+}
+
+project(':Interactions') {
+    dependencies {
+        compile project(':BasicUtils')
+    }
+}
+
+project(':Neutral') {
+    dependencies {
+        compile project(':BasicUtils')
+    }
+}
+
+project(':TestBed') {
+    dependencies {
+        compile project(':BasicUtils'), project(':BaseSimulator'), project(':Interactions'), project(':Daqan'), project(':Waiqar'), project(':Uthuk'), project(':Latari')
+    }
+}
