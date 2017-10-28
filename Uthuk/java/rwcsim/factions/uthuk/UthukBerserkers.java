@@ -8,6 +8,7 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Infantry;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
@@ -79,14 +80,14 @@ public class UthukBerserkers extends UthukUnit implements Infantry {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
-                legalUpgrades.add(UpgradeTypes.Heavy);
+                legalUpgrades.add(UpgradeSlot.Heavy);
             case 2:
-                legalUpgrades.add(UpgradeTypes.Music);
+                legalUpgrades.add(UpgradeSlot.Music);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Equipment);
-                legalUpgrades.add(UpgradeTypes.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Equipment);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
                 break;
             default:
                 return;

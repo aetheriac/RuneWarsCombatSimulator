@@ -8,6 +8,7 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Infantry;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
@@ -87,11 +88,11 @@ public class ReanimateArchers extends WaiqarUnit implements Infantry {
 
         switch(legalFormationIndex) {
             case 2:
-                legalUpgrades.add(UpgradeTypes.Training);
+                legalUpgrades.add(UpgradeSlot.Training);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
                 break;
             default:
                 return;

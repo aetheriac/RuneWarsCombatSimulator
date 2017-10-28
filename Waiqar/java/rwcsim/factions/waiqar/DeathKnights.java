@@ -6,6 +6,7 @@ import rwcsim.basicutils.abilities.SteadfastFear;
 import rwcsim.basicutils.concepts.Cavalry;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.runes.RuneFaces;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -93,12 +94,12 @@ public class DeathKnights extends WaiqarUnit implements Cavalry {
 
         switch(legalFormationIndex) {
             case 2:
-                legalUpgrades.add(UpgradeTypes.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Artifact);
-                legalUpgrades.add(UpgradeTypes.Training);
+                legalUpgrades.add(UpgradeSlot.Artifact);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

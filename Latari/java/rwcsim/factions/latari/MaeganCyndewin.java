@@ -5,6 +5,7 @@ import rwcsim.basicutils.abilities.Lethal;
 import rwcsim.basicutils.abilities.Protected;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.runes.RuneFaces;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -70,8 +71,8 @@ public class MaeganCyndewin extends LatariUnit implements Hero, Cavalry, Unique 
 
     @Override
     public void populateUpgrades(Formation formation) {
-        legalUpgrades.add(UpgradeTypes.Artifact);
-        legalUpgrades.add(UpgradeTypes.Unique);
+        legalUpgrades.add(UpgradeSlot.Artifact);
+        legalUpgrades.add(UpgradeSlot.Unique);
     }
 
     @Override

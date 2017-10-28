@@ -5,6 +5,7 @@ import rwcsim.basicutils.abilities.Brutal;
 import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.abilities.SteadfastFear;
 import rwcsim.basicutils.concepts.*;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -73,8 +74,8 @@ public class ArdusIxErebus extends WaiqarUnit implements Hero, Infantry, Unique 
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
-        legalUpgrades.add(UpgradeTypes.Artifact);
-        legalUpgrades.add(UpgradeTypes.Unique);
+        legalUpgrades.add(UpgradeSlot.Artifact);
+        legalUpgrades.add(UpgradeSlot.Unique);
     }
 
     @Override

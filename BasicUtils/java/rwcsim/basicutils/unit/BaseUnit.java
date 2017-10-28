@@ -1,5 +1,6 @@
 package rwcsim.basicutils.unit;
 
+import groovy.util.MapEntry;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
@@ -67,6 +68,11 @@ public abstract class BaseUnit implements Unit {
         @Override
         public void populateUpgrades(Formation formation) {
 
+        }
+
+        @Override
+        public boolean hasUpgrades() {
+            return false;
         }
 
         @Override
@@ -160,6 +166,17 @@ public abstract class BaseUnit implements Unit {
         return upgradeRegistry.get(slot);
     }
 
+    @Override
+    public boolean hasUpgrades() {
+        if (upgradeRegistry.size()>0) {
+            for (Map.Entry<UpgradeSlot, List<Upgrade>> entry : upgradeRegistry.entrySet() ) {
+                if (entry.getValue().size()>0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
 //    public void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot) {

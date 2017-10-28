@@ -9,6 +9,7 @@ import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.dials.*;
 import rwcsim.basicutils.concepts.Infantry;
 import rwcsim.basicutils.runes.RuneFaces;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
@@ -99,14 +100,14 @@ public class Reanimates extends WaiqarUnit implements Infantry {
         switch (legalFormationIndex) {
             case 4:
             case 3:
-                legalUpgrades.add(UpgradeTypes.Heavy);
-                legalUpgrades.add(UpgradeTypes.Training);
+                legalUpgrades.add(UpgradeSlot.Heavy);
+                legalUpgrades.add(UpgradeSlot.Training);
             case 2:
-                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Music);
+                legalUpgrades.add(UpgradeSlot.Music);
                 break;
             default:
                 return;

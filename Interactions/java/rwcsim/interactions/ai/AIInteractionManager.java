@@ -1,6 +1,7 @@
 package rwcsim.interactions.ai;
 
 import rwcsim.basicutils.AttackType;
+import rwcsim.basicutils.dice.DieRollResultsModifier;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
@@ -41,7 +42,7 @@ public class AIInteractionManager extends BaseInteractionManager {
     }
 
     @Override
-    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount) {
+    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
 
     }
 }

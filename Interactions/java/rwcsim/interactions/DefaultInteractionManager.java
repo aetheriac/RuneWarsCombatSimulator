@@ -130,6 +130,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
+        if (attackingUnit.getUnit().hasUpgrades())
         for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
             if (RuleSetManager.isEnabled("TemperedSteel") && upgrade.getUpgradeName().compareTo("TemperedSteel") == 0) {
                 TemperedSteel ts = (TemperedSteel)upgrade;

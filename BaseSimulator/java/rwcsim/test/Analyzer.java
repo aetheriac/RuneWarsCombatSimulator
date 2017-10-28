@@ -25,6 +25,8 @@ public class  Analyzer {
         AtomicInteger fusedregencount = new AtomicInteger(0);
         AtomicInteger smaxregencount = new AtomicInteger(0);
         AtomicInteger susedregencount = new AtomicInteger(0);
+        AtomicInteger fusedtemperedsteel = new AtomicInteger(0);
+        AtomicInteger susedtemperedsteel = new AtomicInteger(0);
 
         stats.stream().forEach( s -> {
             if (!unitLife.containsKey(s.first.unit.getName())) {
@@ -71,6 +73,12 @@ public class  Analyzer {
                 smaxregencount.getAndAdd(sregen[i]);
                 susedregencount.getAndAdd(sregen[i+8]);
             }
+
+            int[] fts = s.first.getTemperedSteel();
+            int[] sts = s.second.getTemperedSteel();
+            fusedtemperedsteel.getAndAdd(fts[1]);
+            susedtemperedsteel.getAndAdd(sts[1]);
+
         });
 
         for (Map.Entry<String,Long> ul : unitLife.entrySet()) {
@@ -80,6 +88,8 @@ public class  Analyzer {
 
         log.info("First regen: Max("+fmaxregencount.get()+") Used("+fusedregencount.get()+")");
         log.info("Second regen: Max("+smaxregencount.get()+") Used("+susedregencount.get()+")");
+        log.info("First  tsteel: Used("+fusedtemperedsteel.get()+")");
+        log.info("Second tsteel: Used("+susedtemperedsteel.get()+")");
 
         // used regeneration
     }

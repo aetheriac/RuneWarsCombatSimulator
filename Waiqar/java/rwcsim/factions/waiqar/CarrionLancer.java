@@ -4,6 +4,7 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.concepts.Siege;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -89,10 +90,10 @@ public class CarrionLancer extends WaiqarUnit implements Siege {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 1:
             case 0:
-                legalUpgrades.add(UpgradeTypes.Training);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

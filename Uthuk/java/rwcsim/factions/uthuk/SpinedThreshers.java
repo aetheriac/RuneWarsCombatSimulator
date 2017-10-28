@@ -9,6 +9,7 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Siege;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
@@ -81,11 +82,11 @@ public class SpinedThreshers extends UthukUnit implements Siege {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
-                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 2:
-                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Artifact);
+                legalUpgrades.add(UpgradeSlot.Artifact);
             case 0:
                 break;
             default:

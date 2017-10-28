@@ -4,6 +4,7 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Impact;
 import rwcsim.basicutils.abilities.Precise;
 import rwcsim.basicutils.concepts.*;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -70,8 +71,8 @@ public class AlianaOfSummersong extends LatariUnit implements Hero, Cavalry, Uni
 
     @Override
     public void populateUpgrades(Formation formation) {
-        legalUpgrades.add(UpgradeTypes.Artifact);
-        legalUpgrades.add(UpgradeTypes.Unique);
+        legalUpgrades.add(UpgradeSlot.Artifact);
+        legalUpgrades.add(UpgradeSlot.Unique);
     }
 
     @Override

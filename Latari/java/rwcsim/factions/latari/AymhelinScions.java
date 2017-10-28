@@ -7,6 +7,7 @@ import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.concepts.Siege;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
@@ -84,10 +85,10 @@ public class AymhelinScions extends LatariUnit implements Siege {
             case 3:
             case 2:
             case 1:
-                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Heraldry);
-                legalUpgrades.add(UpgradeTypes.Artifact);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Artifact);
                 break;
             default:
                 return;

@@ -2,6 +2,7 @@ package rwcsim.factions.waiqar;
 
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -71,8 +72,8 @@ public class AnkaurMaro extends WaiqarUnit implements Hero, Cavalry, Infantry, U
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
-        legalUpgrades.add(UpgradeTypes.Artifact);
-        legalUpgrades.add(UpgradeTypes.Unique);
+        legalUpgrades.add(UpgradeSlot.Artifact);
+        legalUpgrades.add(UpgradeSlot.Unique);
     }
 
     @Override

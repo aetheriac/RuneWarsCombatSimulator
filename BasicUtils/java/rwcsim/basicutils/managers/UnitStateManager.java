@@ -26,6 +26,7 @@ public class UnitStateManager implements Manager {
     public static List<State> UNAVAILABLE_STATE_LIST = new ArrayList<>();
     static { UNAVAILABLE_STATE_LIST.add(UNAVAILABLE_STATE); }
     int[] regen = new int[16];
+    int[] temperedSteel = new int[2];
 
 
     List<State> activeCircumstances = new ArrayList<>();
@@ -99,9 +100,15 @@ public class UnitStateManager implements Manager {
         regen[round+8]=remainingregens;
     }
 
+    public void recordTemperedSteel(int round) {
+        temperedSteel[0] = round;
+        temperedSteel[2]++;
+    }
+
     public void setAliveState(boolean isAlive) { this.isAlive = isAlive; }
     public void setUnit(Unit unit) { this.unit = unit; }
     public void setFormation(Formation formation) { this.formation = formation; }
     public DieStatisticCounter getDsc() { return dsc; }
     public int[] getRegen() { return regen; }
+    public int[] getTemperedSteel() { return temperedSteel; }
 }

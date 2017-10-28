@@ -3,6 +3,7 @@ package rwcsim.factions.daqan;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Brutal;
 import rwcsim.basicutils.concepts.*;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
@@ -68,8 +69,8 @@ public class LordHawthorne extends DaqanUnit implements Hero, Cavalry, Unique {
 
     @Override
     public void populateUpgrades(Formation formation) {
-        legalUpgrades.add(UpgradeTypes.Artifact);
-        legalUpgrades.add(UpgradeTypes.Unique);
+        legalUpgrades.add(UpgradeSlot.Artifact);
+        legalUpgrades.add(UpgradeSlot.Unique);
     }
 
     @Override

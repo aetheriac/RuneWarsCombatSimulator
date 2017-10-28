@@ -7,6 +7,7 @@ import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.concepts.Infantry;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
@@ -79,12 +80,12 @@ public class HeavyCrossbowmen extends DaqanUnit implements Infantry {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 2:
-                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 1:
-                legalUpgrades.add(UpgradeTypes.Equipment);
-                legalUpgrades.add(UpgradeTypes.Music);
+                legalUpgrades.add(UpgradeSlot.Equipment);
+                legalUpgrades.add(UpgradeSlot.Music);
             case 0:
-                legalUpgrades.add(UpgradeTypes.Training);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

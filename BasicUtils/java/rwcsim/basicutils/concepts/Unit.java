@@ -42,6 +42,7 @@ public interface Unit {
     void populateFormations();
     void populateUpgrades(Formation formation);
     List<Upgrade> getUpgrades(UpgradeSlot slot);
+    boolean hasUpgrades();
 
     CommandTool getCommandTool();
     DiePool getMeleeAttackPool();
