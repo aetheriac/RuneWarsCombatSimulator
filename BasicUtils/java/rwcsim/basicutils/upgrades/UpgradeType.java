@@ -1,5 +1,5 @@
-package rwcsim.basicutils.upgrades;
-
-public interface UpgradeType<T> {
-    public Class<?> getSlot();
-}
+//package rwcsim.basicutils.upgrades;
+//
+//public interface UpgradeType {
+//    public Class<?> getSlot();
+//}

@@ -16,4 +16,19 @@ public class MomentOfInspiration implements Cost, Training, Exhaustable, AddDie 
     public int price() {
         return 5;
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }

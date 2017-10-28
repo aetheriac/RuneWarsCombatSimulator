@@ -1,6 +1,5 @@
 package rwcsim.basicutils.upgrades;
 
-import rwcsim.basicutils.slots.UpgradeSlot;
 
-public interface Training extends UpgradeSlot {
+public interface Training {
 }

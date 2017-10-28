@@ -12,4 +12,19 @@ public class PackleadersSpear implements Cost, Latari, Artifact, Unique, Exhaust
     public int price() {
         return 8;
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }

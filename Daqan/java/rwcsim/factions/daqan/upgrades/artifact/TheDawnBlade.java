@@ -6,7 +6,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.factions.daqan.upgrades.Daqan;
 
-public class TheDawnBlade implements UpgradeSlot, Artifact, Unique, Daqan, Cost {
+public class TheDawnBlade implements Artifact, Unique, Daqan, Cost {
     @Override
     public int price() {
         return 10;

@@ -6,7 +6,7 @@ import rwcsim.basicutils.upgrades.Unique;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.factions.waiqar.upgrades.Waiqar;
 
-public class TheDuskBlade implements Cost, UpgradeSlot, Artifact, Unique, Waiqar {
+public class TheDuskBlade implements Cost, Artifact, Unique, Waiqar {
     @Override
     public int price() {
         return 8;

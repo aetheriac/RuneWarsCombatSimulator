@@ -10,4 +10,19 @@ public class DispatchRunner implements Champion, Cost, Exhaustable, OnSkill {
     public int price() {
         return 7;
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }
