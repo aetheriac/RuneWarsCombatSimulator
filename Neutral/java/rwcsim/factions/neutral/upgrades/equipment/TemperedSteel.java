@@ -37,9 +37,4 @@ public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeActi
         }
         return ActionType.BLANK;
     }
-    // Spend ActionType.SURGE to
-    // add ActionType.HIT
-
-    // exhaust to add hit on melee_attack or ranged_attack
-
 }

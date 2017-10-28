@@ -16,7 +16,6 @@ public enum UpgradeSlot implements UpgradeType {
         this.clazz = clazz;
     }
 
-
     @Override
     public Class<?> getSlot() {
         return clazz;
