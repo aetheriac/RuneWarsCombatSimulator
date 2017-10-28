@@ -1,3 +1,14 @@
+.gradle/
+BaseSimulator/build/
+BasicUtils/build/
+Daqan/build/
+GUI/build/
+Interactions/build/
+Latari/build/
+Neutral/build/
+TestBed/build/
+Uthuk/build/
+Waiqar/build/
 *.iml
 *.iws
 *.ipr
