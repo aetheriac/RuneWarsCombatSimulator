@@ -81,7 +81,7 @@ public class DeathKnights extends WaiqarUnit implements Cavalry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {

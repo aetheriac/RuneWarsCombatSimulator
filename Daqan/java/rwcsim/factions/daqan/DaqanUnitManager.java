@@ -114,9 +114,8 @@ public class DaqanUnitManager extends UnitManager {
         return 0;
     }
 
-    public EnumSet<UpgradeSlot> availableUpgrades(Unit unit, Formation formation) {
-        return unit.getAsDaqanUnit().availableUpgrades(formation);
-    }
+
+
 
 
 

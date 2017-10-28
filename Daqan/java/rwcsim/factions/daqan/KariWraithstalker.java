@@ -70,7 +70,7 @@ public class KariWraithstalker extends DaqanUnit implements Hero, Infantry, Uniq
 
 
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         legalUpgrades.add(UpgradeSlot.Artifact);
         legalUpgrades.add(UpgradeSlot.Unique);
     }

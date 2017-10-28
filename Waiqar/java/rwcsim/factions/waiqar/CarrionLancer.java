@@ -76,7 +76,7 @@ public class CarrionLancer extends WaiqarUnit implements Siege {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {

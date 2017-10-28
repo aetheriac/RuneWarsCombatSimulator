@@ -20,6 +20,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="BasicUtils" />
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="module" module-name="Neutral" />
+    <orderEntry type="module" module-name="Daqan" />
+    <orderEntry type="module" module-name="Latari" />
+    <orderEntry type="module" module-name="Uthuk" />
+    <orderEntry type="module" module-name="Waiqar" />
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-all:2.3.11" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.8" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-core:2.8" level="project" />
@@ -58,6 +63,5 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.ant:ant:1.9.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.ant:ant-launcher:1.9.4" level="project" />
-    <orderEntry type="module" module-name="Neutral" />
   </component>
 </module>

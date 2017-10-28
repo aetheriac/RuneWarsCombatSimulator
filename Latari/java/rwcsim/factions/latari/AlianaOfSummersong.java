@@ -70,7 +70,7 @@ public class AlianaOfSummersong extends LatariUnit implements Hero, Cavalry, Uni
 
 
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         legalUpgrades.add(UpgradeSlot.Artifact);
         legalUpgrades.add(UpgradeSlot.Unique);
     }

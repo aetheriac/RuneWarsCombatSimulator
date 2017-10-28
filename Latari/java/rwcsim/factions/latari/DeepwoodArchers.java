@@ -77,7 +77,7 @@ public class DeepwoodArchers extends LatariUnit implements Infantry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:

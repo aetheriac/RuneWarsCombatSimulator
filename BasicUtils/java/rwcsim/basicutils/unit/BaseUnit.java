@@ -1,13 +1,11 @@
 package rwcsim.basicutils.unit;
 
-import groovy.util.MapEntry;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
-import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.*;
 
@@ -66,7 +64,7 @@ public abstract class BaseUnit implements Unit {
         }
 
         @Override
-        public void populateUpgrades(Formation formation) {
+        public void populateSlots(Formation formation) {
 
         }
 
@@ -78,6 +76,16 @@ public abstract class BaseUnit implements Unit {
         @Override
         public void setAbilities() {
 
+        }
+
+        @Override
+        public void registerUpgrade(UpgradeSlot upgradeSlot, Upgrade upgrade) {
+
+        }
+
+        @Override
+        public Map<UpgradeSlot, List<Upgrade>> getUpgrades() {
+            return null;
         }
 
     }
@@ -126,8 +134,8 @@ public abstract class BaseUnit implements Unit {
         return legalFormations;
     };
 
-    public EnumSet<UpgradeSlot> availableUpgrades(Formation formation) {
-        populateUpgrades(formation);
+    public EnumSet<UpgradeSlot> availableSlots(Formation formation) {
+        populateSlots(formation);
         return legalUpgrades;
     }
 
@@ -167,6 +175,11 @@ public abstract class BaseUnit implements Unit {
     }
 
     @Override
+    public Map<UpgradeSlot, List<Upgrade>> getUpgrades() {
+        return upgradeRegistry;
+    }
+
+    @Override
     public boolean hasUpgrades() {
         if (upgradeRegistry.size()>0) {
             for (Map.Entry<UpgradeSlot, List<Upgrade>> entry : upgradeRegistry.entrySet() ) {
@@ -179,11 +192,11 @@ public abstract class BaseUnit implements Unit {
     }
 
 
-//    public void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot) {
-//        if (!upgradeRegister.containsKey(stage.getKey())) {
-//            upgradeRegister.put(stage.getKey(), new ArrayList<UpgradeSlot>());
+//    public void registerUpgrade(UpgradeSlot upgradeSlot, Upgrade upgrade) {
+//        if (!upgradeRegistry.containsKey(upgradeSlot)) {
+//            upgradeRegistry.put(upgradeSlot, new ArrayList<Upgrade>());
 //        }
-//        upgradeRegister.get(stage.getKey()).add(upgradeSlot);
+//        upgradeRegistry.get(upgradeSlot).add(upgrade);
 //    }
 //    public Map<Integer, List<UpgradeSlot>> getStageRegister() {
 //        return upgradeRegister;

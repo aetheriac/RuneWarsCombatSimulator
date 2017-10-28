@@ -68,7 +68,7 @@ public class AnkaurMaro extends WaiqarUnit implements Hero, Cavalry, Infantry, U
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {

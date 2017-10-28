@@ -86,7 +86,7 @@ public class Reanimates extends WaiqarUnit implements Infantry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {

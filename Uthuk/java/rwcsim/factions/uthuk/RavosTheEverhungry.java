@@ -70,7 +70,7 @@ public class RavosTheEverhungry extends UthukUnit implements Hero, Siege, Unique
 
 
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         legalUpgrades.add(UpgradeSlot.Artifact);
         legalUpgrades.add(UpgradeSlot.Unique);
     }

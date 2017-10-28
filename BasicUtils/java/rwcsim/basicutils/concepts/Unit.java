@@ -10,6 +10,7 @@ import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,8 @@ public interface Unit {
     Figure getFigure();
 
     void populateFormations();
-    void populateUpgrades(Formation formation);
+    EnumSet<UpgradeSlot> availableSlots(Formation formation);
+    void populateSlots(Formation formation);
     List<Upgrade> getUpgrades(UpgradeSlot slot);
     boolean hasUpgrades();
 
@@ -54,6 +56,7 @@ public interface Unit {
     void addAbility(Ability ability);
     Map<Integer, Ability<?>> getAbilities();
 
-//    void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot);
+    void registerUpgrade( UpgradeSlot upgradeSlot, Upgrade upgrade);
+    Map<UpgradeSlot, List<Upgrade>> getUpgrades();
 //    Map<Integer, List<UpgradeSlot>> getStageRegister();
 }

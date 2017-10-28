@@ -70,7 +70,7 @@ project(':GUI') {
 
 project(':Interactions') {
     dependencies {
-        compile project(':BasicUtils')
+        compile project(':BasicUtils'), project(':Neutral'), project(':Daqan'), project(':Latari'), project(':Uthuk'), project(':Waiqar')
     }
 }
 

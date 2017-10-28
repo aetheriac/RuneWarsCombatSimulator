@@ -70,7 +70,7 @@ public class ArdusIxErebus extends WaiqarUnit implements Hero, Infantry, Unique 
     }
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
