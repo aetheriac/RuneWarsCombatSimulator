@@ -3,11 +3,17 @@ package rwcsim.factions.neutral.upgrades.equipment;
 import rwcsim.basicutils.ActionType;
 import rwcsim.basicutils.concepts.Cost;
 import rwcsim.basicutils.concepts.ExchangeAction;
+import rwcsim.basicutils.concepts.Rule;
 import rwcsim.basicutils.modifiers.Exhaustable;
 import rwcsim.basicutils.upgrades.Equipment;
 
-public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeAction {
+public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeAction, Rule<TemperedSteel> {
     private boolean _exhausted = false;
+
+    @Override
+    public String getUpgradeName() {
+        return "TemperedSteel";
+    }
 
     @Override
     public int price() {
@@ -36,5 +42,20 @@ public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeActi
             return ActionType.HIT;
         }
         return ActionType.BLANK;
+    }
+
+    @Override
+    public String name() {
+        return "Tempered Steel";
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
+    public TemperedSteel getRule() {
+        return this;
     }
 }

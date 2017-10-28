@@ -61,6 +61,10 @@ public class UnitFormationManager implements Manager {
         initializeTrays();
     }
 
+    public Unit getUnit() {
+        return this.unit;
+    }
+
     public void initializeTrays() {
         for (int i = 0; i<totalTrayCount; i++) {
             trayLayout.add(i, unit.getTray());

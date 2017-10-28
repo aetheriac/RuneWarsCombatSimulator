@@ -3,11 +3,16 @@ package rwcsim.interactions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
+import rwcsim.basicutils.dice.DieRollResultsModifier;
+import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
 import rwcsim.basicutils.dice.Roller;
 import rwcsim.basicutils.runes.RuneManager;
+import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.Upgrade;
+import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,8 +45,6 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         int[] rerollPool = new int[working.keySet().size()];
 
         if (containsNotHits(working)) {
-
-
             for (Map.Entry<Die, List<DieFace>> e : working.entrySet()) {
                 long r = e.getValue().stream().filter(
                         f -> !f.hasHit()
@@ -75,6 +78,26 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         return results;
     }
 
+
+
+//    @Override
+//    public void modifyAttackRollResults(UnitFormationManager attacker, Map<Die, List<DieFace>> rerollResults) {
+//        for (Upgrade upgrade : attacker.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
+//            if (upgrade.getUpgradeName().compareTo("TemperedSteel")==0
+//                    && (containsFace(DieFace.SURGE, rerollResults))) {
+////                        || containsFace(DieFace.HIT_SURGE, rerollResults)
+////                        || containsFace(DieFace.SURGE, rerollResults))) {
+//                TemperedSteel ts = (TemperedSteel)upgrade;
+//                if (!ts.isExhausted()) {
+//                    ts.exhaust();
+//                    removeNFaces(rerollResults);
+//                }
+//            }
+//        }
+//    }
+
+
+
     @Override
     public void applyMortalStrikes(UnitFormationManager unit, int count) {
         logger.debug("applyMortalStrikes: "+ unit.toString() + ":"+ count);
@@ -106,8 +129,17 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     }
 
     @Override
-    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount) {
-
+    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
+        for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
+            if (RuleSetManager.isEnabled("TemperedSteel") && upgrade.getUpgradeName().compareTo("TemperedSteel") == 0) {
+                TemperedSteel ts = (TemperedSteel)upgrade;
+                if (!ts.isExhausted()) {
+                    ts.exhaust();
+                    modifiers.add(new DieRollResultsModifier(DieFace.HIT, 1));
+                    modifiers.add(new DieRollResultsModifier(DieFace.SURGE, -1));
+                }
+            }
+        }
     }
 
 
@@ -167,6 +199,29 @@ public class DefaultInteractionManager extends BaseInteractionManager {
             }
         }
         return false;
+    }
+
+
+    public boolean containsFace(DieFace dieFace, Map<Die, List<DieFace>> results) {
+        for (Map.Entry<Die,List<DieFace>> e : results.entrySet()) {
+            if (e.getValue().contains(dieFace)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public Map<Die, List<DieFace>> removeNFaces(DieFace dieFace, int count, Map<Die, List<DieFace>> results) {
+        for (int i = 0; i<count; i++) {
+            for (Map.Entry<Die,List<DieFace>> entry : results.entrySet()) {
+                if (entry.getValue().contains(dieFace)) {
+                    entry.getValue().remove(dieFace);
+                    continue;
+                }
+            }
+        }
+        return results;
     }
 
 }

@@ -7,6 +7,7 @@ import rwcsim.basicutils.dice.*;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.interactions.InteractionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class AttackLoop {
     int[] adjustmentPool = new int[]{0,0,0};
     Map<Die, List<DieFace>> rollResults;
     Map<Die, List<DieFace>> rerollResults;
+    List<DieRollResultsModifier> rollModifiers = new ArrayList<>();
 
 
     public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type) {
@@ -80,22 +82,22 @@ public class AttackLoop {
 
     private void modifyDice() {
         log.debug("modifyDice()");
-//        attacker.modifyAttackRoll();
+//        attacker.modifyAttackRollResults(attackingUnit, rerollResults);
 //        defender.modifyAttackRoll();
     }
 
     private void spendSurges() {
         log.debug("spendSurges()");
-        int surgeCount = DieRollResultsAnalyzer.countAllSurges(rerollResults);
+        int surgeCount = DieRollResultsAnalyzer.countAllSurges(rerollResults, rollModifiers);
         log.debug("Surges: "+surgeCount);
         if (surgeCount>0) {
-            attacker.applySurges(attackingUnit, defendingUnit, surgeCount);
+            attacker.applySurges(attackingUnit, defendingUnit, surgeCount, rollModifiers);
         }
     }
 
     private void assignAccuracy() {
         log.debug("assignAccuracy()");
-        int accuracyCount = DieRollResultsAnalyzer.countAllAccuracies(rerollResults);
+        int accuracyCount = DieRollResultsAnalyzer.countAllAccuracies(rerollResults, rollModifiers);
         log.debug("Accuracies: "+accuracyCount);
         if (accuracyCount>0) {
             attacker.assignAccuracies(defendingUnit, accuracyCount);
@@ -104,7 +106,7 @@ public class AttackLoop {
 
     private void spendMortalStrikes() {
         log.debug("spendMortalStrikes()");
-        int mortalStrikeCount = DieRollResultsAnalyzer.countMortalStrikes(rerollResults);
+        int mortalStrikeCount = DieRollResultsAnalyzer.countMortalStrikes(rerollResults, rollModifiers);
         log.debug("MortalStrikes: "+ mortalStrikeCount);
         if (mortalStrikeCount>0) {
             attacker.applyMortalStrikes(defendingUnit, mortalStrikeCount);
@@ -113,7 +115,7 @@ public class AttackLoop {
 
     private void spendHits() {
         log.debug("spendHits()");
-        int hitCount = DieRollResultsAnalyzer.countAllHits(rerollResults);
+        int hitCount = DieRollResultsAnalyzer.countAllHits(rerollResults, rollModifiers);
         log.debug("Hits: "+ hitCount);
         int fullHits = hitCount * attackingUnit.getThreat();
         log.debug("FullHits: "+fullHits);
@@ -129,7 +131,7 @@ public class AttackLoop {
 
     private void resolveMorale() {
         log.debug("resolveMorale()");
-        int moraleCount = DieRollResultsAnalyzer.countAllMorale(rerollResults);
+        int moraleCount = DieRollResultsAnalyzer.countAllMorale(rerollResults, rollModifiers);
         log.debug("Morale: "+moraleCount);
         if (moraleCount>0) {
             attacker.applyMorale(defendingUnit, moraleCount);

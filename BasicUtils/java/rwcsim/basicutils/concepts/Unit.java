@@ -8,6 +8,7 @@ import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.Upgrade;
 
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ public interface Unit {
 
     void populateFormations();
     void populateUpgrades(Formation formation);
+    List<Upgrade> getUpgrades(UpgradeSlot slot);
 
     CommandTool getCommandTool();
     DiePool getMeleeAttackPool();
@@ -51,6 +53,6 @@ public interface Unit {
     void addAbility(Ability ability);
     Map<Integer, Ability<?>> getAbilities();
 
-    void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot);
-    Map<Integer, List<UpgradeSlot>> getStageRegister();
+//    void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot);
+//    Map<Integer, List<UpgradeSlot>> getStageRegister();
 }

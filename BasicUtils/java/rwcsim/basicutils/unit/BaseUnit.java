@@ -5,18 +5,18 @@ import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.Upgrade;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class BaseUnit implements Unit {
     public List<Formation> legalFormations=null;// = new ArrayList<>();
-    public List<UpgradeTypes> legalUpgrades=null;// = new ArrayList<>();
+    public EnumSet<UpgradeSlot> legalUpgrades=EnumSet.noneOf(UpgradeSlot.class);
     public Map<Integer, Ability<?>> abilities = new HashMap<>();
-    public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
+//    public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
+//    public EnumSet<UpgradeSlot> allowedUpgrades = EnumSet.noneOf(UpgradeSlot.class);
+    public Map<UpgradeSlot, List<Upgrade>> upgradeRegistry = new HashMap<>();
 
     public static class NullUnit extends BaseUnit {
         @Override
@@ -120,7 +120,7 @@ public abstract class BaseUnit implements Unit {
         return legalFormations;
     };
 
-    public List<UpgradeTypes> availableUpgrades(Formation formation) {
+    public EnumSet<UpgradeSlot> availableUpgrades(Formation formation) {
         populateUpgrades(formation);
         return legalUpgrades;
     }
@@ -146,13 +146,29 @@ public abstract class BaseUnit implements Unit {
     public void addAbility(Ability ability) { abilities.put(ability.getKey(), ability); }
     public Map<Integer, Ability<?>> getAbilities() { return abilities; }
 
-    public void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot) {
-        if (!upgradeRegister.containsKey(stage.getKey())) {
-            upgradeRegister.put(stage.getKey(), new ArrayList<UpgradeSlot>());
+    public void registerUpgrade(UpgradeSlot slot, Upgrade upgrade) {
+        if (legalUpgrades.contains(slot)) {
+            if (!upgradeRegistry.keySet().contains(slot)) {
+                upgradeRegistry.put(slot, new ArrayList<>());
+            }
+            upgradeRegistry.get(slot).add(upgrade);
         }
-        upgradeRegister.get(stage.getKey()).add(upgradeSlot);
     }
-    public Map<Integer, List<UpgradeSlot>> getStageRegister() {
-        return upgradeRegister;
+
+    @Override
+    public List<Upgrade> getUpgrades(UpgradeSlot slot) {
+        return upgradeRegistry.get(slot);
     }
+
+
+
+//    public void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot) {
+//        if (!upgradeRegister.containsKey(stage.getKey())) {
+//            upgradeRegister.put(stage.getKey(), new ArrayList<UpgradeSlot>());
+//        }
+//        upgradeRegister.get(stage.getKey()).add(upgradeSlot);
+//    }
+//    public Map<Integer, List<UpgradeSlot>> getStageRegister() {
+//        return upgradeRegister;
+//    }
 }
