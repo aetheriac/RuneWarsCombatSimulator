@@ -10,8 +10,7 @@ import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.runes.RuneFaces;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.concepts.Siege;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.SiegeTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -84,9 +83,9 @@ public class RuneGolems extends DaqanUnit implements Siege {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeTypes.Heraldry);
             case 1:
-                legalUpgrades.add(UpgradeType.Equipment);
+                legalUpgrades.add(UpgradeTypes.Equipment);
             case 0:
                 break;
             default:

@@ -3,7 +3,7 @@ package rwcsim.factions.uthuk;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.managers.UnitManager;
 import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.List;
 
@@ -112,7 +112,7 @@ public class UthukUnitManager extends UnitManager {
         return 0;
     }
 
-    public List<UpgradeType> availableUpgrades(Unit unit, Formation formation) {
+    public List<UpgradeTypes> availableUpgrades(Unit unit, Formation formation) {
         return unit.getAsUthukUnit().availableUpgrades(formation);
     }
 

@@ -2,7 +2,6 @@ package rwcsim.factions.uthuk;
 
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Brutal;
-import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.abilities.SteadfastFear;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.dials.CommandTool;
@@ -10,10 +9,8 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Siege;
-import rwcsim.basicutils.morale.MoraleType;
-import rwcsim.basicutils.concepts.Unit;
 import rwcsim.basicutils.unit.UthukUnit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.runes.RuneFaces;
 import rwcsim.basicutils.trays.SiegeTray;
@@ -84,11 +81,11 @@ public class SpinedThreshers extends UthukUnit implements Siege {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
-                legalUpgrades.add(UpgradeType.Equipment);
+                legalUpgrades.add(UpgradeTypes.Equipment);
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeTypes.Champion);
             case 1:
-                legalUpgrades.add(UpgradeType.Artifact);
+                legalUpgrades.add(UpgradeTypes.Artifact);
             case 0:
                 break;
             default:

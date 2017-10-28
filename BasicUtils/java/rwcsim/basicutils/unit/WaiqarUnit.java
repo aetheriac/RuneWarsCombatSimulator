@@ -1,7 +1,7 @@
 package rwcsim.basicutils.unit;
 
 import rwcsim.basicutils.Formation;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public abstract class WaiqarUnit extends BaseUnit {
         super();
     }
 
-    public List<UpgradeType> availableUpgrades(boolean listContainsArdus, Formation formation) {
+    public List<UpgradeTypes> availableUpgrades(boolean listContainsArdus, Formation formation) {
         populateUpgrades(listContainsArdus, formation);
         return legalUpgrades;
     }

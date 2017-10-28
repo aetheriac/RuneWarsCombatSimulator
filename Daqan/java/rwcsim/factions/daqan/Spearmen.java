@@ -8,8 +8,7 @@ import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.concepts.Infantry;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.InfantryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -81,14 +80,14 @@ public class Spearmen extends DaqanUnit implements Infantry {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
-                legalUpgrades.add(UpgradeType.Heavy);
+                legalUpgrades.add(UpgradeTypes.Heavy);
             case 2:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeTypes.Heraldry);
             case 1:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeTypes.Champion);
             case 0:
-                legalUpgrades.add(UpgradeType.Equipment);
-                legalUpgrades.add(UpgradeType.Music);
+                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeTypes.Music);
                 break;
             default:
                 return;

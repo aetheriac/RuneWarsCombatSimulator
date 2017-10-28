@@ -9,8 +9,7 @@ import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
 import rwcsim.basicutils.unit.LatariUnit;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -83,12 +82,12 @@ public class LeonxRiders extends LatariUnit implements Cavalry {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeTypes.Champion);
+                legalUpgrades.add(UpgradeTypes.Heraldry);
             case 1:
             case 0:
-                legalUpgrades.add(UpgradeType.Music);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeTypes.Music);
+                legalUpgrades.add(UpgradeTypes.Training);
                 break;
             default:
                 return;

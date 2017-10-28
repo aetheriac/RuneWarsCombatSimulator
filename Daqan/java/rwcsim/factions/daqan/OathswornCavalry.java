@@ -9,8 +9,7 @@ import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
 import rwcsim.basicutils.unit.DaqanUnit;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -83,12 +82,12 @@ public class OathswornCavalry extends DaqanUnit implements Cavalry {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeTypes.Champion);
             case 1:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeTypes.Heraldry);
             case 0:
-                legalUpgrades.add(UpgradeType.Equipment);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeTypes.Training);
                 break;
             default:
                 return;

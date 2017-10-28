@@ -4,8 +4,8 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
-import rwcsim.basicutils.upgrades.UpgradeSlot;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public abstract class BaseUnit implements Unit {
     public List<Formation> legalFormations=null;// = new ArrayList<>();
-    public List<UpgradeType> legalUpgrades=null;// = new ArrayList<>();
+    public List<UpgradeTypes> legalUpgrades=null;// = new ArrayList<>();
     public Map<Integer, Ability<?>> abilities = new HashMap<>();
     public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
 
@@ -120,7 +120,7 @@ public abstract class BaseUnit implements Unit {
         return legalFormations;
     };
 
-    public List<UpgradeType> availableUpgrades(Formation formation) {
+    public List<UpgradeTypes> availableUpgrades(Formation formation) {
         populateUpgrades(formation);
         return legalUpgrades;
     }

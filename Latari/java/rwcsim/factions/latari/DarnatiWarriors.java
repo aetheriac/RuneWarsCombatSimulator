@@ -8,8 +8,7 @@ import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Infantry;
 import rwcsim.basicutils.unit.LatariUnit;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.InfantryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -80,15 +79,15 @@ public class DarnatiWarriors extends LatariUnit implements Infantry {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
-                legalUpgrades.add(UpgradeType.Heavy);
+                legalUpgrades.add(UpgradeTypes.Heavy);
             case 2:
-                legalUpgrades.add(UpgradeType.Heraldry);
-                legalUpgrades.add(UpgradeType.Music);
+                legalUpgrades.add(UpgradeTypes.Heraldry);
+                legalUpgrades.add(UpgradeTypes.Music);
             case 1:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeTypes.Champion);
             case 0:
-                legalUpgrades.add(UpgradeType.Equipment);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeTypes.Equipment);
+                legalUpgrades.add(UpgradeTypes.Training);
                 break;
             default:
                 return;

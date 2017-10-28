@@ -10,7 +10,7 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.upgrades.Unique;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.HeroTray;
 import rwcsim.factions.neutral.figures.HeroFigure;
@@ -70,8 +70,8 @@ public class KariWraithstalker extends DaqanUnit implements Hero, Infantry, Uniq
 
     @Override
     public void populateUpgrades(Formation formation) {
-        legalUpgrades.add(UpgradeType.Artifact);
-        legalUpgrades.add(UpgradeType.Unique);
+        legalUpgrades.add(UpgradeTypes.Artifact);
+        legalUpgrades.add(UpgradeTypes.Unique);
     }
 
     @Override

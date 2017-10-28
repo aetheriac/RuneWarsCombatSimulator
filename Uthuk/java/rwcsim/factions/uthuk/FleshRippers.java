@@ -8,9 +8,8 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
-import rwcsim.basicutils.concepts.Unit;
 import rwcsim.basicutils.unit.UthukUnit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -82,11 +81,11 @@ public class FleshRippers extends UthukUnit implements Cavalry {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeTypes.Champion);
             case 1:
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeTypes.Training);
             case 0:
-                legalUpgrades.add(UpgradeType.Unique);
+                legalUpgrades.add(UpgradeTypes.Unique);
                 break;
             default:
                 return;

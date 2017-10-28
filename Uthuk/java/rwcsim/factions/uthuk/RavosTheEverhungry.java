@@ -3,17 +3,15 @@ package rwcsim.factions.uthuk;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Brutal;
 import rwcsim.basicutils.abilities.Precise;
-import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.abilities.SteadfastFear;
 import rwcsim.basicutils.concepts.*;
-import rwcsim.basicutils.morale.MoraleType;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.upgrades.Unique;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.runes.RuneFaces;
 import rwcsim.basicutils.trays.HeroTray;
@@ -72,8 +70,8 @@ public class RavosTheEverhungry extends UthukUnit implements Hero, Siege, Unique
 
     @Override
     public void populateUpgrades(Formation formation) {
-        legalUpgrades.add(UpgradeType.Artifact);
-        legalUpgrades.add(UpgradeType.Unique);
+        legalUpgrades.add(UpgradeTypes.Artifact);
+        legalUpgrades.add(UpgradeTypes.Unique);
     }
 
     @Override

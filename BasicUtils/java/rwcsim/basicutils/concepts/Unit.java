@@ -1,18 +1,14 @@
 package rwcsim.basicutils.concepts;
 
 import rwcsim.basicutils.Formation;
-import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.unit.WaiqarUnit;
-import rwcsim.basicutils.upgrades.UpgradeSlot;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.slots.UpgradeSlot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -4,7 +4,7 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.managers.UnitManager;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.List;
 
@@ -119,7 +119,7 @@ public class WaiqarUnitManager extends UnitManager {
         return 0;
     }
 
-    public List<UpgradeType> availableUpgrades(Unit unit, Formation formation) {
+    public List<UpgradeTypes> availableUpgrades(Unit unit, Formation formation) {
         boolean containsArdus = false;
         for (DeployableUnit du : getUnitList()) {
             if (du.getUnit() instanceof ArdusIxErebus) {
