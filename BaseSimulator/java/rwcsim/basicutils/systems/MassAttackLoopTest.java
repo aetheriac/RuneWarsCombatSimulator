@@ -67,16 +67,19 @@ public class MassAttackLoopTest {
 
 
     public void setupLoops(SimSetup ss) {
+        setupLoops(ss, null);
+    }
+
+    public void setupLoops(SimSetup ss, SimulationAttackLoop.ProgressCallback callback) {
 //        RuleSetManager.resetFullRandom(testSeed);
         ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
 
         List<SimulationAttackLoop> loops = new ArrayList<>();
         List<Future<Statistics>> futures = new ArrayList<>();
-        SimulationAttackLoop sal;
 
+        SimulationAttackLoop.resetCounter();
         for (int i = 0; i<SIM_COUNT; i++) {
-            sal = new SimulationAttackLoop(ss);
-            loops.add(sal);
+            loops.add(new SimulationAttackLoop(ss, callback));
         }
 
         List<Statistics> stats = new ArrayList<>();
@@ -100,7 +103,6 @@ public class MassAttackLoopTest {
         log.info("Size: "+ stats.size());
 
         Analyzer.analyze(stats);
-        SimulationAttackLoop.resetCounter();
     }
 
 

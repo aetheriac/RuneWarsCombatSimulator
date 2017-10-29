@@ -2,24 +2,17 @@ package rwcsim.gui.view;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import rwcsim.basicutils.Configuration;
+import rwcsim.basicutils.concepts.Unit;
 import rwcsim.gui.controller.SimulatorController;
+import rwcsim.gui.controller.UnitFormationPanelController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Simulator extends JFrame {
-    public Simulator() {
-        super("Simulator Panel");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setContentPane(rootPanel);
-        Dimension d = new Dimension(900, 200);
-        setPreferredSize(d);
-        pack();
-        setVisible(true);
-    }
+public class SimulatorPanel extends JFrame {
 
     private JPanel rootPanel;
     private JTextArea textArea1;
@@ -27,34 +20,56 @@ public class Simulator extends JFrame {
     private UnitFormationPanel firstSelector;
     private JButton runCurrentSimulationButton;
     private JTextField simulationCountField;
+    private JProgressBar simProgressBar;
+
+    private SimulatorController simulatorController;
+    private Configuration configuration;
+    private UnitFormationPanelController firstController;
+    private UnitFormationPanelController secondController;
 
 
-    public JButton getRunCurrentSimulationButton() {
-        return runCurrentSimulationButton;
+    public SimulatorPanel(SimulatorController simulatorController, Configuration configuration) {
+        super("SimulatorPanel Panel");
+        this.simulatorController = simulatorController;
+        this.configuration = configuration;
+
+        this.setContentPane(rootPanel);
+        initializeListeners();
+
+        this.firstController = new UnitFormationPanelController(firstSelector);
+        this.secondController = new UnitFormationPanelController(secondSelector);
     }
 
-    public JTextField getSimulationCountField() {
-        return simulationCountField;
+    private void initializeListeners() {
+        runCurrentSimulationButton.addActionListener(e -> {
+
+            // Initialize the progress bar
+            final int simCount = Integer.parseInt(simulationCountField.getText());
+            SwingUtilities.invokeLater(() -> {
+                this.simProgressBar.setMinimum(0);
+                this.simProgressBar.setMaximum(simCount);
+            });
+
+            // Off thread the waiting on the simulation so we can return controll to the Swing thread right away
+            new Thread(() -> simulatorController.runSimulation(
+                    firstController.getUnit(),
+                    firstController.getFormation(),
+                    secondController.getUnit(),
+                    secondController.getFormation(),
+                    simCount,
+                    SimulatorPanel.this::handleProgressUpdate
+            )).start();
+
+        });
     }
 
-
-    public UnitFormationPanel getFirstSelector() {
-        return firstSelector;
-    }
-
-    public UnitFormationPanel getSecondSelector() {
-        return secondSelector;
-    }
-
-
-    public void setData(SimulatorController data) {
-    }
-
-    public void getData(SimulatorController data) {
-    }
-
-    public boolean isModified(SimulatorController data) {
-        return false;
+    private void handleProgressUpdate(final int runNumberCompleted) {
+        SwingUtilities.invokeLater(() -> {
+            // They could finish out of order in reporting -- don't let this walk backward
+            if (runNumberCompleted > simProgressBar.getValue()) {
+                this.simProgressBar.setValue(runNumberCompleted);
+            }
+        });
     }
 
     {
@@ -73,9 +88,9 @@ public class Simulator extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         textArea1 = new JTextArea();
-        rootPanel.add(textArea1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        rootPanel.add(textArea1, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         firstSelector = new UnitFormationPanel();
         rootPanel.add(firstSelector.$$$getRootComponent$$$(), new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         secondSelector = new UnitFormationPanel();
@@ -93,6 +108,8 @@ public class Simulator extends JFrame {
         final JLabel label1 = new JLabel();
         label1.setText("Simulation Count");
         panel1.add(label1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        simProgressBar = new JProgressBar();
+        rootPanel.add(simProgressBar, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

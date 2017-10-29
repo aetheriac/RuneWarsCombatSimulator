@@ -34,12 +34,18 @@ public class SimulationAttackLoop implements Callable<Statistics> {
     UnitFormationManager secondFormation;
 
     SimSetup setup;
+    private ProgressCallback progressCallback;
 
     List<String> messages = new ArrayList<>();
     int rounds = 0;
 
-    public SimulationAttackLoop(SimSetup setup) {
+    public interface ProgressCallback {
+        void progress(int runNumberCompleted);
+    }
+
+    public SimulationAttackLoop(SimSetup setup, ProgressCallback callback) {
         this.setup = setup;
+        this.progressCallback = callback;
     }
 
     public static void resetCounter() { atomicInteger.set(0); }
@@ -56,9 +62,11 @@ public class SimulationAttackLoop implements Callable<Statistics> {
 
     @Override
     public Statistics call() throws Exception {
-        if (atomicInteger.incrementAndGet() != 0 && atomicInteger.get() % DEMARKATION == 0) {
-            log.info("Processing: " + atomicInteger.get());
+        int runNum = atomicInteger.incrementAndGet();
+        if (runNum != 0 && runNum % DEMARKATION == 0) {
+            log.info("Processing: " + runNum);
         }
+
         this.firstInteraction = DefaultInteractionManager.instance();
         this.firstUnit = setup.getFirst();
         this.firstFormation = new UnitFormationManager(firstUnit);
@@ -83,6 +91,10 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         secondUnit = null;
 
 //        atomicInteger.set(0);
+
+        if (progressCallback != null ) {
+            progressCallback.progress(runNum);
+        }
 
         return stats;
     }
