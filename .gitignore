@@ -9,6 +9,16 @@ Neutral/build/
 TestBed/build/
 Uthuk/build/
 Waiqar/build/
+BaseSimulator/out/
+BasicUtils/out/
+Daqan/out/
+GUI/out/
+Interactions/out/
+Latari/out/
+Neutral/out/
+TestBed/out/
+Uthuk/out/
+Waiqar/out/
 *.iml
 *.iws
 *.ipr
