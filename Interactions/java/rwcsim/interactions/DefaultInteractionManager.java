@@ -30,7 +30,33 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         return new int[]{0,1,0};
     }
 
+    // TODO:  Hook up die reroll dialog to this method
+
     @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type) {
+        Map<Die, List<DieFace>> working;
+//        results.forEach(working::putIfAbsent);
+//        working.putAll(results);
+        working = results.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(), e -> new ArrayList<DieFace>(e.getValue())));
+
+        /* default reroll of blanks if possible */
+        int rerollDieCount = rerollRankCount;
+
+        int[] rerollPool = new int[working.keySet().size()];
+
+
+
+
+        return results;
+    }
+
+
+
+
+
+        @Override
     public Map<Die, List<DieFace>> reroll(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type) {
         Map<Die, List<DieFace>> working;
 //        results.forEach(working::putIfAbsent);

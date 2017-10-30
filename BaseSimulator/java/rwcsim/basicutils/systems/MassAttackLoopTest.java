@@ -9,6 +9,7 @@ import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.ruleset.AutomaticallyRerollBlanks;
 import rwcsim.basicutils.ruleset.Regeneration;
 import rwcsim.basicutils.ruleset.Reroll;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 import rwcsim.interactions.InteractionManager;
@@ -60,7 +61,8 @@ public class MassAttackLoopTest {
 
     public static void initEngine() {
         RuleSetManager.addRule(new Reroll(), false);
-        RuleSetManager.addRule(new AutomaticallyRerollBlanks(), true);
+        RuleSetManager.addRule(new AutomaticallyRerollBlanks(), false);
+        RuleSetManager.addRule(new RerollFromDialog(), true);
         RuleSetManager.addRule(new Regeneration(), true);
         RuleSetManager.addRule(new TemperedSteel(), true);
     }

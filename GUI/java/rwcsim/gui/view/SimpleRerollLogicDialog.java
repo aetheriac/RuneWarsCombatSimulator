@@ -3,9 +3,9 @@ package rwcsim.gui.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import rwcsim.basicutils.dice.DieFace;
-import rwcsim.basicutils.dice.DiePool;
+import rwcsim.basicutils.dice.*;
 import rwcsim.interactions.ai.behaviors.RerollBehavior;
+import rwcsim.interactions.ai.behaviors.RerollFromDialog;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -62,7 +62,6 @@ public class SimpleRerollLogicDialog extends JDialog {
     private HashMap<DieFace, JCheckBox> whiteDieFaceToCheckBoxMap = new HashMap<>();
 
     private RerollBehavior results;
-
 
     private static final DieFace[] defaultRedDieSelection = new DieFace[]{
             DieFace.HIT, DieFace.HIT_HIT, DieFace.HIT_SURGE, DieFace.HIT_MORALE
@@ -186,13 +185,13 @@ public class SimpleRerollLogicDialog extends JDialog {
         final HashSet<DieFace> acceptedBlueFaces = new HashSet<>(getSelectedDieFaces(DiePool.BLUE_DIE));
         final HashSet<DieFace> acceptedWhiteFaces = new HashSet<>(getSelectedDieFaces(DiePool.WHITE_DIE));
 
-        results = new RerollBehavior() {
-            @Override
-            public RerollBehavior getBehavior() {
+        RerollFromDialog rfd = new RerollFromDialog();
 
-                return null;
-            }
-        };
+        rfd.setFaces(DiePool.RED_DIE, getSelectedDieFaces(DiePool.RED_DIE));
+        rfd.setFaces(DiePool.BLUE_DIE, getSelectedDieFaces(DiePool.BLUE_DIE));
+        rfd.setFaces(DiePool.WHITE_DIE, getSelectedDieFaces(DiePool.WHITE_DIE));
+
+        results = rfd;
 
         dispose();
     }
