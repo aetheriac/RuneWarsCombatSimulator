@@ -10,6 +10,7 @@ import rwcsim.basicutils.ruleset.AutomaticallyRerollBlanks;
 import rwcsim.basicutils.ruleset.Reroll;
 import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.interactions.InteractionManager;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class AttackLoop {
     UnitFormationManager attackingUnit;
     UnitFormationManager defendingUnit;
 
+    RerollBehavior rerollBehavior;
+
     DiePool attackPool;
     int[] adjustmentPool = new int[]{0,0,0};
     Map<Die, List<DieFace>> rollResults;
@@ -36,10 +39,11 @@ public class AttackLoop {
     List<DieRollResultsModifier> rollModifiers = new ArrayList<>();
 
 
-    public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type) {
+    public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type, RerollBehavior rerollBehavior) {
         this.attackType = type;
         this.attacker = attacker;
         this.attackingUnit = attackingUnit;
+        this.rerollBehavior = rerollBehavior;
 
         this.defender = defender;
         this.defendingUnit = defendingUnit;
@@ -81,7 +85,7 @@ public class AttackLoop {
             } else if (RuleSetManager.isEnabled(AutomaticallyRerollBlanks.name)) {
                 rerollResults = attacker.reroll(attackingUnit.getRerollDieCount(), attackingUnit.hasPartialRank(), attackingUnit, rollResults, attackType);
             } else if (RuleSetManager.isEnabled(RerollFromDialog.name)) {
-                rerollResults = attacker.rerollFromDialog(attackingUnit.getRerollDieCount(), attackingUnit.hasPartialRank(), attackingUnit, rollResults, attackType);
+                rerollResults = attacker.rerollFromDialog(attackingUnit.getRerollDieCount(), attackingUnit.hasPartialRank(), attackingUnit, rollResults, attackType, rerollBehavior);
             }
             attackingUnit.recordDieRoll(rerollResults, true);
         } else {

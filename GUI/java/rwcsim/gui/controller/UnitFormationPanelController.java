@@ -158,7 +158,7 @@ public class UnitFormationPanelController {
     }
 
 
-    public void loadDefaultRerolls() {
-
+    public RerollBehavior getRerollBehavior() {
+        return unitFormationPanelFrame.getRerollBehavior();
     }
 }

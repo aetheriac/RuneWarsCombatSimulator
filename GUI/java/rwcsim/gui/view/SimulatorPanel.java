@@ -55,8 +55,10 @@ public class SimulatorPanel extends JFrame {
             new Thread(() -> simulatorController.runSimulation(
                     firstController.getUnit(),
                     firstController.getFormation(),
+                    firstController.getRerollBehavior(),
                     secondController.getUnit(),
                     secondController.getFormation(),
+                    secondController.getRerollBehavior(),
                     simCount,
                     SimulatorPanel.this::handleProgressUpdate
             )).start();

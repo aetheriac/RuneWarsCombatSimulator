@@ -10,6 +10,7 @@ import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.interactions.DefaultInteractionManager;
 import rwcsim.interactions.InteractionManager;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 import rwcsim.test.Statistics;
 
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class SimulationAttackLoop implements Callable<Statistics> {
 
     UnitFormationManager firstFormation;
     UnitFormationManager secondFormation;
+
+    RerollBehavior firstBehavior;
+    RerollBehavior secondBehavior;
 
     SimSetup setup;
     private ProgressCallback progressCallback;
@@ -109,6 +113,9 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         UnitFormationManager attackerFormation;
         UnitFormationManager defenderFormation;
 
+        RerollBehavior attackerBehavior;
+        RerollBehavior defenderBehavior;
+
         while ((firstFormation.isAlive() && secondFormation.isAlive()) && rounds <= 7) {
             messages.add("Round "+ rounds);
             log.debug("Round: "+ rounds);
@@ -116,23 +123,27 @@ public class SimulationAttackLoop implements Callable<Statistics> {
             if (rounds % 2 == 0) {
                 attackerInteraction = firstInteraction;
                 attackerFormation = firstFormation;
+                attackerBehavior = firstBehavior;
                 defenderInteraction = secondInteraction;
                 defenderFormation = secondFormation;
+                defenderBehavior = secondBehavior;
             } else {
                 defenderInteraction = firstInteraction;
                 defenderFormation = firstFormation;
+                defenderBehavior = firstBehavior;
                 attackerInteraction = secondInteraction;
                 attackerFormation = secondFormation;
+                attackerBehavior = secondBehavior;
             }
 
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());
 
-            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType);
+            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType, attackerBehavior);
             attackLoop.processAttack();
 
             if (defenderFormation.isAlive()) {
-                attackLoop = new AttackLoop(defenderInteraction, defenderFormation, attackerInteraction, attackerFormation, attackType);
+                attackLoop = new AttackLoop(defenderInteraction, defenderFormation, attackerInteraction, attackerFormation, attackType, defenderBehavior);
                 attackLoop.processAttack();
             }
 

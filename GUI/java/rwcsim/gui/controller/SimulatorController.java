@@ -5,6 +5,7 @@ import rwcsim.basicutils.concepts.Unit;
 import rwcsim.basicutils.systems.MassAttackLoopTest;
 import rwcsim.basicutils.systems.SimSetup;
 import rwcsim.basicutils.systems.SimulationAttackLoop;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 
 public class SimulatorController {
@@ -15,8 +16,8 @@ public class SimulatorController {
         malt = new MassAttackLoopTest();
     }
 
-    public void runSimulation(Unit firstUnit, Formation firstFormation, Unit secondUnit, Formation secondFormation, int simulationCount, SimulationAttackLoop.ProgressCallback callback) {
-        ss = new SimSetup(firstUnit, firstFormation, secondUnit, secondFormation);
+    public void runSimulation(Unit firstUnit, Formation firstFormation, RerollBehavior firstBehavior, Unit secondUnit, Formation secondFormation, RerollBehavior secondBehavior, int simulationCount, SimulationAttackLoop.ProgressCallback callback) {
+        ss = new SimSetup(firstUnit, firstFormation, firstBehavior, secondUnit, secondFormation, secondBehavior);
         MassAttackLoopTest.setSimCount(simulationCount);
         malt.setupLoops(ss, callback);
     }

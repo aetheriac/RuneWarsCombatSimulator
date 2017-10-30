@@ -13,6 +13,7 @@ import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
 import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     // TODO:  Hook up die reroll dialog to this method
 
     @Override
-    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type) {
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
         Map<Die, List<DieFace>> working;
 //        results.forEach(working::putIfAbsent);
 //        working.putAll(results);
