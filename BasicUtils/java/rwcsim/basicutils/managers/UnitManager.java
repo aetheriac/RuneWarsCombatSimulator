@@ -29,6 +29,6 @@ public abstract class UnitManager implements Manager {
         return availableFormations(getIdFromName(unit));
     }
     public EnumSet<UpgradeSlot> availableUpgrades(Unit unit, Formation formation) {
-        return unit.getAsDaqanUnit().availableUpgrades(formation);
+        return unit.availableSlots(formation);
     }
 }

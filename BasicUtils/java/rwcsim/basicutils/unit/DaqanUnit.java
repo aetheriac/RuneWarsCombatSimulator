@@ -18,6 +18,6 @@ public abstract class DaqanUnit extends BaseUnit {
     public UthukUnit getAsUthukUnit() { return null; }
     public WaiqarUnit getAsWaiqarUnit() { return null; }
     public EnumSet<UpgradeSlot> availableUpgrades(Unit unit, Formation formation) {
-        return unit.getAsDaqanUnit().availableUpgrades(formation);
+        return unit.getAsDaqanUnit().availableUpgrades(unit, formation);
     }
 }

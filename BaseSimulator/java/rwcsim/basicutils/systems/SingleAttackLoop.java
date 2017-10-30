@@ -10,7 +10,7 @@ public class SingleAttackLoop {
 
     public void setup() {
         ss = new SimSetup(new OathswornCavalry(), Formation.TWO_BY_ONE, new Reanimates(), Formation.THREE_BY_TWO);
-        simAttackLoop = new SimulationAttackLoop(ss);
+//        simAttackLoop = new SimulationAttackLoop(ss);
     }
 
     public void startSingleSimulation() throws Exception {
