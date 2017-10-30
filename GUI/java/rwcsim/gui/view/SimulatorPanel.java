@@ -48,6 +48,7 @@ public class SimulatorPanel extends JFrame {
             SwingUtilities.invokeLater(() -> {
                 this.simProgressBar.setMinimum(0);
                 this.simProgressBar.setMaximum(simCount);
+                this.simProgressBar.setValue(0);
             });
 
             // Off thread the waiting on the simulation so we can return controll to the Swing thread right away
