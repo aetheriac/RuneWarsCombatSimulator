@@ -3,12 +3,9 @@ package rwcsim.interactions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
-import rwcsim.basicutils.dice.DieRollResultsModifier;
+import rwcsim.basicutils.dice.*;
 import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
-import rwcsim.basicutils.dice.Die;
-import rwcsim.basicutils.dice.DieFace;
-import rwcsim.basicutils.dice.Roller;
 import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
@@ -37,23 +34,42 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
         Map<Die, List<DieFace>> working = results.entrySet().stream()
                                             .collect(Collectors.toMap(
-                                                    e -> e.getKey(), e -> new ArrayList<DieFace>(e.getValue())));
+                                                    e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
 
         int rerollDieCount = rerollRankCount;
         int[] rerollPool = new int[working.keySet().size()];
 
 
+        // Reroll things
+        // RED, BLUE, WHITE
+        // for each die, check the faces that are in there
+        //    if face is in the saved list for the die being checked, skip and move on to next face
 
 
+        Map<Integer, HashSet<DieFace>> dieSetsToSaveFromRerolls = rerollBehavior.getRerollFaces();
+        DieFace tmp;
 
+        for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+            for (DieFace face : entry.getValue()) {
+                if (rerollDieCount>0 && !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
+                    // add a die to the reroll diepool
+                    rerollPool[entry.getKey().getDieType()]++;
+                    // remove original face
+                    results.get(entry.getKey()).remove(face);
+                    rerollDieCount--;
+                }
+            }
+        }
 
+        if (rerollDieCount - 1 > 0) {
+            results = rerollFromDialog(rerollDieCount-1, false, attacker, results, type, rerollBehavior);
+        }
 
+        // Deal with partial rerolls soon
 
-
-
-
-
-
+//        if (rerollPartialRank) {
+//            results = rerollFromDialog(rerollDieCount-1, true, attacker, results, type, rerollBehavior);;
+//        }
         return results;
     }
 
