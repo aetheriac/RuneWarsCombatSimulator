@@ -35,17 +35,21 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
-        Map<Die, List<DieFace>> working;
-//        results.forEach(working::putIfAbsent);
-//        working.putAll(results);
-        working = results.entrySet().stream()
-                .collect(Collectors.toMap(
-                        e -> e.getKey(), e -> new ArrayList<DieFace>(e.getValue())));
+        Map<Die, List<DieFace>> working = results.entrySet().stream()
+                                            .collect(Collectors.toMap(
+                                                    e -> e.getKey(), e -> new ArrayList<DieFace>(e.getValue())));
 
-        /* default reroll of blanks if possible */
         int rerollDieCount = rerollRankCount;
-
         int[] rerollPool = new int[working.keySet().size()];
+
+
+
+
+
+
+
+
+
 
 
 

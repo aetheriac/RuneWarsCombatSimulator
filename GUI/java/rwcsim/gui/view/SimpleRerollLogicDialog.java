@@ -4,8 +4,8 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import rwcsim.basicutils.dice.*;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.interactions.ai.behaviors.RerollBehavior;
-import rwcsim.interactions.ai.behaviors.RerollFromDialog;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -187,9 +187,9 @@ public class SimpleRerollLogicDialog extends JDialog {
 
         RerollFromDialog rfd = new RerollFromDialog();
 
-        rfd.setFaces(DiePool.RED_DIE, getSelectedDieFaces(DiePool.RED_DIE));
-        rfd.setFaces(DiePool.BLUE_DIE, getSelectedDieFaces(DiePool.BLUE_DIE));
-        rfd.setFaces(DiePool.WHITE_DIE, getSelectedDieFaces(DiePool.WHITE_DIE));
+        rfd.setFaces(DiePool.RED_DIE, acceptedRedFaces);
+        rfd.setFaces(DiePool.BLUE_DIE, acceptedBlueFaces);
+        rfd.setFaces(DiePool.WHITE_DIE, acceptedWhiteFaces);
 
         results = rfd;
 
