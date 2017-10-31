@@ -31,7 +31,18 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     // TODO:  Hook up die reroll dialog to this method
 
     @Override
-    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results,
+                                                    AttackType type, RerollBehavior rerollBehavior) {
+        Map<Die,List<DieFace>> rerolledResults = rerollFromDialog(rerollRankCount, attacker, results, type, rerollBehavior);
+        if (rerollPartialRank) {
+            rerolledResults = rerollFromDialog(1, attacker, results, type, rerollBehavior);
+        }
+        return rerolledResults;
+    }
+
+
+    @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
         Map<Die, List<DieFace>> working = results.entrySet().stream()
                                             .collect(Collectors.toMap(
                                                     e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
@@ -39,16 +50,10 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         int rerollDieCount = rerollRankCount;
         int[] rerollPool = new int[working.keySet().size()];
 
-
         // Reroll things
         // RED, BLUE, WHITE
         // for each die, check the faces that are in there
         //    if face is in the saved list for the die being checked, skip and move on to next face
-
-
-        Map<Integer, HashSet<DieFace>> dieSetsToSaveFromRerolls = rerollBehavior.getRerollFaces();
-        DieFace tmp;
-
         for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
             for (DieFace face : entry.getValue()) {
                 if (rerollDieCount>0 && !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
@@ -64,12 +69,6 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         if (rerollDieCount - 1 > 0) {
             results = rerollFromDialog(rerollDieCount-1, false, attacker, results, type, rerollBehavior);
         }
-
-        // Deal with partial rerolls soon
-
-//        if (rerollPartialRank) {
-//            results = rerollFromDialog(rerollDieCount-1, true, attacker, results, type, rerollBehavior);;
-//        }
         return results;
     }
 
