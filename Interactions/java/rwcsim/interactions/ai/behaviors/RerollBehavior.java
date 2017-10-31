@@ -8,4 +8,5 @@ import java.util.Map;
 
 public interface RerollBehavior extends Behavior<RerollBehavior> {
     Map<Integer, HashSet<DieFace>> getRerollFaces();
+    Map<Integer, HashSet<DieFace>> getDefaultRerollFaces();
 }

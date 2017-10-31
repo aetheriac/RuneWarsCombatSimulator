@@ -12,7 +12,7 @@ public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeActi
 
     @Override
     public String getUpgradeName() {
-        return "TemperedSteel";
+        return "Tempered Steel";
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeActi
 
     @Override
     public String name() {
-        return "Tempered Steel";
+        return getUpgradeName();
     }
 
     @Override

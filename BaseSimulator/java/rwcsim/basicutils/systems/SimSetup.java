@@ -29,12 +29,12 @@ public class SimSetup {
 
     // TODO FIX THESE TO USE THE selected units
     public SimSetup(Unit firstUnit, Formation firstFormation, RerollBehavior firstBehavior, Unit secondUnit, Formation secondFormation, RerollBehavior secondBehavior) {
-        this.firstUnit = new OathswornCavalry();
-        this.firstFormation = Formation.TWO_BY_TWO;
+        this.firstUnit = firstUnit; //new OathswornCavalry();
+        this.firstFormation = firstFormation; //Formation.TWO_BY_TWO;
         this.firstBehavior = firstBehavior;
 
-        this.secondUnit = new DeathKnights();
-        this.secondFormation = Formation.TWO_BY_TWO;
+        this.secondUnit = secondUnit; //new DeathKnights();
+        this.secondFormation = secondFormation; //Formation.TWO_BY_TWO;
         this.secondBehavior = secondBehavior;
     }
 

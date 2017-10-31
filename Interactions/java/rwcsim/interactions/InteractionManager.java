@@ -22,6 +22,8 @@ public interface InteractionManager {
     void applyMortalStrikes(UnitFormationManager unit, int count);
     void assignAccuracies(UnitFormationManager unit, int count);
     void applyHits(UnitFormationManager defendingUnit, int hitCount);
+    int modifyDamagePool(int damagePool);
+
     void applyMorale(UnitFormationManager defendingUnit, int moraleCount);
 
     void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers);

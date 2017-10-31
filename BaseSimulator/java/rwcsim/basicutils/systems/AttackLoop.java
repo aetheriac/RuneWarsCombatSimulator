@@ -38,6 +38,8 @@ public class AttackLoop {
     Map<Die, List<DieFace>> rerollResults;
     List<DieRollResultsModifier> rollModifiers = new ArrayList<>();
 
+//    int hitAdjustment = 0;
+
 
     public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type, RerollBehavior rerollBehavior) {
         this.attackType = type;
@@ -131,10 +133,12 @@ public class AttackLoop {
         log.debug("spendHits()");
         int hitCount = DieRollResultsAnalyzer.countAllHits(rerollResults, rollModifiers);
         log.debug("Hits: "+ hitCount);
-        int fullHits = hitCount * attackingUnit.getThreat();
-        log.debug("FullHits: "+fullHits);
+        int damagePool = hitCount * attackingUnit.getThreat();
+        damagePool = attacker.modifyDamagePool(damagePool);
+        damagePool = defender.modifyDamagePool(damagePool);
+        log.debug("FullHits: "+damagePool);
 
-        attacker.applyHits(defendingUnit, fullHits);
+        attacker.applyHits(defendingUnit, damagePool);
     }
 
     private void reconfigure() {

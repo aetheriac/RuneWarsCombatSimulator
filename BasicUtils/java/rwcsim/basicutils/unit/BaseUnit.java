@@ -10,7 +10,7 @@ import rwcsim.basicutils.upgrades.Upgrade;
 import java.util.*;
 
 public abstract class BaseUnit implements Unit {
-    public List<Formation> legalFormations=null;// = new ArrayList<>();
+    public List<Formation> legalFormations = new ArrayList<>();
     public EnumSet<UpgradeSlot> legalUpgrades=EnumSet.noneOf(UpgradeSlot.class);
     public Map<Integer, Ability<?>> abilities = new HashMap<>();
 //    public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
@@ -127,8 +127,8 @@ public abstract class BaseUnit implements Unit {
     }
 
     public List<Formation> availableFormations() {
-        if (null == legalFormations) {
-            legalFormations = new ArrayList<>();
+        if (legalFormations.isEmpty()) {
+//            legalFormations = new ArrayList<>();
             populateFormations();
         }
         return legalFormations;

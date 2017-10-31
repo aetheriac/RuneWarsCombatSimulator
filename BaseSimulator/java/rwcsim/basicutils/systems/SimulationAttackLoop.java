@@ -6,6 +6,7 @@ import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.managers.UnitStateManager;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.interactions.DefaultInteractionManager;
@@ -74,11 +75,13 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         this.firstInteraction = DefaultInteractionManager.instance();
         this.firstUnit = setup.getFirst();
         this.firstFormation = new UnitFormationManager(firstUnit);
+        this.firstBehavior = new RerollFromDialog();
 
 
         this.secondInteraction = DefaultInteractionManager.instance();
         this.secondUnit = setup.getSecond();
         this.secondFormation = new UnitFormationManager(secondUnit);
+        this.secondBehavior = new RerollFromDialog();
 
         simulateLoop();
 

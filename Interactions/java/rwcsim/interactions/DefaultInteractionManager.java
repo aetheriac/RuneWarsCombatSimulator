@@ -6,7 +6,6 @@ import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.dice.*;
 import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
-import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
 import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
@@ -16,7 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DefaultInteractionManager extends BaseInteractionManager {
-    private static final Logger logger = LogManager.getLogger(DefaultInteractionManager.class);
+    private static final Logger log = LogManager.getLogger(DefaultInteractionManager.class);
     private static DefaultInteractionManager dim = new DefaultInteractionManager();
 
     public static InteractionManager instance() {
@@ -98,7 +97,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
                 if (r > 0) rerollPool[e.getKey().getDieType()] = (int) r;
                 for ( DieFace df : e.getValue()) {
                     if (!df.dealsDamage()) {
-                        logger.debug("Removing " + df.name() + " face from " + e.getKey().toString());
+                        log.debug("Removing " + df.name() + " face from " + e.getKey().toString());
                         results.get(e.getKey()).remove(df);
                     }
                 }
@@ -146,7 +145,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void applyMortalStrikes(UnitFormationManager unit, int count) {
-        logger.debug("applyMortalStrikes: "+ unit.toString() + ":"+ count);
+        log.debug("applyMortalStrikes: "+ unit.toString() + ":"+ count);
 
         // apply mortal strikes to defender
         unit.applyMortalStrikes(count);
@@ -157,13 +156,13 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void assignAccuracies(UnitFormationManager unit, int count) {
-        logger.debug("assignAccuracies: "+ unit.toString() + ":"+ count);
+        log.debug("assignAccuracies: "+ unit.toString() + ":"+ count);
     }
 
 
     @Override
     public void applyHits(UnitFormationManager unit, int count) {
-        logger.debug("applyHits: "+ unit.toString() + ":"+ count);
+        log.debug("applyHits: "+ unit.toString() + ":"+ count);
 
         // apply hits here
         unit.applyHits(count);
@@ -171,18 +170,21 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void applyMorale(UnitFormationManager unit, int count) {
-        logger.debug("applyMorale: "+ unit.toString() + ":"+ count);
+        log.debug("applyMorale: "+ unit.toString() + ":"+ count);
     }
 
     @Override
     public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
         if (attackingUnit.getUnit().hasUpgrades())
         for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
-            if (RuleSetManager.isEnabled("TemperedSteel") && upgrade.getUpgradeName().compareTo("TemperedSteel") == 0) {
+            if (RuleSetManager.isEnabled("Tempered Steel") && upgrade.getUpgradeName().compareTo("Tempered Steel") == 0) {
                 TemperedSteel ts = (TemperedSteel)upgrade;
                 if (!ts.isExhausted()) {
+                    log.debug("Exhausting Tempered Steel");
                     ts.exhaust();
+                    log.debug("Adding HIT");
                     modifiers.add(new DieRollResultsModifier(DieFace.HIT, 1));
+                    log.debug("Removing SURGE");
                     modifiers.add(new DieRollResultsModifier(DieFace.SURGE, -1));
                 }
             }

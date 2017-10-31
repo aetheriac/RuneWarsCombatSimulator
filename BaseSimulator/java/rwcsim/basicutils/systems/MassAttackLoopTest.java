@@ -41,7 +41,7 @@ public class MassAttackLoopTest {
         SIM_COUNT = simCount;
     }
 
-    public static int SIM_COUNT = 500000;
+    public static int SIM_COUNT = 500;
     public static AttackType attackType = AttackType.MELEE_ATTACK;
 
     InteractionManager waiqarInteraction;

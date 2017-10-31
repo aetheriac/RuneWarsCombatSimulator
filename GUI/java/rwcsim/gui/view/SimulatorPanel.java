@@ -106,7 +106,7 @@ public class SimulatorPanel extends JFrame {
         panel1.add(runCurrentSimulationButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
         simulationCountField = new JTextField();
         simulationCountField.setHorizontalAlignment(0);
-        simulationCountField.setText("500000");
+        simulationCountField.setText("500");
         panel1.add(simulationCountField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 1, false));
         final JLabel label1 = new JLabel();
         label1.setText("Simulation Count");

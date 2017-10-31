@@ -6,6 +6,7 @@ import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
 import rwcsim.interactions.BaseInteractionManager;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,16 @@ public class UIInteractionManager extends BaseInteractionManager {
 
     @Override
     public Map<Die, List<DieFace>> reroll(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type) {
+        return null;
+    }
+
+    @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
+        return null;
+    }
+
+    @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
         return null;
     }
 
