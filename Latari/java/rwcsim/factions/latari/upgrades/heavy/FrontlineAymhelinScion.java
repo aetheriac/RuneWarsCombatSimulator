@@ -42,4 +42,19 @@ public class FrontlineAymhelinScion extends BaseFigure implements FigureUpgrade,
     public int getHealth() {
         return 3;
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }

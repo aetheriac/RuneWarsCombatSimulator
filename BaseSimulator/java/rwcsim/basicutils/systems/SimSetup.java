@@ -11,22 +11,31 @@ import rwcsim.factions.waiqar.ArdusIxErebus;
 import rwcsim.factions.waiqar.CarrionLancer;
 import rwcsim.factions.waiqar.DeathKnights;
 import rwcsim.factions.waiqar.Reanimates;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 public class SimSetup {
     private static SimSetup ss = new SimSetup();
 
+    public SimSetup(){}
+
     private Unit firstUnit;
     private Formation firstFormation;
+    private RerollBehavior firstBehavior;
 
     private Unit secondUnit;
     private Formation secondFormation;
+    private RerollBehavior secondBehavior;
 
-    public SimSetup() {
-        firstUnit = new OathswornCavalry();
-        firstFormation = Formation.TWO_BY_TWO;
 
-        secondUnit = new DeathKnights();
-        secondFormation = Formation.TWO_BY_TWO;
+    // TODO FIX THESE TO USE THE selected units
+    public SimSetup(Unit firstUnit, Formation firstFormation, RerollBehavior firstBehavior, Unit secondUnit, Formation secondFormation, RerollBehavior secondBehavior) {
+        this.firstUnit = firstUnit; //new OathswornCavalry();
+        this.firstFormation = firstFormation; //Formation.TWO_BY_TWO;
+        this.firstBehavior = firstBehavior;
+
+        this.secondUnit = secondUnit; //new DeathKnights();
+        this.secondFormation = secondFormation; //Formation.TWO_BY_TWO;
+        this.secondBehavior = secondBehavior;
     }
 
     public SimSetup(Unit fu, Formation ff, Unit su, Formation sf) {

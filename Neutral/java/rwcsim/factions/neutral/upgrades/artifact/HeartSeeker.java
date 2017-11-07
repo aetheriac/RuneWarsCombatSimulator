@@ -1,6 +1,7 @@
 package rwcsim.factions.neutral.upgrades.artifact;
 
 import rwcsim.basicutils.concepts.Cost;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.stages.TargetAttack;
 import rwcsim.basicutils.upgrades.Artifact;
 import rwcsim.basicutils.upgrades.Unique;

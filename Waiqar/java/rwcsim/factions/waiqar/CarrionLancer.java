@@ -4,14 +4,13 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.concepts.Siege;
-import rwcsim.basicutils.morale.MoraleType;
-import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.SiegeTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -77,7 +76,7 @@ public class CarrionLancer extends WaiqarUnit implements Siege {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
@@ -91,10 +90,10 @@ public class CarrionLancer extends WaiqarUnit implements Siege {
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 1:
             case 0:
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

@@ -2,19 +2,17 @@ package rwcsim.factions.waiqar;
 
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.abilities.Impact;
-import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.abilities.SteadfastFear;
 import rwcsim.basicutils.concepts.Cavalry;
 import rwcsim.basicutils.concepts.Figure;
-import rwcsim.basicutils.morale.MoraleType;
 import rwcsim.basicutils.runes.RuneFaces;
-import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -74,7 +72,6 @@ public class DeathKnights extends WaiqarUnit implements Cavalry {
 
     public void populateFormations() {
         if (legalFormations.size() > 0) return;
-        legalFormations.add(Formation.ONE);
         legalFormations.add(Formation.TWO_BY_ONE);
         legalFormations.add(Formation.TWO_BY_TWO);
         legalFormations.add(Formation.TWO_BY_THREE);
@@ -83,7 +80,7 @@ public class DeathKnights extends WaiqarUnit implements Cavalry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
@@ -96,12 +93,12 @@ public class DeathKnights extends WaiqarUnit implements Cavalry {
 
         switch(legalFormationIndex) {
             case 2:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
             case 1:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 0:
-                legalUpgrades.add(UpgradeType.Artifact);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeSlot.Artifact);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

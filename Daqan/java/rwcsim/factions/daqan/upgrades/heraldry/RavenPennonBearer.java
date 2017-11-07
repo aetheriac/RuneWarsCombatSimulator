@@ -29,4 +29,19 @@ public class RavenPennonBearer extends BaseFigure implements FigureUpgrade, Cost
     public int getArmor() {
         return 3;
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }

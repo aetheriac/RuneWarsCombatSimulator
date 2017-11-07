@@ -1,4 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Equipment extends UpgradeSlot {
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Equipment extends Upgrade {
+    default UpgradeSlot getSlot() {
+    return UpgradeSlot.Equipment;
+}
 }

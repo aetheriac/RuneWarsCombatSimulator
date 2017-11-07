@@ -8,16 +8,20 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.DaqanUnit;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.Upgrade;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
 import rwcsim.factions.neutral.figures.CavalryFigure;
+import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dsayles on 8/18/17.
@@ -77,19 +81,23 @@ public class OathswornCavalry extends DaqanUnit implements Cavalry {
     }
 
 
+
+
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 1:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
+            case 4:
             case 0:
-                legalUpgrades.add(UpgradeType.Equipment);
-                legalUpgrades.add(UpgradeType.Training);
-                break;
+                legalUpgrades.add(UpgradeSlot.Equipment);
+                legalUpgrades.add(UpgradeSlot.Training);
+                // For now forcing it in
+                registerUpgrade(UpgradeSlot.Equipment, new TemperedSteel());
             default:
                 return;
         }

@@ -1,4 +1,10 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Training extends UpgradeSlot {
+
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Training {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Training;
+    }
 }

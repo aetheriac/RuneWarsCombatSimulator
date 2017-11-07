@@ -2,6 +2,7 @@ package rwcsim.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rwcsim.utils.statistics.DieStatisticCounter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,18 @@ public class  Analyzer {
         AtomicInteger fusedregencount = new AtomicInteger(0);
         AtomicInteger smaxregencount = new AtomicInteger(0);
         AtomicInteger susedregencount = new AtomicInteger(0);
+        AtomicInteger fusedtemperedsteel = new AtomicInteger(0);
+        AtomicInteger susedtemperedsteel = new AtomicInteger(0);
+
+
+        AtomicInteger[] firstDice = new AtomicInteger[DieStatisticCounter.STAT_SIZE];
+        AtomicInteger[] secondDice = new AtomicInteger[DieStatisticCounter.STAT_SIZE];
+
+        for (int i = 0; i<DieStatisticCounter.STAT_SIZE; i++) {
+            firstDice[i] = new AtomicInteger();
+            secondDice[i] = new AtomicInteger();
+        }
+
 
         stats.stream().forEach( s -> {
             if (!unitLife.containsKey(s.first.unit.getName())) {
@@ -71,6 +84,16 @@ public class  Analyzer {
                 smaxregencount.getAndAdd(sregen[i]);
                 susedregencount.getAndAdd(sregen[i+8]);
             }
+
+            int[] fts = s.first.getTemperedSteel();
+            int[] sts = s.second.getTemperedSteel();
+            fusedtemperedsteel.getAndAdd(fts[1]);
+            susedtemperedsteel.getAndAdd(sts[1]);
+
+            for ( int i = 0; i<DieStatisticCounter.STAT_SIZE; i++) {
+                firstDice[i].getAndAdd(s.first.getDsc().getStats()[i]);
+                secondDice[i].getAndAdd(s.second.getDsc().getStats()[i]);
+            }
         });
 
         for (Map.Entry<String,Long> ul : unitLife.entrySet()) {
@@ -80,6 +103,25 @@ public class  Analyzer {
 
         log.info("First regen: Max("+fmaxregencount.get()+") Used("+fusedregencount.get()+")");
         log.info("Second regen: Max("+smaxregencount.get()+") Used("+susedregencount.get()+")");
+        log.info("First  tsteel: Used("+fusedtemperedsteel.get()+")");
+        log.info("Second tsteel: Used("+susedtemperedsteel.get()+")");
+
+        StringBuilder firstDiceString = new StringBuilder();
+        StringBuilder secondDiceString = new StringBuilder();
+
+        for (int i = 0; i < DieStatisticCounter.STAT_SIZE; i++) {
+            if (i>0) {
+                firstDiceString.append(" , ");
+                secondDiceString.append(" , ");
+            }
+            firstDiceString.append(firstDice[i].get());
+            secondDiceString.append(secondDice[i].get());
+        }
+
+        log.info(DieStatisticCounter.statLine());
+        log.info("First Dice: " + firstDiceString.toString());
+        log.info("Second Dice: " + secondDiceString.toString());
+
 
         // used regeneration
     }

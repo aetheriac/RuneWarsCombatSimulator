@@ -9,7 +9,9 @@ import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.ruleset.AutomaticallyRerollBlanks;
 import rwcsim.basicutils.ruleset.Regeneration;
 import rwcsim.basicutils.ruleset.Reroll;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.basicutils.unit.DeployableUnit;
+import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 import rwcsim.interactions.InteractionManager;
 import rwcsim.test.Analyzer;
 import rwcsim.test.Statistics;
@@ -39,7 +41,7 @@ public class MassAttackLoopTest {
         SIM_COUNT = simCount;
     }
 
-    public static int SIM_COUNT = 500000;
+    public static int SIM_COUNT = 500;
     public static AttackType attackType = AttackType.MELEE_ATTACK;
 
     InteractionManager waiqarInteraction;
@@ -59,8 +61,10 @@ public class MassAttackLoopTest {
 
     public static void initEngine() {
         RuleSetManager.addRule(new Reroll(), false);
-        RuleSetManager.addRule(new AutomaticallyRerollBlanks(), true);
+        RuleSetManager.addRule(new AutomaticallyRerollBlanks(), false);
+        RuleSetManager.addRule(new RerollFromDialog(), true);
         RuleSetManager.addRule(new Regeneration(), true);
+        RuleSetManager.addRule(new TemperedSteel(), true);
     }
 
 
@@ -83,7 +87,7 @@ public class MassAttackLoopTest {
         List<Statistics> stats = new ArrayList<>();
         try {
             futures = executor.invokeAll(loops);
-        } catch (InterruptedException e) {
+        } catch (Throwable e) {
             log.info("SimulationAttackLoop issues", e);
         }
 

@@ -3,17 +3,19 @@ package rwcsim.interactions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.AttackType;
+import rwcsim.basicutils.dice.*;
+import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
-import rwcsim.basicutils.dice.Die;
-import rwcsim.basicutils.dice.DieFace;
-import rwcsim.basicutils.dice.Roller;
-import rwcsim.basicutils.runes.RuneManager;
+import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.Upgrade;
+import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class DefaultInteractionManager extends BaseInteractionManager {
-    private static final Logger logger = LogManager.getLogger(DefaultInteractionManager.class);
+    private static final Logger log = LogManager.getLogger(DefaultInteractionManager.class);
     private static DefaultInteractionManager dim = new DefaultInteractionManager();
 
     public static InteractionManager instance() {
@@ -25,7 +27,59 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         return new int[]{0,1,0};
     }
 
+    // TODO:  Hook up die reroll dialog to this method
+
     @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results,
+                                                    AttackType type, RerollBehavior rerollBehavior) {
+        Map<Die,List<DieFace>> rerolledResults = rerollFromDialog(rerollRankCount, attacker, results, type, rerollBehavior);
+        if (rerollPartialRank) {
+            rerolledResults = rerollFromDialog(1, attacker, results, type, rerollBehavior);
+        }
+        return rerolledResults;
+    }
+
+
+    @Override
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
+        if (null != rerollBehavior) {
+            Map<Die, List<DieFace>> working = results.entrySet().stream()
+                    .collect(Collectors.toMap(
+                            e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+
+            int rerollDieCount = rerollRankCount;
+            int[] rerollPool = new int[working.keySet().size()];
+
+            // Reroll things
+            // RED, BLUE, WHITE
+            // for each die, check the faces that are in there
+            //    if face is in the saved list for the die being checked, skip and move on to next face
+            for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+                for (DieFace face : entry.getValue()) {
+                    if (rerollDieCount > 0 &&
+                        rerollBehavior.getRerollFaces().size() > 0 &&
+                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
+                        // add a die to the reroll diepool
+                        rerollPool[entry.getKey().getDieType()]++;
+                        // remove original face
+                        results.get(entry.getKey()).remove(face);
+                        rerollDieCount--;
+                    }
+                }
+            }
+
+            if (rerollDieCount - 1 > 0) {
+                results = rerollFromDialog(rerollDieCount - 1, false, attacker, results, type, rerollBehavior);
+            }
+        }
+        return results;
+    }
+
+
+
+
+
+        @Override
     public Map<Die, List<DieFace>> reroll(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type) {
         Map<Die, List<DieFace>> working;
 //        results.forEach(working::putIfAbsent);
@@ -40,8 +94,6 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         int[] rerollPool = new int[working.keySet().size()];
 
         if (containsNotHits(working)) {
-
-
             for (Map.Entry<Die, List<DieFace>> e : working.entrySet()) {
                 long r = e.getValue().stream().filter(
                         f -> !f.hasHit()
@@ -49,7 +101,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
                 if (r > 0) rerollPool[e.getKey().getDieType()] = (int) r;
                 for ( DieFace df : e.getValue()) {
                     if (!df.dealsDamage()) {
-                        logger.debug("Removing " + df.name() + " face from " + e.getKey().toString());
+                        log.debug("Removing " + df.name() + " face from " + e.getKey().toString());
                         results.get(e.getKey()).remove(df);
                     }
                 }
@@ -75,9 +127,29 @@ public class DefaultInteractionManager extends BaseInteractionManager {
         return results;
     }
 
+
+
+//    @Override
+//    public void modifyAttackRollResults(UnitFormationManager attacker, Map<Die, List<DieFace>> rerollResults) {
+//        for (Upgrade upgrade : attacker.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
+//            if (upgrade.getUpgradeName().compareTo("TemperedSteel")==0
+//                    && (containsFace(DieFace.SURGE, rerollResults))) {
+////                        || containsFace(DieFace.HIT_SURGE, rerollResults)
+////                        || containsFace(DieFace.SURGE, rerollResults))) {
+//                TemperedSteel ts = (TemperedSteel)upgrade;
+//                if (!ts.isExhausted()) {
+//                    ts.exhaust();
+//                    removeNFaces(rerollResults);
+//                }
+//            }
+//        }
+//    }
+
+
+
     @Override
     public void applyMortalStrikes(UnitFormationManager unit, int count) {
-        logger.debug("applyMortalStrikes: "+ unit.toString() + ":"+ count);
+        log.debug("applyMortalStrikes: "+ unit.toString() + ":"+ count);
 
         // apply mortal strikes to defender
         unit.applyMortalStrikes(count);
@@ -88,13 +160,13 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void assignAccuracies(UnitFormationManager unit, int count) {
-        logger.debug("assignAccuracies: "+ unit.toString() + ":"+ count);
+        log.debug("assignAccuracies: "+ unit.toString() + ":"+ count);
     }
 
 
     @Override
     public void applyHits(UnitFormationManager unit, int count) {
-        logger.debug("applyHits: "+ unit.toString() + ":"+ count);
+        log.debug("applyHits: "+ unit.toString() + ":"+ count);
 
         // apply hits here
         unit.applyHits(count);
@@ -102,12 +174,27 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public void applyMorale(UnitFormationManager unit, int count) {
-        logger.debug("applyMorale: "+ unit.toString() + ":"+ count);
+        log.debug("applyMorale: "+ unit.toString() + ":"+ count);
     }
 
     @Override
-    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount) {
-
+    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers, int round) {
+        if (attackingUnit.getUnit().hasUpgrades()) {
+            for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
+                if (RuleSetManager.isEnabled("Tempered Steel") && upgrade.getUpgradeName().compareTo("Tempered Steel") == 0) {
+                    TemperedSteel ts = (TemperedSteel) upgrade;
+                    if (!ts.isExhausted()) {
+                        log.debug("Exhausting Tempered Steel");
+                        ts.exhaust();
+                        log.debug("Adding HIT");
+                        modifiers.add(new DieRollResultsModifier(DieFace.HIT, 1));
+                        log.debug("Removing SURGE");
+                        modifiers.add(new DieRollResultsModifier(DieFace.SURGE, -1));
+                        attackingUnit.getDeployableUnit().getUnitStateManager().recordTemperedSteel(round);
+                    }
+                }
+            }
+        }
     }
 
 
@@ -167,6 +254,29 @@ public class DefaultInteractionManager extends BaseInteractionManager {
             }
         }
         return false;
+    }
+
+
+    public boolean containsFace(DieFace dieFace, Map<Die, List<DieFace>> results) {
+        for (Map.Entry<Die,List<DieFace>> e : results.entrySet()) {
+            if (e.getValue().contains(dieFace)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public Map<Die, List<DieFace>> removeNFaces(DieFace dieFace, int count, Map<Die, List<DieFace>> results) {
+        for (int i = 0; i<count; i++) {
+            for (Map.Entry<Die,List<DieFace>> entry : results.entrySet()) {
+                if (entry.getValue().contains(dieFace)) {
+                    entry.getValue().remove(dieFace);
+                    continue;
+                }
+            }
+        }
+        return results;
     }
 
 }

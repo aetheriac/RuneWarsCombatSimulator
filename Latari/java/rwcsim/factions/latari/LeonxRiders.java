@@ -8,9 +8,9 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.LatariUnit;
-import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -78,17 +78,17 @@ public class LeonxRiders extends LatariUnit implements Cavalry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {
+    public void populateSlots(Formation formation) {
         int legalFormationIndex = legalFormations.indexOf(formation);
         switch(legalFormationIndex) {
             case 3:
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Champion);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
             case 1:
             case 0:
-                legalUpgrades.add(UpgradeType.Music);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeSlot.Music);
+                legalUpgrades.add(UpgradeSlot.Training);
                 break;
             default:
                 return;

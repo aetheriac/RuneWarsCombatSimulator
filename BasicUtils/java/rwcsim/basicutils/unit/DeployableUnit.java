@@ -33,6 +33,10 @@ public class DeployableUnit {
         return formation;
     }
 
+    public UnitStateManager getUnitStateManager() {
+        return unitStateManager;
+    }
+
     public DiePool getDiePool(AttackType type) {
         switch (type) {
             case MELEE_ATTACK:

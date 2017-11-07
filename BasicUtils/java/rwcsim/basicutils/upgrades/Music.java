@@ -1,4 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Music extends UpgradeSlot {
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Music {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Music;
+    }
 }

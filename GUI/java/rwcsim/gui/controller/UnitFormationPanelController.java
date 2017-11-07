@@ -5,16 +5,21 @@ import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.Factions;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.dice.Die;
+import rwcsim.basicutils.dice.DieFace;
 import rwcsim.basicutils.managers.FactionManager;
 import rwcsim.basicutils.managers.UnitManager;
 import rwcsim.gui.beans.FactionComboBean;
 import rwcsim.gui.view.UnitFormationPanel;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UnitFormationPanelController {
     private final Logger log = LogManager.getLogger(UnitFormationPanelController.class);
@@ -23,6 +28,8 @@ public class UnitFormationPanelController {
     private JComboBox formationComboBox;
     private JComboBox unitComboBox;
     private JComboBox factionComboBox;
+    private Map<Die, List<DieFace>> dieRerollMap;
+//    private RerollBehavior rerollBehavior;
 
     public UnitFormationPanelController(UnitFormationPanel ufp) {
         initialize(ufp);
@@ -40,6 +47,9 @@ public class UnitFormationPanelController {
         factionComboBox = unitFormationPanelFrame.getFactionComboBox();
         unitComboBox = unitFormationPanelFrame.getUnitComboBox();
         formationComboBox = unitFormationPanelFrame.getFormationComboBox();
+//        rerollBehavior = unitFormationPanelFrame.getRerollBehavior();
+
+        dieRerollMap = new HashMap<>();
 
         loadFactions();
         loadUnits();
@@ -145,5 +155,10 @@ public class UnitFormationPanelController {
 
             }
         });
+    }
+
+
+    public RerollBehavior getRerollBehavior() {
+        return unitFormationPanelFrame.getRerollBehavior();
     }
 }

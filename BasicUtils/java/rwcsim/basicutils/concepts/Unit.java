@@ -1,18 +1,16 @@
 package rwcsim.basicutils.concepts;
 
 import rwcsim.basicutils.Formation;
-import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.unit.DaqanUnit;
 import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.unit.WaiqarUnit;
-import rwcsim.basicutils.upgrades.UpgradeSlot;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.Upgrade;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +41,10 @@ public interface Unit {
     Figure getFigure();
 
     void populateFormations();
-    void populateUpgrades(Formation formation);
+    EnumSet<UpgradeSlot> availableSlots(Formation formation);
+    void populateSlots(Formation formation);
+    List<Upgrade> getUpgrades(UpgradeSlot slot);
+    boolean hasUpgrades();
 
     CommandTool getCommandTool();
     DiePool getMeleeAttackPool();
@@ -55,6 +56,7 @@ public interface Unit {
     void addAbility(Ability ability);
     Map<Integer, Ability<?>> getAbilities();
 
-    void registerUpgrade(Stage stage, UpgradeSlot upgradeSlot);
-    Map<Integer, List<UpgradeSlot>> getStageRegister();
+    void registerUpgrade( UpgradeSlot upgradeSlot, Upgrade upgrade);
+    Map<UpgradeSlot, List<Upgrade>> getUpgrades();
+//    Map<Integer, List<UpgradeSlot>> getStageRegister();
 }

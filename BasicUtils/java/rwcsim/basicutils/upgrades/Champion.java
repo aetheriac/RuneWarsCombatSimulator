@@ -1,4 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Champion extends UpgradeSlot {
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Champion {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Champion;
+    }
 }

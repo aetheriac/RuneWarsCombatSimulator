@@ -19,4 +19,19 @@ public class FortunasDice implements Cost, Artifact, AddStages, Unique, Exhausta
     public void registerStages(Unit unit) {
 
     }
+
+    @Override
+    public boolean isExhausted() {
+        return false;
+    }
+
+    @Override
+    public void exhaust() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
 }

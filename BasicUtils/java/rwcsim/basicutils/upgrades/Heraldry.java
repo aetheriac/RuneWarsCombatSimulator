@@ -1,4 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Heraldry extends UpgradeSlot {
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Heraldry {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Heraldry;
+    }
 }

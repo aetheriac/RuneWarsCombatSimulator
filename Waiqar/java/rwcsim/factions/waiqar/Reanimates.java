@@ -8,11 +8,10 @@ import rwcsim.basicutils.abilities.SteadfastDoubt;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.dials.*;
 import rwcsim.basicutils.concepts.Infantry;
-import rwcsim.basicutils.morale.MoraleType;
 import rwcsim.basicutils.runes.RuneFaces;
-import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.InfantryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -87,7 +86,7 @@ public class Reanimates extends WaiqarUnit implements Infantry {
 
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
@@ -101,14 +100,14 @@ public class Reanimates extends WaiqarUnit implements Infantry {
         switch (legalFormationIndex) {
             case 4:
             case 3:
-                legalUpgrades.add(UpgradeType.Heavy);
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeSlot.Heavy);
+                legalUpgrades.add(UpgradeSlot.Training);
             case 2:
-                legalUpgrades.add(UpgradeType.Champion);
+                legalUpgrades.add(UpgradeSlot.Champion);
             case 1:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
             case 0:
-                legalUpgrades.add(UpgradeType.Music);
+                legalUpgrades.add(UpgradeSlot.Music);
                 break;
             default:
                 return;

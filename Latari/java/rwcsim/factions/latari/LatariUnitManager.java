@@ -3,8 +3,10 @@ package rwcsim.factions.latari;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.managers.UnitManager;
 import rwcsim.basicutils.concepts.Unit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.slots.UpgradeSlot;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 
+import java.util.EnumSet;
 import java.util.List;
 
 public class LatariUnitManager extends UnitManager {
@@ -109,11 +111,6 @@ public class LatariUnitManager extends UnitManager {
         }
         return 0;
     }
-
-    public List<UpgradeType> availableUpgrades(Unit unit, Formation formation) {
-        return unit.getAsLatariUnit().availableUpgrades(formation);
-    }
-
 
 
 }

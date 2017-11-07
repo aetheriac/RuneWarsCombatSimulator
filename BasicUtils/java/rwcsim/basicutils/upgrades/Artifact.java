@@ -1,4 +1,10 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Artifact extends UpgradeSlot {
+
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Artifact {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Artifact;
+    }
 }

@@ -8,10 +8,9 @@ import rwcsim.basicutils.dials.DialFace;
 import rwcsim.basicutils.dials.Face;
 import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Infantry;
-import rwcsim.basicutils.morale.MoraleType;
-import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.WaiqarUnit;
-import rwcsim.basicutils.upgrades.UpgradeType;
+import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.InfantryTray;
 import rwcsim.basicutils.concepts.Tray;
@@ -76,7 +75,7 @@ public class ReanimateArchers extends WaiqarUnit implements Infantry {
     }
 
     @Override
-    public void populateUpgrades(Formation formation) {}
+    public void populateSlots(Formation formation) {}
 
     @Override
     public void populateUpgrades(boolean listContainsArdus, Formation formation) {
@@ -89,11 +88,11 @@ public class ReanimateArchers extends WaiqarUnit implements Infantry {
 
         switch(legalFormationIndex) {
             case 2:
-                legalUpgrades.add(UpgradeType.Training);
+                legalUpgrades.add(UpgradeSlot.Training);
             case 1:
-                legalUpgrades.add(UpgradeType.Equipment);
+                legalUpgrades.add(UpgradeSlot.Equipment);
             case 0:
-                legalUpgrades.add(UpgradeType.Heraldry);
+                legalUpgrades.add(UpgradeSlot.Heraldry);
                 break;
             default:
                 return;

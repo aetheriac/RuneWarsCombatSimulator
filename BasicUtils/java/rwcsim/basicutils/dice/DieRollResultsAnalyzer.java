@@ -4,51 +4,88 @@ import java.util.List;
 import java.util.Map;
 
 public class DieRollResultsAnalyzer {
-    public static int countBlanks(Map<Die,List<DieFace>> results) {
+    public static int countBlanks(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
         for (List<DieFace> l : results.values()) {
             cnt += l.stream().filter(f -> f == DieFace.BLANK).count();
         }
+
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.BLANK) {
+                cnt += mod.getCount();
+            }
+        }
+
         return cnt;
     }
 
-    public static int countAccuracies(Map<Die,List<DieFace>> results) {
+    public static int countAccuracies(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
         for (List<DieFace> l : results.values()) {
             cnt += l.stream().filter(f -> f == DieFace.ACCURACY).count();
         }
+
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.BLANK) {
+                cnt += mod.getCount();
+            }
+        }
         return cnt;
     }
 
-    public static int countMorale(Map<Die,List<DieFace>> results) {
+    public static int countMorale(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
         for (List<DieFace> l : results.values()) {
             cnt += l.stream().filter(f -> f == DieFace.MORALE).count();
         }
+
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.BLANK) {
+                cnt += mod.getCount();
+            }
+        }
         return cnt;
     }
 
-    public static int countMortalStrikes(Map<Die,List<DieFace>> results) {
+    public static int countMortalStrikes(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
         for (List<DieFace> l : results.values()) {
             cnt += l.stream().filter(f -> f == DieFace.MORTAL_STRIKE).count();
         }
-        return cnt;
-    }
 
-
-    public static int countHits(Map<Die,List<DieFace>> results) {
-        int cnt = 0;
-        for (List<DieFace> l : results.values()) {
-            cnt += l.stream().filter(f -> f == DieFace.HIT).count();
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.MORTAL_STRIKE) {
+                cnt += mod.getCount();
+            }
         }
         return cnt;
     }
 
-    public static int countSurges(Map<Die,List<DieFace>> results) {
+
+    public static int countHits(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
+        int cnt = 0;
+        for (List<DieFace> l : results.values()) {
+            cnt += l.stream().filter(f -> f == DieFace.HIT).count();
+        }
+
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.BLANK) {
+                cnt += mod.getCount();
+            }
+        }
+        return cnt;
+    }
+
+    public static int countSurges(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
         for (List<DieFace> l : results.values()) {
             cnt += l.stream().filter(f -> f == DieFace.SURGE).count();
+        }
+
+        for (DieRollResultsModifier mod : modifiers) {
+            if (mod.getFace() == DieFace.BLANK) {
+                cnt += mod.getCount();
+            }
         }
         return cnt;
     }
@@ -108,9 +145,9 @@ public class DieRollResultsAnalyzer {
         return cnt;
     }
 
-    public static int countAllSurges(Map<Die,List<DieFace>> results) {
+    public static int countAllSurges(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
-        cnt += countSurges(results);
+        cnt += countSurges(results, modifiers);
         cnt += countHitSurge(results);
         cnt += countSurgeMorale(results);
         cnt += 2*countDoubleSurge(results);
@@ -118,17 +155,17 @@ public class DieRollResultsAnalyzer {
     }
 
 
-    public static int countAllAccuracies(Map<Die,List<DieFace>> results) {
+    public static int countAllAccuracies(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
-        cnt += countAccuracies(results);
+        cnt += countAccuracies(results, modifiers);
         cnt += countHitAccuracy(results);
         return cnt;
     }
 
 
-    public static int countAllHits(Map<Die,List<DieFace>> results) {
+    public static int countAllHits(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
-        cnt += countHits(results);
+        cnt += countHits(results, modifiers);
         cnt += countHitAccuracy(results);
         cnt += countHitSurge(results);
         cnt += countHitMorale(results);
@@ -137,9 +174,9 @@ public class DieRollResultsAnalyzer {
     }
 
 
-    public static int countAllMorale(Map<Die,List<DieFace>> results) {
+    public static int countAllMorale(Map<Die,List<DieFace>> results, List<DieRollResultsModifier> modifiers) {
         int cnt = 0;
-        cnt += countMorale(results);
+        cnt += countMorale(results, modifiers);
         cnt += countHitMorale(results);
         cnt += countSurgeMorale(results);
         return cnt;

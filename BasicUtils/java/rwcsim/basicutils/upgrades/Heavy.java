@@ -1,4 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
-public interface Heavy extends UpgradeSlot {
+import rwcsim.basicutils.slots.UpgradeSlot;
+
+public interface Heavy {
+    default UpgradeSlot getSlot() {
+        return UpgradeSlot.Heavy;
+    }
 }
