@@ -51,7 +51,7 @@ public class SimulatorPanel extends JFrame {
                 this.simProgressBar.setValue(0);
             });
 
-            // Off thread the waiting on the simulation so we can return controll to the Swing thread right away
+            // Off thread the waiting on the simulation so we can return control to the Swing thread right away
             new Thread(() -> simulatorController.runSimulation(
                     firstController.getUnit(),
                     firstController.getFormation(),

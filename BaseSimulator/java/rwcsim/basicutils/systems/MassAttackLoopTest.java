@@ -87,7 +87,7 @@ public class MassAttackLoopTest {
         List<Statistics> stats = new ArrayList<>();
         try {
             futures = executor.invokeAll(loops);
-        } catch (InterruptedException e) {
+        } catch (Throwable e) {
             log.info("SimulationAttackLoop issues", e);
         }
 

@@ -7,10 +7,7 @@ import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.interactions.ai.behaviors.RerollBehavior;
 import rwcsim.interactions.behaviors.Behavior;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class RerollFromDialog implements Rule<RerollFromDialog>, RerollBehavior {
     public static final String name = "REROLL_FROM_DIALOG";
@@ -63,5 +60,9 @@ public class RerollFromDialog implements Rule<RerollFromDialog>, RerollBehavior 
     }
 
     public Map<Integer, HashSet<DieFace>> getDefaultRerollFaces() { return defaultRerollDieFaces; }
+
+    public void update(Map<Integer, HashSet<DieFace>> dieFaces) {
+        defaultRerollDieFaces.putAll(dieFaces);
+    }
 
 }

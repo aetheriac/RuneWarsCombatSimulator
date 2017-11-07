@@ -42,31 +42,35 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     @Override
     public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
-        Map<Die, List<DieFace>> working = results.entrySet().stream()
-                                            .collect(Collectors.toMap(
-                                                    e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+        if (null != rerollBehavior) {
+            Map<Die, List<DieFace>> working = results.entrySet().stream()
+                    .collect(Collectors.toMap(
+                            e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
 
-        int rerollDieCount = rerollRankCount;
-        int[] rerollPool = new int[working.keySet().size()];
+            int rerollDieCount = rerollRankCount;
+            int[] rerollPool = new int[working.keySet().size()];
 
-        // Reroll things
-        // RED, BLUE, WHITE
-        // for each die, check the faces that are in there
-        //    if face is in the saved list for the die being checked, skip and move on to next face
-        for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
-            for (DieFace face : entry.getValue()) {
-                if (rerollDieCount>0 && !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
-                    // add a die to the reroll diepool
-                    rerollPool[entry.getKey().getDieType()]++;
-                    // remove original face
-                    results.get(entry.getKey()).remove(face);
-                    rerollDieCount--;
+            // Reroll things
+            // RED, BLUE, WHITE
+            // for each die, check the faces that are in there
+            //    if face is in the saved list for the die being checked, skip and move on to next face
+            for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+                for (DieFace face : entry.getValue()) {
+                    if (rerollDieCount > 0 &&
+                        rerollBehavior.getRerollFaces().size() > 0 &&
+                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
+                        // add a die to the reroll diepool
+                        rerollPool[entry.getKey().getDieType()]++;
+                        // remove original face
+                        results.get(entry.getKey()).remove(face);
+                        rerollDieCount--;
+                    }
                 }
             }
-        }
 
-        if (rerollDieCount - 1 > 0) {
-            results = rerollFromDialog(rerollDieCount-1, false, attacker, results, type, rerollBehavior);
+            if (rerollDieCount - 1 > 0) {
+                results = rerollFromDialog(rerollDieCount - 1, false, attacker, results, type, rerollBehavior);
+            }
         }
         return results;
     }

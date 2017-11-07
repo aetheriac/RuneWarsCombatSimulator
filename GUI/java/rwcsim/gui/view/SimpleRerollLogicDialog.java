@@ -4,8 +4,6 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import rwcsim.basicutils.dice.*;
-import rwcsim.basicutils.ruleset.RerollFromDialog;
-import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -14,10 +12,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SimpleRerollLogicDialog extends JDialog {
@@ -61,7 +57,7 @@ public class SimpleRerollLogicDialog extends JDialog {
     private HashMap<DieFace, JCheckBox> blueDieFaceToCheckBoxMap = new HashMap<>();
     private HashMap<DieFace, JCheckBox> whiteDieFaceToCheckBoxMap = new HashMap<>();
 
-    private RerollBehavior results;
+    private Map<Integer, HashSet<DieFace>> results;
 
     private static final DieFace[] defaultRedDieSelection = new DieFace[]{
             DieFace.HIT, DieFace.HIT_HIT, DieFace.HIT_SURGE, DieFace.HIT_MORALE
@@ -141,6 +137,11 @@ public class SimpleRerollLogicDialog extends JDialog {
         for (DieFace face : defaultWhiteDieSelection) {
             whiteDieFaceToCheckBoxMap.get(face).setSelected(true);
         }
+
+        results = new HashMap<>();
+        results.put(DiePool.RED_DIE, new HashSet<>(Arrays.asList(defaultRedDieSelection)));
+        results.put(DiePool.BLUE_DIE, new HashSet<>(Arrays.asList(defaultBlueDieSelection)));
+        results.put(DiePool.WHITE_DIE, new HashSet<>(Arrays.asList(defaultWhiteDieSelection)));
     }
 
     // Copies the background color of the panel to its children components
@@ -175,7 +176,7 @@ public class SimpleRerollLogicDialog extends JDialog {
         return map.entrySet().stream().filter((entry) -> entry.getValue().isSelected()).map(Map.Entry::getKey).collect(Collectors.toList());
     }
 
-    public RerollBehavior showDialog() {
+    public Map<Integer, HashSet<DieFace>> showDialog() {
         this.setVisible(true);
         return results;
     }
@@ -185,13 +186,17 @@ public class SimpleRerollLogicDialog extends JDialog {
         final HashSet<DieFace> acceptedBlueFaces = new HashSet<>(getSelectedDieFaces(DiePool.BLUE_DIE));
         final HashSet<DieFace> acceptedWhiteFaces = new HashSet<>(getSelectedDieFaces(DiePool.WHITE_DIE));
 
-        RerollFromDialog rfd = new RerollFromDialog();
+//        RerollFromDialog rfd = new RerollFromDialog();
 
-        rfd.setFaces(DiePool.RED_DIE, acceptedRedFaces);
-        rfd.setFaces(DiePool.BLUE_DIE, acceptedBlueFaces);
-        rfd.setFaces(DiePool.WHITE_DIE, acceptedWhiteFaces);
+//        Map<Integer, Set<DieFace>> results = new HashMap<>();/**/
 
-        results = rfd;
+        if (null == results) {
+            results = new HashMap<>();
+        }
+
+        results.put(DiePool.RED_DIE, acceptedRedFaces);
+        results.put(DiePool.BLUE_DIE, acceptedBlueFaces);
+        results.put(DiePool.WHITE_DIE, acceptedWhiteFaces);
 
         dispose();
     }

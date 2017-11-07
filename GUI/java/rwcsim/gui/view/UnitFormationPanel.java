@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import rwcsim.basicutils.dice.Die;
 import rwcsim.basicutils.dice.DieFace;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import javax.swing.*;
@@ -21,21 +22,19 @@ public class UnitFormationPanel extends JFrame {
     public JPanel ufp;
     private JButton selectDieFacesButton;
     private JLabel rerollLabel;
-    private Map<Die, List<DieFace>> dieRerollMap;
-//    public JPanel rootPanel;
-    private RerollBehavior rerollBehavior;
+    private RerollBehavior rerollBehavior = new RerollFromDialog();
 
     public UnitFormationPanel() {
         selectDieFacesButton.addActionListener(e -> {
             SimpleRerollLogicDialog dialog = new SimpleRerollLogicDialog();
             dialog.setLocationRelativeTo(selectDieFacesButton);
-            rerollBehavior = dialog.showDialog();
+            rerollBehavior.update(dialog.showDialog());
         });
     }
 
-    public JPanel getUfp() {
-        return ufp;
-    }
+//    public JPanel getUfp() {
+//        return ufp;
+//    }
 
     public JComboBox getFactionComboBox() {
         return factionComboBox;

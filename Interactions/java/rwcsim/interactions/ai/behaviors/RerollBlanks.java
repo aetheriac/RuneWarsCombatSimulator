@@ -33,4 +33,9 @@ public class RerollBlanks implements RerollBehavior {
     public Map<Integer, HashSet<DieFace>> getDefaultRerollFaces() {
         return null;
     }
+
+    @Override
+    public void update(Map<Integer, HashSet<DieFace>> dieFaces) {
+
+    }
 }
