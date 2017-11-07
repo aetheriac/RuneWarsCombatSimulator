@@ -22,6 +22,11 @@ import java.util.Set;
 
 public class UnitFormationManager implements Manager {
     private static final Logger log = LogManager.getLogger(UnitFormationManager.class);
+
+    public DeployableUnit getDeployableUnit() {
+        return deployableUnit;
+    }
+
     /**
      * 1: [0]  1x2:  [0]    1x3:  [0]
      *               [1]          [1]

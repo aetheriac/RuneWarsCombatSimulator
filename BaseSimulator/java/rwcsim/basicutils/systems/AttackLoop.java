@@ -37,11 +37,12 @@ public class AttackLoop {
     Map<Die, List<DieFace>> rollResults;
     Map<Die, List<DieFace>> rerollResults;
     List<DieRollResultsModifier> rollModifiers = new ArrayList<>();
+    int round;
 
 //    int hitAdjustment = 0;
 
 
-    public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type, RerollBehavior rerollBehavior) {
+    public AttackLoop(InteractionManager attacker, UnitFormationManager attackingUnit, InteractionManager defender, UnitFormationManager defendingUnit, AttackType type, RerollBehavior rerollBehavior, int round) {
         this.attackType = type;
         this.attacker = attacker;
         this.attackingUnit = attackingUnit;
@@ -49,6 +50,7 @@ public class AttackLoop {
 
         this.defender = defender;
         this.defendingUnit = defendingUnit;
+        this.round = round;
     }
 
     public void processAttack() {
@@ -107,7 +109,7 @@ public class AttackLoop {
         int surgeCount = DieRollResultsAnalyzer.countAllSurges(rerollResults, rollModifiers);
         log.debug("Surges: "+surgeCount);
         if (surgeCount>0) {
-            attacker.applySurges(attackingUnit, defendingUnit, surgeCount, rollModifiers);
+            attacker.applySurges(attackingUnit, defendingUnit, surgeCount, rollModifiers, round);
         }
     }
 

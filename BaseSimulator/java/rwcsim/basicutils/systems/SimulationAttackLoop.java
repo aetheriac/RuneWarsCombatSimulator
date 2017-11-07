@@ -51,6 +51,12 @@ public class SimulationAttackLoop implements Callable<Statistics> {
     public SimulationAttackLoop(SimSetup setup, ProgressCallback callback) {
         this.setup = setup;
         this.progressCallback = callback;
+
+        this.setup.getFirst().getUnit().populateFormations();
+        this.setup.getFirst().getUnit().populateSlots(this.setup.getFirst().getFormation());
+
+        this.setup.getSecond().getUnit().populateFormations();
+        this.setup.getSecond().getUnit().populateSlots(this.setup.getSecond().getFormation());
     }
 
     public static void resetCounter() { atomicInteger.set(0); }
@@ -142,11 +148,11 @@ public class SimulationAttackLoop implements Callable<Statistics> {
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());
 
-            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType, attackerBehavior);
+            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType, attackerBehavior, rounds);
             attackLoop.processAttack();
 
             if (defenderFormation.isAlive()) {
-                attackLoop = new AttackLoop(defenderInteraction, defenderFormation, attackerInteraction, attackerFormation, attackType, defenderBehavior);
+                attackLoop = new AttackLoop(defenderInteraction, defenderFormation, attackerInteraction, attackerFormation, attackType, defenderBehavior, rounds);
                 attackLoop.processAttack();
             }
 

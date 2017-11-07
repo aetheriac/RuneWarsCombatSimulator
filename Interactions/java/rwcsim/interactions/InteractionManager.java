@@ -26,6 +26,6 @@ public interface InteractionManager {
 
     void applyMorale(UnitFormationManager defendingUnit, int moraleCount);
 
-    void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers);
+    void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers, int round);
 }
 

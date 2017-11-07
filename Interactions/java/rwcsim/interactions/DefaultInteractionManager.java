@@ -178,18 +178,20 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     }
 
     @Override
-    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
-        if (attackingUnit.getUnit().hasUpgrades())
-        for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
-            if (RuleSetManager.isEnabled("Tempered Steel") && upgrade.getUpgradeName().compareTo("Tempered Steel") == 0) {
-                TemperedSteel ts = (TemperedSteel)upgrade;
-                if (!ts.isExhausted()) {
-                    log.debug("Exhausting Tempered Steel");
-                    ts.exhaust();
-                    log.debug("Adding HIT");
-                    modifiers.add(new DieRollResultsModifier(DieFace.HIT, 1));
-                    log.debug("Removing SURGE");
-                    modifiers.add(new DieRollResultsModifier(DieFace.SURGE, -1));
+    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers, int round) {
+        if (attackingUnit.getUnit().hasUpgrades()) {
+            for (Upgrade upgrade : attackingUnit.getUnit().getUpgrades(UpgradeSlot.Equipment)) {
+                if (RuleSetManager.isEnabled("Tempered Steel") && upgrade.getUpgradeName().compareTo("Tempered Steel") == 0) {
+                    TemperedSteel ts = (TemperedSteel) upgrade;
+                    if (!ts.isExhausted()) {
+                        log.debug("Exhausting Tempered Steel");
+                        ts.exhaust();
+                        log.debug("Adding HIT");
+                        modifiers.add(new DieRollResultsModifier(DieFace.HIT, 1));
+                        log.debug("Removing SURGE");
+                        modifiers.add(new DieRollResultsModifier(DieFace.SURGE, -1));
+                        attackingUnit.getDeployableUnit().getUnitStateManager().recordTemperedSteel(round);
+                    }
                 }
             }
         }

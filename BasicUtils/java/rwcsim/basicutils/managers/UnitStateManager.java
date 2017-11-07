@@ -102,7 +102,7 @@ public class UnitStateManager implements Manager {
 
     public void recordTemperedSteel(int round) {
         temperedSteel[0] = round;
-        temperedSteel[2]++;
+        temperedSteel[1]++;
     }
 
     public void setAliveState(boolean isAlive) { this.isAlive = isAlive; }

@@ -53,7 +53,7 @@ public class AIInteractionManager extends BaseInteractionManager {
     }
 
     @Override
-    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers) {
+    public void applySurges(UnitFormationManager attackingUnit, UnitFormationManager defendingUnit, int surgeCount, List<DieRollResultsModifier> modifiers, int round) {
 
     }
 }
