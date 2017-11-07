@@ -3,7 +3,7 @@ package rwcsim.utils.statistics;
 import java.util.Arrays;
 
 public class DieStatisticCounter {
-    public static final int STAT_SIZE = 100;
+    public static final int STAT_SIZE = 28;
 
     // Die Icons
     public static final int ACCURACY = 0;
@@ -38,6 +38,17 @@ public class DieStatisticCounter {
 
 
     int[] statistics = new int[STAT_SIZE];
+
+    public static String statLine() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Accuracy, ").append("Hit, ").append("Morale, ").append("Mortal Strike, ").append("Surge, ");
+        sb.append("Blank, ").append("Rerolls, ");
+        sb.append("FB, FH, FA, FM, FS, FHH, FHS, FHA, FHM, FSS, FSM, FMS, ");
+        sb.append("RA, RH, RM, RMS, RS, RB");
+
+        return sb.toString();
+    }
 
     public void increment(int statid) {
         statistics[statid]++;
