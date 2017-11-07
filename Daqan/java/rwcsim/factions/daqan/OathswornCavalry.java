@@ -97,7 +97,7 @@ public class OathswornCavalry extends DaqanUnit implements Cavalry {
                 legalUpgrades.add(UpgradeSlot.Equipment);
                 legalUpgrades.add(UpgradeSlot.Training);
                 // For now forcing it in
-                registerUpgrade(UpgradeSlot.Equipment, new TemperedSteel());
+//                registerUpgrade(UpgradeSlot.Equipment, new TemperedSteel());
             default:
                 return;
         }
