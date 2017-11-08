@@ -38,7 +38,7 @@ public abstract class AbstractFigure implements Figure {
                 currentHealth = 0;
             }
 
-            if (currentHealth > remainingStrikes) {
+            if (currentHealth >= remainingStrikes) {
                 currentHealth -= remainingStrikes;
                 remainingStrikes = 0;
             }

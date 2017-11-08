@@ -127,12 +127,12 @@ public class TrayTest {
 
     @Test
     public void testApplyMortalStrikes() {
-//        assertFalse(infantryTray.hasEmptySlots());
+        assertFalse(infantryTray.hasEmptySlots());
         assertFalse(siegeTray.hasEmptySlots());
 
-//        assertEquals(0, infantryTray.applyMortalStrikes(1));
+        assertEquals(0, infantryTray.applyMortalStrikes(1));
         assertEquals(0, siegeTray.applyMortalStrikes(1));
-//        assertTrue(infantryTray.hasEmptySlots());
+        assertTrue(infantryTray.hasEmptySlots());
         assertFalse(siegeTray.hasEmptySlots());
 
         assertEquals(1, siegeTray.applyMortalStrikes(3));
