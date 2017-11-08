@@ -94,6 +94,8 @@ public class TrayTest {
         assertEquals(2, cavalryTray.getFigureCount());
         assertEquals(0, cavalryTray.applyDamage(2));
         assertEquals(1, cavalryTray.getFigureCount());
+        assertEquals(true, cavalryTray.hasEmptySlots());
+        assertEquals(false, cavalryTray.isEmpty());
         assertEquals(0, cavalryTray.applyDamage(2));
         assertEquals(0, cavalryTray.getFigureCount());
     }
@@ -107,5 +109,18 @@ public class TrayTest {
         assertEquals(1, heroTray.getFigureCount());
         assertEquals(3, heroTray.applyDamage(15));
         assertEquals(0, heroTray.getFigureCount());
+    }
+
+    @Test
+    public void testRefills() {
+        assertFalse(infantryTray.hasEmptySlots());
+        assertEquals(infantryTray.getEmptySlots().length, 0);
+
+        assertEquals(0, infantryTray.applyDamage(2));
+        assertTrue(infantryTray.hasEmptySlots());
+        assertEquals(2, infantryTray.getEmptySlots().length);
+        assertEquals(0, infantryTray.refillEmptySlots(new BaseUnit.NullInfantryUnit(),1));
+        assertEquals(1, infantryTray.getEmptySlots().length);
+        assertEquals(1, infantryTray.refillEmptySlots(new BaseUnit.NullInfantryUnit(),2));
     }
 }
