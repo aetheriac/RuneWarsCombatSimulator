@@ -19,6 +19,7 @@ Neutral/out/
 TestBed/out/
 Uthuk/out/
 Waiqar/out/
+.idea/libraries/
 *.iml
 *.iws
 *.ipr
