@@ -4,6 +4,7 @@ import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
+import rwcsim.basicutils.figure.BaseFigure;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.upgrades.Upgrade;
 
@@ -18,6 +19,8 @@ public abstract class BaseUnit implements Unit {
     public Map<UpgradeSlot, List<Upgrade>> upgradeRegistry = new HashMap<>();
 
     public static class NullUnit extends BaseUnit {
+        public NullUnit() {}
+
         @Override
         public String getName() {
             return null;
@@ -55,6 +58,7 @@ public abstract class BaseUnit implements Unit {
 
         @Override
         public Figure getFigure() {
+//            return new BaseFigure.NullFigure(1,1);
             return null;
         }
 
@@ -89,6 +93,31 @@ public abstract class BaseUnit implements Unit {
         }
 
     }
+    public static class NullInfantryUnit extends NullUnit {
+        @Override
+        public Figure getFigure() {
+            return new BaseFigure.NullFigure(1,1);
+        }
+    }
+    public static class NullSiegeUnit extends NullUnit {
+        @Override
+        public Figure getFigure() {
+            return new BaseFigure.NullFigure(3,3);
+        }
+    }
+    public static class NullCavalryUnit extends NullUnit {
+        @Override
+        public Figure getFigure() {
+            return new BaseFigure.NullFigure(2,1);
+        }
+    }
+    public static class NullHeroUnit extends NullUnit {
+        @Override
+        public Figure getFigure() {
+            return new BaseFigure.NullFigure(3,4);
+        }
+    }
+
 
     public CommandTool commandTool;
 
