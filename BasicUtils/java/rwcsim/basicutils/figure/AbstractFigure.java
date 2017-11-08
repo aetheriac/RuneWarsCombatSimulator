@@ -32,11 +32,14 @@ public abstract class AbstractFigure implements Figure {
     @Override
     public int applyMortalStrikes(int count) {
         int remainingStrikes = count;
+        if (currentHealth>0) {
+            if (remainingStrikes > currentHealth) {
+                remainingStrikes -= currentHealth;
+                currentHealth = 0;
+            }
 
-        for (int i=0; i<getHealth(); i++) {
-            if (remainingStrikes>=currentHealth) {
-                currentHealth--;
-            } else {
+            if (currentHealth > remainingStrikes) {
+                currentHealth -= remainingStrikes;
                 remainingStrikes = 0;
             }
         }

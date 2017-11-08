@@ -123,4 +123,20 @@ public class TrayTest {
         assertEquals(1, infantryTray.getEmptySlots().length);
         assertEquals(1, infantryTray.refillEmptySlots(new BaseUnit.NullInfantryUnit(),2));
     }
+
+
+    @Test
+    public void testApplyMortalStrikes() {
+//        assertFalse(infantryTray.hasEmptySlots());
+        assertFalse(siegeTray.hasEmptySlots());
+
+//        assertEquals(0, infantryTray.applyMortalStrikes(1));
+        assertEquals(0, siegeTray.applyMortalStrikes(1));
+//        assertTrue(infantryTray.hasEmptySlots());
+        assertFalse(siegeTray.hasEmptySlots());
+
+        assertEquals(1, siegeTray.applyMortalStrikes(3));
+        assertTrue(siegeTray.hasEmptySlots());
+    }
+
 }
