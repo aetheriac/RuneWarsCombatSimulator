@@ -16,12 +16,7 @@ public class TrayTest {
 
 
     /**
-     * TODO
-     * Add comprehensive testing around tray damage, light, heavy
-     * variety of types
-     * each method
      * figures, DeadFigures and the like
-     * BaseTray
      */
 
     Tray infantryTray;
@@ -149,6 +144,10 @@ public class TrayTest {
         int[] actualResults = infantryTray.getUpgradeSlots();
 
         assertTrue(Arrays.equals(expectedResult, actualResults));
+
+
+
+        // BEEF THIS UP WHEN UPGRADE FIGURES COME INTO PLAY
     }
 
     @Test
