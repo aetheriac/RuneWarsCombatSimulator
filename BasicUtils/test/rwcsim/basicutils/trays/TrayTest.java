@@ -7,6 +7,8 @@ import rwcsim.basicutils.concepts.Tray;
 import rwcsim.basicutils.figure.BaseFigure;
 import rwcsim.basicutils.unit.BaseUnit;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -139,4 +141,44 @@ public class TrayTest {
         assertTrue(siegeTray.hasEmptySlots());
     }
 
+    @Test
+    public void testUpgradeFigure() {
+        int[] expectedResult = new int[]{0,0,0,0};
+
+        assertFalse(infantryTray.containsUpgradeFigure());
+        int[] actualResults = infantryTray.getUpgradeSlots();
+
+        assertTrue(Arrays.equals(expectedResult, actualResults));
+    }
+
+    @Test
+    public void testAccuracies() {
+        int[] expectedResult = new int[]{0,0,0,2};
+
+        assertFalse(infantryTray.hasAccuracy());
+        infantryTray.setAccuracy(Tray.TRAY_LOCATION_REAR_RIGHT, 2);
+        assertTrue(infantryTray.hasAccuracy());
+
+        int[] actualResults = infantryTray.getAccuracySlots();
+        assertTrue(Arrays.equals(expectedResult, actualResults));
+
+        infantryTray.clearAccuracy();
+        assertFalse(infantryTray.hasAccuracy());
+    }
+
+    @Test
+    public void testSlotSpecificDamage() {
+        int[] expectedInfantryResult = new int[]{Tray.TRAY_LOCATION_FRONT_RIGHT,Tray.TRAY_LOCATION_REAR_RIGHT};
+        assertEquals(1, infantryTray.applyDamageToSlot(Tray.TRAY_LOCATION_FRONT_RIGHT, 2));
+        assertEquals(0, infantryTray.applyDamageToSlot(Tray.TRAY_LOCATION_REAR_RIGHT, 1));
+
+        int[] actualInfantryResult  = infantryTray.getEmptySlots();
+        assertTrue(Arrays.equals(expectedInfantryResult, actualInfantryResult));
+
+        int[] expectedCavalryResult = new int[]{Tray.TRAY_LOCATION_LEFT};
+        assertEquals(1, cavalryTray.applyMortalStrikesToSlot(Tray.TRAY_LOCATION_LEFT, 2));
+
+        int[] actualCavalryResult = cavalryTray.getEmptySlots();
+        assertTrue(Arrays.equals(expectedCavalryResult, actualCavalryResult));
+    }
 }
