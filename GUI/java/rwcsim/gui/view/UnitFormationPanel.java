@@ -26,7 +26,7 @@ public class UnitFormationPanel extends JFrame {
 
     public UnitFormationPanel() {
         selectDieFacesButton.addActionListener(e -> {
-            SimpleRerollLogicDialog dialog = new SimpleRerollLogicDialog();
+            SimpleRerollLogicDialog dialog = new SimpleRerollLogicDialog(rerollBehavior);
             dialog.setLocationRelativeTo(selectDieFacesButton);
             rerollBehavior.update(dialog.showDialog());
         });

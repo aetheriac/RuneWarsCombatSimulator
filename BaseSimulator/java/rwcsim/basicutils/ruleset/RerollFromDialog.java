@@ -12,13 +12,13 @@ import java.util.*;
 public class RerollFromDialog implements Rule<RerollFromDialog>, RerollBehavior {
     public static final String name = "REROLL_FROM_DIALOG";
 
-    private  Map<Integer, HashSet<DieFace>> rerollDieFaces;
+//    private  Map<Integer, HashSet<DieFace>> rerollDieFaces;
 
     public RerollFromDialog() {
         rerollFaces = new HashMap<>();
-        rerollDieFaces.put(DiePool.RED_DIE, new HashSet<>(Arrays.asList(defaultRedDieSelection)));
-        rerollDieFaces.put(DiePool.BLUE_DIE, new HashSet<>(Arrays.asList(defaultBlueDieSelection)));
-        rerollDieFaces.put(DiePool.WHITE_DIE, new HashSet<>(Arrays.asList(defaultWhiteDieSelection)));
+        rerollFaces.put(DiePool.RED_DIE, new HashSet<>(Arrays.asList(defaultRedDieSelection)));
+        rerollFaces.put(DiePool.BLUE_DIE, new HashSet<>(Arrays.asList(defaultBlueDieSelection)));
+        rerollFaces.put(DiePool.WHITE_DIE, new HashSet<>(Arrays.asList(defaultWhiteDieSelection)));
     }
 
     private final DieFace[] defaultRedDieSelection = new DieFace[]{
@@ -69,7 +69,7 @@ public class RerollFromDialog implements Rule<RerollFromDialog>, RerollBehavior 
 
     @Override
     public void update(Map<Integer, HashSet<DieFace>> dieFaces) {
-        rerollDieFaces.putAll(dieFaces);
+        rerollFaces.putAll(dieFaces);
     }
 
     @Override
