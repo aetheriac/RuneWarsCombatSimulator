@@ -57,8 +57,9 @@ public class DefaultInteractionManager extends BaseInteractionManager {
             for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
                 for (DieFace face : entry.getValue()) {
                     if (rerollDieCount > 0 &&
-                        rerollBehavior.getRerollFaces().size() > 0 &&
-                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
+//                        rerollBehavior.getRerollFaces().size() > 0 &&
+//                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)
+                            rerollBehavior.shouldReroll(entry.getKey().getDieType(), face)) {
                         // add a die to the reroll diepool
                         rerollPool[entry.getKey().getDieType()]++;
                         // remove original face
