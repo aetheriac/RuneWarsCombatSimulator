@@ -48,7 +48,7 @@ public class DefaultInteractionManager extends BaseInteractionManager {
                             e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
 
             int rerollDieCount = rerollRankCount;
-            int[] rerollPool = new int[working.keySet().size()];
+            int[] rerollPool = new int[]{0,0,0};
 
             // Reroll things
             // RED, BLUE, WHITE
@@ -71,6 +71,20 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
             if (rerollDieCount - 1 > 0) {
                 results = rerollFromDialog(rerollDieCount - 1, false, attacker, results, type, rerollBehavior);
+            }
+
+
+            Map<Die, List<DieFace>> rerolledResults = Roller.rollPool(rerollPool);
+            for (Map.Entry<Die, List<DieFace>> entry : rerolledResults.entrySet()) {
+                if (results.containsKey(entry.getKey())) {
+                    if (results.get(entry.getKey()) != null) {
+                        results.get(entry.getKey()).addAll(entry.getValue());
+                    } else {
+                        results.put(entry.getKey(), entry.getValue());
+                    }
+                } else {
+                    results.put(entry.getKey(),entry.getValue());
+                }
             }
         }
         return results;

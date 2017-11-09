@@ -11,9 +11,9 @@ import java.util.*;
  */
 public class Roller {
     private static final Logger logger = LogManager.getLogger(Roller.class);
-    public static RedDie redDie = new RedDie();
-    public static WhiteDie whiteDie = new WhiteDie();
-    public static BlueDie blueDie = new BlueDie();
+    public static RedDie redDie = RedDie.get();
+    public static WhiteDie whiteDie = WhiteDie.get();
+    public static BlueDie blueDie = BlueDie.get();
 
     public static DieFace rollRedDie() {
         return roll(redDie);
@@ -26,7 +26,7 @@ public class Roller {
     }
 
     public static DieFace roll(Die die) {
-        return die.result(RuleSetManager.getBoxedInt(die.faces.length));
+        return die.result(RuleSetManager.getBoxedInt(die.getFaces().length));
     }
 
     public static Map<Die,List<DieFace>> rollPool(DiePool pool) {

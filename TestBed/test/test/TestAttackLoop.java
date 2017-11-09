@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Configuration;
 import rwcsim.basicutils.Formation;
+import rwcsim.basicutils.ruleset.RerollFromDialog;
 import rwcsim.basicutils.systems.AttackLoop;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.unit.DeployableUnit;
@@ -65,7 +66,7 @@ public class TestAttackLoop extends TestCase {
                 attackerFormation = daqanFormation;
             }
 
-            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType);
+            attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType, new RerollFromDialog(), 1);
             attackLoop.processAttack();
         }
     }
