@@ -53,7 +53,7 @@ public class DefaultInteractionManagerTest {
         checking.put(RedDie.get(), faces);
 
 
-        results = dim.rerollFromDialog(1, attacker,  checking, type, rerollBehavior);
+        results = dim.rerollFromDialog(1, true, attacker,  checking, type, rerollBehavior);
 
         Map<Die, List<DieFace>> expectedResults = new HashMap<>();
         expectedResults.put(RedDie.get(), new ArrayList<>());

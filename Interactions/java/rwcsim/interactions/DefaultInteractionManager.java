@@ -46,9 +46,26 @@ public class DefaultInteractionManager extends BaseInteractionManager {
     public Map<Die,List<DieFace>> partialRankRerollFromDialog(Map<Die, List<DieFace>> results, RerollBehavior rerollBehavior) {
         log.debug("Partial Rank Reroll");
         /// build pool of dice to reroll
+        Map<Die, List<DieFace>> working = results.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
         int[] rerollPool = new int[]{0,0,0};
-        // reroll pool
 
+        boolean oneDieSelected = false;
+
+        for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+            for (DieFace face : entry.getValue()) {
+                if (!oneDieSelected && rerollBehavior.shouldReroll(entry.getKey().getDieType(), face)) {
+                    // add a die to the reroll diepool
+                    rerollPool[entry.getKey().getDieType()]++;
+                    // remove original face
+                    results.get(entry.getKey()).remove(face);
+                    oneDieSelected = true;
+                }
+            }
+        }
+
+        // reroll pool
         results = rerollPool(results, rerollPool);
         return results;
     }

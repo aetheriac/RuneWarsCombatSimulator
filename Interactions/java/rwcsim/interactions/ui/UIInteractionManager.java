@@ -23,11 +23,6 @@ public class UIInteractionManager extends BaseInteractionManager {
     }
 
     @Override
-    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
-        return null;
-    }
-
-    @Override
     public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
         return null;
     }
