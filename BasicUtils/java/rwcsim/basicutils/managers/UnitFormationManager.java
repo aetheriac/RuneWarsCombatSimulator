@@ -51,15 +51,14 @@ public class UnitFormationManager implements Manager {
     Formation formation;
     List<Tray> trayLayout;
     int totalTrayCount;
-//    int currentTrayCount;
 
     public UnitFormationManager(DeployableUnit deployableUnit) {
         this.deployableUnit = deployableUnit;
+        this.deployableUnit.setUnitFormationManager(this);
         this.unit = deployableUnit.getUnit();
         this.formation = deployableUnit.getFormation();
         totalTrayCount = this.formation.getTrayCount();
         trayLayout = new LinkedList<>();
-//        currentTrayCount = totalTrayCount;
         initializeTrays();
     }
 
