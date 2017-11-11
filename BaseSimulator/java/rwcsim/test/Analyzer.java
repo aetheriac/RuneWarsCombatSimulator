@@ -2,6 +2,7 @@ package rwcsim.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rwcsim.basicutils.runes.RuneManager;
 import rwcsim.utils.statistics.DieStatisticCounter;
 
 import java.util.HashMap;
@@ -33,15 +34,24 @@ public class  Analyzer {
         AtomicInteger[] firstDice = new AtomicInteger[DieStatisticCounter.STAT_SIZE];
         AtomicInteger[] secondDice = new AtomicInteger[DieStatisticCounter.STAT_SIZE];
 
+        AtomicInteger[] runeResults = new AtomicInteger[5];
+
         for (int i = 0; i<DieStatisticCounter.STAT_SIZE; i++) {
             firstDice[i] = new AtomicInteger();
             secondDice[i] = new AtomicInteger();
         }
 
-
-
+        for (int i = 0; i<5; i++) {
+            runeResults[i] = new AtomicInteger();
+        }
 
         stats.stream().forEach( s -> {
+//            for (int[] r : s.runes) {
+//                for (int j=0; j< r.length; j++) {
+//                    runeResults[j].getAndAdd(r[j]);
+//                }
+//            }
+
             if (!unitLife.containsKey(s.first.unit.getName()+":F")) {
                 unitLife.put(s.first.unit.getName()+":F", new Long(0));
             }
@@ -124,6 +134,7 @@ public class  Analyzer {
         log.info("First Dice: " + firstDiceString.toString());
         log.info("Second Dice: " + secondDiceString.toString());
 
+        log.info("Runes: ");
 
         // used regeneration
     }

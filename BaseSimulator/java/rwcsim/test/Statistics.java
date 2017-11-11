@@ -12,10 +12,13 @@ public class Statistics {
     UnitStateManager first;
     UnitStateManager second;
     int rounds;
-    public Statistics(int r, UnitStateManager d, UnitStateManager w) {
+    int[][] runes;
+
+    public Statistics(int r, int[][] runes, UnitStateManager d, UnitStateManager w) {
         first = d;
         second = w;
         rounds = r;
+        this.runes = runes;
     }
 
     public void showStats() {
