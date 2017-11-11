@@ -3,9 +3,23 @@ package rwcsim.basicutils.dice;
 /**
  * Created by dsayles on 5/14/15.
  */
-public class WhiteDie extends Die {
-    public WhiteDie() {
+public class WhiteDie  implements Die {
+    private static WhiteDie _instance = new WhiteDie();
+    private int dieType;
+    private DieFace[] faces;
+
+    private WhiteDie() {
+        setFaces();
         dieType = DiePool.WHITE_DIE;
+    }
+
+    public static WhiteDie get() {
+        return _instance;
+    }
+
+    @Override
+    public DieFace[] getFaces() {
+        return _instance.faces;
     }
     @Override
     public void setFaces() {
@@ -22,5 +36,15 @@ public class WhiteDie extends Die {
         faces[9] = DieFace.HIT_MORALE;
         faces[10] = DieFace.SURGE_SURGE;
         faces[11] = DieFace.SURGE_MORALE;
+    }
+
+    @Override
+    public DieFace result(int value) {
+        return _instance.faces[value];
+    }
+
+    @Override
+    public int getDieType() {
+        return _instance.dieType;
     }
 }

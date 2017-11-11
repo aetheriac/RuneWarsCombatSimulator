@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import rwcsim.basicutils.dice.*;
+import rwcsim.interactions.ai.behaviors.RerollBehavior;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -71,7 +72,7 @@ public class SimpleRerollLogicDialog extends JDialog {
             DieFace.HIT, DieFace.HIT_HIT, DieFace.HIT_SURGE, DieFace.HIT_MORALE, DieFace.HIT_ACCURACY, DieFace.MORTAL_STRIKE,
     };
 
-    public SimpleRerollLogicDialog() {
+    public SimpleRerollLogicDialog(RerollBehavior behavior) {
         $$$setupUI$$$();
         setContentPane(contentPane);
         setModal(true);
@@ -80,7 +81,7 @@ public class SimpleRerollLogicDialog extends JDialog {
 
         setColors();
         initializeMaps();
-        setDefaults();
+        setDefaults(behavior);
 
         this.pack();
 
@@ -127,21 +128,37 @@ public class SimpleRerollLogicDialog extends JDialog {
         whiteDieFaceToCheckBoxMap.put(DieFace.SURGE_MORALE, whiteSurgeMoraleCheckBox);
     }
 
-    private void setDefaults() {
-        for (DieFace face : defaultRedDieSelection) {
-            redDieFaceToCheckBoxMap.get(face).setSelected(true);
-        }
-        for (DieFace face : defaultBlueDieSelection) {
-            blueDieFaceToCheckBoxMap.get(face).setSelected(true);
-        }
-        for (DieFace face : defaultWhiteDieSelection) {
-            whiteDieFaceToCheckBoxMap.get(face).setSelected(true);
+    private void setDefaults(RerollBehavior behavior) {
+        for (Map.Entry<Integer, HashSet<DieFace>> entry : behavior.getRerollFaces().entrySet()) {
+            for (DieFace face : entry.getValue()) {
+                switch (entry.getKey()) {
+                    case DiePool.RED_DIE:
+                        redDieFaceToCheckBoxMap.get(face).setSelected(true);
+                        break;
+                    case DiePool.BLUE_DIE:
+                        blueDieFaceToCheckBoxMap.get(face).setSelected(true);
+                        break;
+                    case DiePool.WHITE_DIE:
+                        whiteDieFaceToCheckBoxMap.get(face).setSelected(true);
+                        break;
+                }
+            }
         }
 
-        results = new HashMap<>();
-        results.put(DiePool.RED_DIE, new HashSet<>(Arrays.asList(defaultRedDieSelection)));
-        results.put(DiePool.BLUE_DIE, new HashSet<>(Arrays.asList(defaultBlueDieSelection)));
-        results.put(DiePool.WHITE_DIE, new HashSet<>(Arrays.asList(defaultWhiteDieSelection)));
+//        for (DieFace face : defaultRedDieSelection) {
+//            redDieFaceToCheckBoxMap.get(face).setSelected(true);
+//        }
+//        for (DieFace face : defaultBlueDieSelection) {
+//            blueDieFaceToCheckBoxMap.get(face).setSelected(true);
+//        }
+//        for (DieFace face : defaultWhiteDieSelection) {
+//            whiteDieFaceToCheckBoxMap.get(face).setSelected(true);
+//        }
+
+//        results = new HashMap<>();
+//        results.put(DiePool.RED_DIE, new HashSet<>(Arrays.asList(defaultRedDieSelection)));
+//        results.put(DiePool.BLUE_DIE, new HashSet<>(Arrays.asList(defaultBlueDieSelection)));
+//        results.put(DiePool.WHITE_DIE, new HashSet<>(Arrays.asList(defaultWhiteDieSelection)));
     }
 
     // Copies the background color of the panel to its children components

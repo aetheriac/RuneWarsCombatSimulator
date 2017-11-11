@@ -1,5 +1,6 @@
 package rwcsim.basicutils.concepts;
 
+import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
@@ -19,7 +20,6 @@ import java.util.Map;
  */
 public interface Unit {
     String getName();
-
 
     void initializeUnit();
 
@@ -47,6 +47,15 @@ public interface Unit {
     boolean hasUpgrades();
 
     CommandTool getCommandTool();
+
+    default DiePool getAttackPool(AttackType type) {
+        switch (type) {
+            case MELEE_ATTACK: return getMeleeAttackPool();
+            case RANGED_ATTACK: return getRangedAttackPool();
+        }
+        return null;
+    }
+
     DiePool getMeleeAttackPool();
     void setMeleeAttackPool(DiePool diePool);
     DiePool getRangedAttackPool();

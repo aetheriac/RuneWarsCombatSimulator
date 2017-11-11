@@ -28,5 +28,4 @@ public interface Tray {
     int[] getEmptySlots();
     int getFigureCount();
     int refillEmptySlots(Unit unit, int count);
-
 }

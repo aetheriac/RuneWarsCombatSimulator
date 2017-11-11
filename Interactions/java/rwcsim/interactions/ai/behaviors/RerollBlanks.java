@@ -29,13 +29,18 @@ public class RerollBlanks implements RerollBehavior {
         return blanks;
     }
 
-    @Override
-    public Map<Integer, HashSet<DieFace>> getDefaultRerollFaces() {
-        return null;
-    }
+//    @Override
+//    public Map<Integer, HashSet<DieFace>> getDefaultRerollFaces() {
+//        return null;
+//    }
 
     @Override
     public void update(Map<Integer, HashSet<DieFace>> dieFaces) {
 
+    }
+
+    @Override
+    public boolean shouldReroll(int die, DieFace faceToCheck) {
+        return false;
     }
 }

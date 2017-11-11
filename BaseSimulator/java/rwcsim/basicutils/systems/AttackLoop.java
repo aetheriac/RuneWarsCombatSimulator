@@ -89,6 +89,8 @@ public class AttackLoop {
             } else if (RuleSetManager.isEnabled(AutomaticallyRerollBlanks.name)) {
                 rerollResults = attacker.reroll(attackingUnit.getRerollDieCount(), attackingUnit.hasPartialRank(), attackingUnit, rollResults, attackType);
             } else if (RuleSetManager.isEnabled(RerollFromDialog.name)) {
+                log.debug("Reroll rank count: "+ attackingUnit.getRerollDieCount());
+                log.debug("Reroll partial: "+ attackingUnit.hasPartialRank());
                 rerollResults = attacker.rerollFromDialog(attackingUnit.getRerollDieCount(), attackingUnit.hasPartialRank(), attackingUnit, rollResults, attackType, rerollBehavior);
             }
             attackingUnit.recordDieRoll(rerollResults, true);

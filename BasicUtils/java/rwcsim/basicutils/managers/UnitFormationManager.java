@@ -15,10 +15,7 @@ import rwcsim.basicutils.stages.EndOfActivation;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.basicutils.dice.DiePool;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class UnitFormationManager implements Manager {
     private static final Logger log = LogManager.getLogger(UnitFormationManager.class);
@@ -54,15 +51,15 @@ public class UnitFormationManager implements Manager {
     Formation formation;
     List<Tray> trayLayout;
     int totalTrayCount;
-    int currentTrayCount;
+//    int currentTrayCount;
 
     public UnitFormationManager(DeployableUnit deployableUnit) {
         this.deployableUnit = deployableUnit;
         this.unit = deployableUnit.getUnit();
         this.formation = deployableUnit.getFormation();
         totalTrayCount = this.formation.getTrayCount();
-        trayLayout = new ArrayList<>(totalTrayCount);
-        currentTrayCount = totalTrayCount;
+        trayLayout = new LinkedList<>();
+//        currentTrayCount = totalTrayCount;
         initializeTrays();
     }
 
@@ -90,7 +87,13 @@ public class UnitFormationManager implements Manager {
     }
 
     public int getCurrentRanks() {
-        int currentRanks = currentTrayCount / formation.getThreat();
+        log.debug(this+" TotalTrayCount: "+ totalTrayCount);
+        log.debug(this+" CurrentTrayCount: "+ trayLayout.size());
+        log.debug(this+" Formation Threat: "+ formation.getThreat());
+        log.debug(this+" HasEmptySlots: "+ hasEmptySlots());
+
+        int currentRanks = trayLayout.size() / formation.getThreat();
+        if (currentRanks>0 && hasEmptySlots()) { currentRanks--; }
 
         if (this.deployableUnit.getUnit().getAbilities().containsKey(Abilities.PRECISE)) {
             log.debug("Ranks: "+ currentRanks);
@@ -102,7 +105,7 @@ public class UnitFormationManager implements Manager {
     }
 
     public boolean hasPartialRank() {
-        return currentTrayCount % formation.getThreat() > 0;
+        return (trayLayout.size() - formation.getThreat()) % formation.getThreat() > 0;
     }
 
     public DiePool getDiePool(AttackType type) {
@@ -134,18 +137,18 @@ public class UnitFormationManager implements Manager {
 
 
     public void applyHits(int count) {
-        ((ArrayList)trayLayout).trimToSize();
         int curTray = trayLayout.size()-1;
         int remainingHits = count;
         Tray tmp;
 
         while (remainingHits>0) {
+            log.debug("Remaining Hits: " + remainingHits);
             if (trayLayout.size()>0) {
                 tmp = trayLayout.get(curTray);
+                log.debug("Tray: "+ tmp);
                 remainingHits = tmp.applyDamage(remainingHits);
                 if (tmp.isEmpty()) {
                     trayLayout.remove(curTray);
-                    currentTrayCount--;
                     curTray--;
                 }
             } else { return; }
@@ -153,7 +156,6 @@ public class UnitFormationManager implements Manager {
     }
 
     public void applyMortalStrikes(int count) {
-        ((ArrayList)trayLayout).trimToSize();
         int curTray = trayLayout.size()-1;
         int remainingStrikes = count;
         Tray tmp;
@@ -164,7 +166,6 @@ public class UnitFormationManager implements Manager {
                 remainingStrikes = tmp.applyMortalStrikes(remainingStrikes);
                 if (tmp.isEmpty()) {
                     trayLayout.remove(curTray);
-                    currentTrayCount--;
                     curTray--;
                 }
             } else { return; }
@@ -172,7 +173,6 @@ public class UnitFormationManager implements Manager {
     }
 
     public boolean isAlive() {
-        ((ArrayList)trayLayout).trimToSize();
         if (trayLayout.size()==0) return false;
 
         for (Tray t : trayLayout) {
@@ -184,7 +184,6 @@ public class UnitFormationManager implements Manager {
     }
 
     public boolean hasEmptySlots() {
-        ((ArrayList)trayLayout).trimToSize();
         for (Tray t : trayLayout) {
             if (t.hasEmptySlots()) {
                 return true;
@@ -196,7 +195,6 @@ public class UnitFormationManager implements Manager {
 
     public int figuresRemaining() {
         int result = 0;
-        ((ArrayList)trayLayout).trimToSize();
         for (Tray t:trayLayout) {
             result += t.getFigureCount();
         }
@@ -234,6 +232,7 @@ public class UnitFormationManager implements Manager {
             }
         }
     }
+
 
     public void reconfigure() {
 //        for (Ability<?> ability : unit.getAbilities().values()) {

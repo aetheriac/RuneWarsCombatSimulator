@@ -29,51 +29,152 @@ public class DefaultInteractionManager extends BaseInteractionManager {
 
     // TODO:  Hook up die reroll dialog to this method
 
+
+    // Base reroll method
     @Override
-    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker, Map<Die, List<DieFace>> results,
-                                                    AttackType type, RerollBehavior rerollBehavior) {
-        Map<Die,List<DieFace>> rerolledResults = rerollFromDialog(rerollRankCount, attacker, results, type, rerollBehavior);
+    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, boolean rerollPartialRank, UnitFormationManager attacker,
+                                                    Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
+        // reroll all dice up to the number of ranks
+        Map<Die,List<DieFace>> rerolledResults = fullRankRerollFromDialog(results, rerollBehavior);
         if (rerollPartialRank) {
-            rerolledResults = rerollFromDialog(1, attacker, results, type, rerollBehavior);
+            rerolledResults = partialRankRerollFromDialog(rerolledResults, rerollBehavior);
         }
         return rerolledResults;
     }
 
 
-    @Override
-    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
-        if (null != rerollBehavior) {
-            Map<Die, List<DieFace>> working = results.entrySet().stream()
-                    .collect(Collectors.toMap(
-                            e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+    public Map<Die,List<DieFace>> partialRankRerollFromDialog(Map<Die, List<DieFace>> results, RerollBehavior rerollBehavior) {
+        log.debug("Partial Rank Reroll");
+        /// build pool of dice to reroll
+        Map<Die, List<DieFace>> working = results.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+        int[] rerollPool = new int[]{0,0,0};
 
-            int rerollDieCount = rerollRankCount;
-            int[] rerollPool = new int[working.keySet().size()];
+        boolean oneDieSelected = false;
 
-            // Reroll things
-            // RED, BLUE, WHITE
-            // for each die, check the faces that are in there
-            //    if face is in the saved list for the die being checked, skip and move on to next face
-            for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
-                for (DieFace face : entry.getValue()) {
-                    if (rerollDieCount > 0 &&
-                        rerollBehavior.getRerollFaces().size() > 0 &&
-                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)) {
-                        // add a die to the reroll diepool
-                        rerollPool[entry.getKey().getDieType()]++;
-                        // remove original face
-                        results.get(entry.getKey()).remove(face);
-                        rerollDieCount--;
-                    }
+        for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+            for (DieFace face : entry.getValue()) {
+                if (!oneDieSelected && rerollBehavior.shouldReroll(entry.getKey().getDieType(), face)) {
+                    // add a die to the reroll diepool
+                    rerollPool[entry.getKey().getDieType()]++;
+                    // remove original face
+                    results.get(entry.getKey()).remove(face);
+                    oneDieSelected = true;
                 }
             }
+        }
 
-            if (rerollDieCount - 1 > 0) {
-                results = rerollFromDialog(rerollDieCount - 1, false, attacker, results, type, rerollBehavior);
+        // reroll pool
+        results = rerollPool(results, rerollPool);
+        return results;
+    }
+
+
+    public Map<Die, List<DieFace>> fullRankRerollFromDialog(Map<Die, List<DieFace>> results, RerollBehavior rerollBehavior) {
+        log.debug("Full Rank Dice Reroll");
+        return rerollPotentiallyAllDice(results, rerollBehavior);
+    }
+
+    public Map<Die, List<DieFace>> rerollPotentiallyAllDice(Map<Die, List<DieFace>> results, RerollBehavior rerollBehavior) {
+        if (null == rerollBehavior) {
+            return results;
+        }
+        Map<Die, List<DieFace>> working = results.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+
+        int[] rerollPool = new int[]{0,0,0};
+
+        // setup the pool to be rerolled, and remove the DieFaces that are being rerolled
+        // RED, BLUE, WHITE
+        // for each die, check the faces that are in there
+        //    if face is in the saved list for the die being checked, skip and move on to next face
+        for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+            for (DieFace face : entry.getValue()) {
+                if (rerollBehavior.shouldReroll(entry.getKey().getDieType(), face)) {
+                    // add a die to the reroll diepool
+                    rerollPool[entry.getKey().getDieType()]++;
+                    // remove original face
+                    results.get(entry.getKey()).remove(face);
+                }
+            }
+        }
+
+        // reroll the pool
+        results = rerollPool(results, rerollPool);
+        return results;
+    }
+
+
+
+    public Map<Die, List<DieFace>> rerollPool(Map<Die,List<DieFace>> results, int[] pool) {
+        Map<Die, List<DieFace>> rerolledResults = Roller.rollPool(pool);
+        for (Map.Entry<Die, List<DieFace>> entry : rerolledResults.entrySet()) {
+            if (results.containsKey(entry.getKey())) {
+                if (results.get(entry.getKey()) != null) {
+                    results.get(entry.getKey()).addAll(entry.getValue());
+                } else {
+                    results.put(entry.getKey(), entry.getValue());
+                }
+            } else {
+                results.put(entry.getKey(),entry.getValue());
             }
         }
         return results;
     }
+
+
+
+//    @Override
+//    public Map<Die, List<DieFace>> rerollFromDialog(int rerollRankCount, UnitFormationManager attacker, Map<Die, List<DieFace>> results, AttackType type, RerollBehavior rerollBehavior) {
+//        if (null != rerollBehavior) {
+//            Map<Die, List<DieFace>> working = results.entrySet().stream()
+//                    .collect(Collectors.toMap(
+//                            e -> e.getKey(), e -> new ArrayList<>(e.getValue())));
+//
+//            int rerollDieCount = rerollRankCount;
+//            int[] rerollPool = new int[]{0,0,0};
+//
+//            // Reroll things
+//            // RED, BLUE, WHITE
+//            // for each die, check the faces that are in there
+//            //    if face is in the saved list for the die being checked, skip and move on to next face
+//            for (Map.Entry<Die, List<DieFace>> entry : working.entrySet()) {
+//                for (DieFace face : entry.getValue()) {
+//                    if (rerollDieCount > 0 &&
+////                        rerollBehavior.getRerollFaces().size() > 0 &&
+////                        !rerollBehavior.getRerollFaces().get(entry.getKey().getDieType()).contains(face)
+//                            rerollBehavior.shouldReroll(entry.getKey().getDieType(), face)) {
+//                        // add a die to the reroll diepool
+//                        rerollPool[entry.getKey().getDieType()]++;
+//                        // remove original face
+//                        results.get(entry.getKey()).remove(face);
+//                        rerollDieCount--;
+//                    }
+//                }
+//            }
+//
+//            if (rerollDieCount - 1 > 0) {
+//                results = rerollFromDialog(rerollDieCount - 1, false, attacker, results, type, rerollBehavior);
+//            }
+//
+//
+//            Map<Die, List<DieFace>> rerolledResults = Roller.rollPool(rerollPool);
+//            for (Map.Entry<Die, List<DieFace>> entry : rerolledResults.entrySet()) {
+//                if (results.containsKey(entry.getKey())) {
+//                    if (results.get(entry.getKey()) != null) {
+//                        results.get(entry.getKey()).addAll(entry.getValue());
+//                    } else {
+//                        results.put(entry.getKey(), entry.getValue());
+//                    }
+//                } else {
+//                    results.put(entry.getKey(),entry.getValue());
+//                }
+//            }
+//        }
+//        return results;
+//    }
 
 
 
