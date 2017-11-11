@@ -42,7 +42,7 @@ public class DieStatisticCounter {
     public static String statLine() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Accuracy, ").append("Hit, ").append("Morale, ").append("Mortal Strike, ").append("Surge, ");
+        sb.append("DieFaces:   Accuracy, ").append("Hit, ").append("Morale, ").append("Mortal Strike, ").append("Surge, ");
         sb.append("Blank, ").append("Rerolls, ");
         sb.append("FB, FH, FA, FM, FS, FHH, FHS, FHA, FHM, FSS, FSM, FMS, ");
         sb.append("RA, RH, RM, RMS, RS, RB");

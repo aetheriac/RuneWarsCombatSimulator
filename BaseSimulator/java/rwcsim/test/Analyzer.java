@@ -39,19 +39,21 @@ public class  Analyzer {
         }
 
 
+
+
         stats.stream().forEach( s -> {
-            if (!unitLife.containsKey(s.first.unit.getName())) {
-                unitLife.put(s.first.unit.getName(), new Long(0));
+            if (!unitLife.containsKey(s.first.unit.getName()+":F")) {
+                unitLife.put(s.first.unit.getName()+":F", new Long(0));
             }
             if (s.first.isAlive) {
-                unitLife.put(s.first.unit.getName(), unitLife.get(s.first.unit.getName()) + 1);
+                unitLife.put(s.first.unit.getName()+":F", unitLife.get(s.first.unit.getName()+":F") + 1);
             }
 
-            if (!unitLife.containsKey(s.second.unit.getName())) {
-                unitLife.put(s.second.unit.getName(), new Long(0));
+            if (!unitLife.containsKey(s.second.unit.getName()+":S")) {
+                unitLife.put(s.second.unit.getName()+":S", new Long(0));
             }
             if (s.second.isAlive) {
-                unitLife.put(s.second.unit.getName(), unitLife.get(s.second.unit.getName()) + 1);
+                unitLife.put(s.second.unit.getName()+":S", unitLife.get(s.second.unit.getName()+":S") + 1);
             }
 
             if (!unitLife.containsKey("Both Alive")) {
@@ -61,18 +63,18 @@ public class  Analyzer {
                 unitLife.put("Both Alive", unitLife.get("Both Alive") + 1);
             }
 
-            if (!unitLife.containsKey("First ("+s.first.unit.getName()+") kills Second ("+s.second.unit.getName()+")")) {
-                unitLife.put("First ("+s.first.unit.getName()+") kills Second ("+s.second.unit.getName()+")", new Long(0));
+            if (!unitLife.containsKey("First ("+s.first.unit.getName()+":F"+") kills Second ("+s.second.unit.getName()+":S"+")")) {
+                unitLife.put("First ("+s.first.unit.getName()+":F"+") kills Second ("+s.second.unit.getName()+":S"+")", new Long(0));
             }
             if (s.first.isAlive && !s.second.isAlive) {
-                unitLife.put("First ("+s.first.unit.getName()+") kills Second ("+s.second.unit.getName()+")", unitLife.get("First ("+s.first.unit.getName()+") kills Second ("+s.second.unit.getName()+")") + 1);
+                unitLife.put("First ("+s.first.unit.getName()+":F"+") kills Second ("+s.second.unit.getName()+":S"+")", unitLife.get("First ("+s.first.unit.getName()+":F"+") kills Second ("+s.second.unit.getName()+":S"+")") + 1);
             }
 
-            if (!unitLife.containsKey("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")")) {
-                unitLife.put("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")", new Long(0));
+            if (!unitLife.containsKey("Second ("+s.second.unit.getName()+":S"+") kills First ("+s.first.unit.getName()+":F"+")")) {
+                unitLife.put("Second ("+s.second.unit.getName()+":S"+") kills First ("+s.first.unit.getName()+":F"+")", new Long(0));
             }
             if (!s.first.isAlive && s.second.isAlive) {
-                unitLife.put("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")", unitLife.get("Second ("+s.second.unit.getName()+") kills First ("+s.first.unit.getName()+")") + 1);
+                unitLife.put("Second ("+s.second.unit.getName()+":S"+") kills First ("+s.first.unit.getName()+":F"+")", unitLife.get("Second ("+s.second.unit.getName()+":S"+") kills First ("+s.first.unit.getName()+":F"+")") + 1);
             }
 
             int[] fregen = s.first.getRegen();

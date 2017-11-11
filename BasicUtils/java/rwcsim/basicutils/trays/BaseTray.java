@@ -1,12 +1,17 @@
 package rwcsim.basicutils.trays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.concepts.Figure;
 import rwcsim.basicutils.concepts.Tray;
 import rwcsim.basicutils.concepts.Unit;
 import rwcsim.basicutils.figure.BaseFigure;
 import rwcsim.basicutils.concepts.FigureUpgrade;
+import rwcsim.basicutils.managers.UnitFormationManager;
 
 public abstract class BaseTray implements Tray {
+    private static final Logger log = LogManager.getLogger(UnitFormationManager.class);
+
     class DeadFigure implements Figure {
 
         @Override
@@ -101,6 +106,8 @@ public abstract class BaseTray implements Tray {
         int remainingDamage = count;
 
         for (int i = 0; i < figureCount; i++) {
+            log.debug("Figure: "+ trayLayout[i]);
+            log.debug("Remaining Damage: "+ remainingDamage);
             remainingDamage = trayLayout[i].applyDamage(remainingDamage);
             if (!trayLayout[i].isAlive()) {
                 trayLayout[i] = new DeadFigure();

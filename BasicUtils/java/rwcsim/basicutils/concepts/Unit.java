@@ -21,7 +21,6 @@ import java.util.Map;
 public interface Unit {
     String getName();
 
-
     void initializeUnit();
 
     Siege getAsSiege();

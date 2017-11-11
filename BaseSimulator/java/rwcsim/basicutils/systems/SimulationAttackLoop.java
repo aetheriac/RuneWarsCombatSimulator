@@ -129,27 +129,29 @@ public class SimulationAttackLoop implements Callable<Statistics> {
             messages.add("Round "+ rounds);
             log.debug("Round: "+ rounds);
 //            System.out.println("Round: "+rounds);
-            if (rounds % 2 == 0) {
+//            if (rounds % 2 == 0) {
                 attackerInteraction = firstInteraction;
                 attackerFormation = firstFormation;
                 attackerBehavior = firstBehavior;
                 defenderInteraction = secondInteraction;
                 defenderFormation = secondFormation;
                 defenderBehavior = secondBehavior;
-            } else {
-                defenderInteraction = firstInteraction;
-                defenderFormation = firstFormation;
-                defenderBehavior = firstBehavior;
-                attackerInteraction = secondInteraction;
-                attackerFormation = secondFormation;
-                attackerBehavior = secondBehavior;
-            }
+//            } else {
+//                defenderInteraction = firstInteraction;
+//                defenderFormation = firstFormation;
+//                defenderBehavior = firstBehavior;
+//                attackerInteraction = secondInteraction;
+//                attackerFormation = secondFormation;
+//                attackerBehavior = secondBehavior;
+//            }
 
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());
 
             attackLoop = new AttackLoop(attackerInteraction, attackerFormation, defenderInteraction, defenderFormation, attackType, attackerBehavior, rounds);
             attackLoop.processAttack();
+
+            log.debug("Middle Round: "+ rounds);
 
             if (defenderFormation.isAlive()) {
                 attackLoop = new AttackLoop(defenderInteraction, defenderFormation, attackerInteraction, attackerFormation, attackType, defenderBehavior, rounds);
