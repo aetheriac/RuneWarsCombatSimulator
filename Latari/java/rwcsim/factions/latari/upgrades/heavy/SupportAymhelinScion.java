@@ -42,4 +42,9 @@ public class SupportAymhelinScion extends BaseFigure implements FigureUpgrade, C
     public int getHealth() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Support Aymhelin Scion";
+    }
 }

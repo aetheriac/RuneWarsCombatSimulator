@@ -12,4 +12,9 @@ public class ShieldOfMargath implements Artifact, Cost, Unique {
         return 6;
     }
 
+    @Override
+    public String getUpgradeName() {
+        return "Shield of Margath";
+    }
+
 }

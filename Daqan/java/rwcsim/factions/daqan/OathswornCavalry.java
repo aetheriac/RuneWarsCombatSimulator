@@ -10,18 +10,13 @@ import rwcsim.basicutils.dials.FaceColor;
 import rwcsim.basicutils.concepts.Cavalry;
 import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.basicutils.unit.DaqanUnit;
-import rwcsim.basicutils.upgrades.Upgrade;
-import rwcsim.basicutils.upgrades.UpgradeTypes;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.trays.CavalryTray;
 import rwcsim.basicutils.concepts.Tray;
 import rwcsim.factions.neutral.figures.CavalryFigure;
-import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dsayles on 8/18/17.

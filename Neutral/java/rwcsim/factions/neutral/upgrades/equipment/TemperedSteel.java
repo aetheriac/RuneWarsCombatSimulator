@@ -58,4 +58,5 @@ public class TemperedSteel implements Cost, Equipment, Exhaustable, ExchangeActi
     public TemperedSteel getRule() {
         return this;
     }
+
 }

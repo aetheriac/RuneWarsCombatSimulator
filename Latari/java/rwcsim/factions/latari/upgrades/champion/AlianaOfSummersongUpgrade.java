@@ -47,4 +47,9 @@ public class AlianaOfSummersongUpgrade extends BaseFigure implements FigureUpgra
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Alliana of Summersong Upgrade";
+    }
 }

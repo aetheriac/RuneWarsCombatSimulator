@@ -10,4 +10,9 @@ public class MasterCraftedWeapons implements Cost, Equipment {
     public int price() {
         return 4;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Master Crafted Weapons";
+    }
 }

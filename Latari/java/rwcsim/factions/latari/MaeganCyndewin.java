@@ -19,7 +19,7 @@ import rwcsim.factions.neutral.figures.HeroFigure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaeganCyndewin extends LatariUnit implements Hero, Cavalry, Unique {
+public class MaeganCyndewin extends LatariUnit implements Hero, Cavalry {
 
     public MaeganCyndewin() {
         super();

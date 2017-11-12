@@ -11,4 +11,9 @@ public class TheDawnBlade implements Artifact, Unique, Daqan, Cost {
     public int price() {
         return 10;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "The Dawn Blade";
+    }
 }

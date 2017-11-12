@@ -9,4 +9,9 @@ public class WarCrier implements Cost, Champion, OnSkill {
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "War Crier";
+    }
 }

@@ -11,4 +11,9 @@ public class TheDuskBlade implements Cost, Artifact, Unique, Waiqar {
     public int price() {
         return 8;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "The Dusk Blade";
+    }
 }

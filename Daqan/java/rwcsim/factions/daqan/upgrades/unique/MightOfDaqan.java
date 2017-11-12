@@ -12,4 +12,9 @@ public class MightOfDaqan implements Cost, Daqan, HeroSpecific<LordHawthorne>, U
     public int price() {
         return 4;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Might of Daqan";
+    }
 }

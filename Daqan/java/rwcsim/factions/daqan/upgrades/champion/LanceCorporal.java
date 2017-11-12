@@ -28,4 +28,9 @@ public class LanceCorporal extends BaseFigure implements FigureUpgrade, Champion
     public int getArmor() {
         return 4;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Lance Corporal";
+    }
 }

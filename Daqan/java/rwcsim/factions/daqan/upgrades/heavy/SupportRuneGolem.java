@@ -32,4 +32,10 @@ public class SupportRuneGolem extends BaseFigure implements FigureUpgrade, Daqan
     public int getHealth() {
         return 2;
     }
+
+
+    @Override
+    public String getUpgradeName() {
+        return "Support Rune Golem";
+    }
 }

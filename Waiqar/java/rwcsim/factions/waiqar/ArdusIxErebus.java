@@ -20,7 +20,7 @@ import rwcsim.factions.neutral.figures.HeroFigure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArdusIxErebus extends WaiqarUnit implements Hero, Infantry, Unique {
+public class ArdusIxErebus extends WaiqarUnit implements Hero, Infantry {
 
     public ArdusIxErebus() {
         super();

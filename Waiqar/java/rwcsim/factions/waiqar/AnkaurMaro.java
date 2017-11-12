@@ -18,7 +18,7 @@ import rwcsim.factions.neutral.figures.HeroFigure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnkaurMaro extends WaiqarUnit implements Hero, Cavalry, Infantry, Unique {
+public class AnkaurMaro extends WaiqarUnit implements Hero, Cavalry, Infantry {
 
     public AnkaurMaro() {
         super();

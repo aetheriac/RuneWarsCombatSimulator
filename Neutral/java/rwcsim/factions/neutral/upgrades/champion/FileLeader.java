@@ -9,4 +9,9 @@ public class FileLeader implements Cost, Champion {
     public int price() {
         return 6;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "File Leader";
+    }
 }

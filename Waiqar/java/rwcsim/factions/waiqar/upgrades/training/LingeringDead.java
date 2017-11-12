@@ -10,4 +10,9 @@ public class LingeringDead implements Cost, Waiqar, Training {
     public int price() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Lingering Dead";
+    }
 }

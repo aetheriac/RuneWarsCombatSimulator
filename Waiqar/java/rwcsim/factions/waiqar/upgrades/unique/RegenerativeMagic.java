@@ -12,4 +12,9 @@ public class RegenerativeMagic implements Cost, Waiqar,HeroSpecific<AnkaurMaro>,
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Regnerative Magic";
+    }
 }

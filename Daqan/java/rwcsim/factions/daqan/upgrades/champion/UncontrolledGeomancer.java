@@ -27,4 +27,9 @@ public class UncontrolledGeomancer extends BaseFigure implements FigureUpgrade, 
     public int getArmor() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Uncontrolled Geomancer";
+    }
 }

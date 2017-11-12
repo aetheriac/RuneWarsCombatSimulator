@@ -32,4 +32,9 @@ public class ArtifactBearer extends BaseFigure implements FigureUpgrade, Champio
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Artifact Bearer";
+    }
 }

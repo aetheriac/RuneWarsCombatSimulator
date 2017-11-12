@@ -31,4 +31,9 @@ public class MomentOfInspiration implements Cost, Training, Exhaustable, AddDie 
     public void reset() {
 
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Moment of Inspiration";
+    }
 }

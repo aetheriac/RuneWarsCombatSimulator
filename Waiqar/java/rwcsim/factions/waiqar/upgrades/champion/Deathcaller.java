@@ -28,4 +28,9 @@ public class Deathcaller extends BaseFigure implements FigureUpgrade, Cost, Waiq
     public int getArmor() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Deathcaller";
+    }
 }

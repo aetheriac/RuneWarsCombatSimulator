@@ -26,4 +26,9 @@ public class AggressiveDrummer extends BaseFigure implements FigureUpgrade, Cost
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Aggressive Drummer";
+    }
 }

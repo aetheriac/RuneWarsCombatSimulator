@@ -41,4 +41,9 @@ public class LordHawthorneUpgrade extends BaseFigure implements FigureUpgrade, C
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Lord Hawthorne Upgrade";
+    }
 }

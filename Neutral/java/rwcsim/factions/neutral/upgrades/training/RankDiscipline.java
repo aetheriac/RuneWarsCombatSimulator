@@ -15,4 +15,9 @@ public class RankDiscipline implements Cost, Training, AddAbility<Precise> {
     public Precise getAbility() {
         return new Precise(1);
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Rank Discipline";
+    }
 }

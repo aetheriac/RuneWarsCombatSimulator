@@ -39,4 +39,9 @@ public class RavenStandardBearer extends BaseFigure implements FigureUpgrade, Co
     public int getArmor() {
         return 4;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Raven Standard Bearer";
+    }
 }

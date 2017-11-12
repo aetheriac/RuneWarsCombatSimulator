@@ -9,4 +9,9 @@ public class CursedSignets implements Cost, Heraldry {
     public int price() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Cursed Signets";
+    }
 }

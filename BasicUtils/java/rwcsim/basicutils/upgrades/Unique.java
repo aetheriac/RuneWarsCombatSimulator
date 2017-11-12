@@ -1,7 +1,9 @@
 package rwcsim.basicutils.upgrades;
 
 
-public interface Unique {
+import rwcsim.basicutils.concepts.Upgrade;
+
+public interface Unique extends Upgrade {
 //    default UpgradeSlot getSlot() {
 //        return UpgradeSlot.Unique;
 //    }

@@ -9,4 +9,9 @@ public class ShieldWall implements Cost, Equipment {
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Shield Wall";
+    }
 }

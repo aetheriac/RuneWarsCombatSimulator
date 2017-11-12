@@ -28,4 +28,9 @@ public class Executioner extends BaseFigure implements FigureUpgrade, Cost, Waiq
     public int getArmor() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Executioner";
+    }
 }

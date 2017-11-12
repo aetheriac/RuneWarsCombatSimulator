@@ -12,4 +12,9 @@ public class ArdusFury implements HeroSpecific<ArdusIxErebus>, Unique, AddSurges
     public int getSurges() {
         return 1;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Ardus Fury";
+    }
 }

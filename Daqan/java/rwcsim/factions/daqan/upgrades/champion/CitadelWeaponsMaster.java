@@ -32,4 +32,9 @@ public class CitadelWeaponsMaster extends BaseFigure implements FigureUpgrade, C
     public int getArmor() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Citadel Weapons Master";
+    }
 }

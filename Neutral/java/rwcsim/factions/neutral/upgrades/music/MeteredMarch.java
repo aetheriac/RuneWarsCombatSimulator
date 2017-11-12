@@ -10,4 +10,9 @@ public class MeteredMarch implements Cost, Music {
     public int price() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Metered March";
+    }
 }

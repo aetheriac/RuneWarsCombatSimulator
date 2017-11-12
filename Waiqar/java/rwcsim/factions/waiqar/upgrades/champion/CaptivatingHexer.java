@@ -25,4 +25,9 @@ public class CaptivatingHexer extends BaseFigure implements Figure, FigureUpgrad
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Captivating Hexer";
+    }
 }

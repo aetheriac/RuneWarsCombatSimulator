@@ -12,4 +12,9 @@ public class WraithStep implements Cost, Daqan, HeroSpecific<KariWraithstalker>,
     public int price() {
         return 1;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Wraith Step";
+    }
 }

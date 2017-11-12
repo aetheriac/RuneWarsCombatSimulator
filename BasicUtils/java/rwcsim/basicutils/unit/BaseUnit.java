@@ -6,7 +6,7 @@ import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.figure.BaseFigure;
 import rwcsim.basicutils.slots.UpgradeSlot;
-import rwcsim.basicutils.upgrades.Upgrade;
+import rwcsim.basicutils.concepts.Upgrade;
 
 import java.util.*;
 

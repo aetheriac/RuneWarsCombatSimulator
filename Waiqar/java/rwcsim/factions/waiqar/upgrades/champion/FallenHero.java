@@ -32,4 +32,9 @@ public class FallenHero extends BaseFigure implements FigureUpgrade, Cost, Waiqa
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Fallen Hero";
+    }
 }

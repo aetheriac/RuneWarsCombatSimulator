@@ -9,4 +9,9 @@ public class WindRune implements Cost, Equipment, OnSkill {
     public int price() {
         return 6;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Wind Rune";
+    }
 }

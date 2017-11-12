@@ -8,4 +8,9 @@ public class Trumpets implements Cost, Music {
     public int price() {
         return 0;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Trumpets";
+    }
 }

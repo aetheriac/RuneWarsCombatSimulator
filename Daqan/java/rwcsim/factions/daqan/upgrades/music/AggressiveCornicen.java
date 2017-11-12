@@ -27,4 +27,9 @@ public class AggressiveCornicen extends BaseFigure implements FigureUpgrade, Cos
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Aggressive Cornicen";
+    }
 }

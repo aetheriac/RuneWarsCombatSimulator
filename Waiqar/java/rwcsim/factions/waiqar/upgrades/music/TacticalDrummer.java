@@ -27,4 +27,10 @@ public class TacticalDrummer extends BaseFigure implements FigureUpgrade, Cost, 
     public int getArmor() {
         return 4;
     }
+
+
+    @Override
+    public String getUpgradeName() {
+        return "Tactical Drummer";
+    }
 }

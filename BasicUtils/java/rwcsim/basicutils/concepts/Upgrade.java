@@ -1,8 +1,8 @@
-package rwcsim.basicutils.upgrades;
+package rwcsim.basicutils.concepts;
 
 public interface Upgrade {
     default boolean isUpgrade() {
         return true;
     }
-    default String getUpgradeName() { return null; }
+    String getUpgradeName(); // { return null; }
 }

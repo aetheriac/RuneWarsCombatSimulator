@@ -9,4 +9,9 @@ public class HeraldicSurcoats implements Cost, Heraldry {
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Heraldic Surcoats";
+    }
 }

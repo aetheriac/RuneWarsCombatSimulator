@@ -40,4 +40,9 @@ public class KariWraithstalkerUpgrade extends BaseFigure implements FigureUpgrad
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Kari Wraithstalker Upgrade";
+    }
 }

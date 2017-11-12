@@ -15,4 +15,9 @@ public class BullPennon implements Cost, Heraldry, AddAbility<Impact> {
     public Impact getAbility() {
         return new Impact(1);
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Bull Pennon";
+    }
 }

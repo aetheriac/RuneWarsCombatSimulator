@@ -9,7 +9,6 @@ import rwcsim.basicutils.unit.LatariUnit;
 import rwcsim.basicutils.unit.UthukUnit;
 import rwcsim.basicutils.unit.WaiqarUnit;
 import rwcsim.basicutils.slots.UpgradeSlot;
-import rwcsim.basicutils.upgrades.Upgrade;
 
 import java.util.EnumSet;
 import java.util.List;

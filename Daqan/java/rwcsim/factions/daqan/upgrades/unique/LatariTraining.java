@@ -12,4 +12,9 @@ public class LatariTraining implements Cost, Daqan, HeroSpecific<KariWraithstalk
     public int price() {
         return 6;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Latari Training";
+    }
 }

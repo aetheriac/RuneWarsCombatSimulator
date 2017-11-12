@@ -20,4 +20,9 @@ public class ViolentForces implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Uni
     public Brutal getAbility() {
         return new Brutal(1);
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Violent Forces";
+    }
 }

@@ -21,4 +21,9 @@ public class GreyhavenChanneler extends BaseFigure implements FigureUpgrade, Cha
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Greyhaven Channeler";
+    }
 }

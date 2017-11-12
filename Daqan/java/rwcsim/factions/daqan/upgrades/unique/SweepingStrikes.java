@@ -12,4 +12,9 @@ public class SweepingStrikes implements Cost, Daqan, HeroSpecific<LordHawthorne>
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Sweeping Strikes";
+    }
 }

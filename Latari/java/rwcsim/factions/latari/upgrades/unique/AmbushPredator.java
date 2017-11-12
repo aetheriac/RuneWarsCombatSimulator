@@ -18,4 +18,9 @@ public class AmbushPredator implements Cost, Latari, HeroSpecific<AlianaOfSummer
     public void registerStages(Unit unit) {
 //        <WhileDefending, OnMeleeAttack>
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Ambush Predator";
+    }
 }

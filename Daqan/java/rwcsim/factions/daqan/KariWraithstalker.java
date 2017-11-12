@@ -19,7 +19,7 @@ import rwcsim.factions.neutral.figures.HeroFigure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KariWraithstalker extends DaqanUnit implements Hero, Infantry, Unique {
+public class KariWraithstalker extends DaqanUnit implements Hero, Infantry {
 
     public KariWraithstalker() {
         super();

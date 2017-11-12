@@ -33,4 +33,9 @@ public class FrontLineCarrionLancer extends BaseFigure implements FigureUpgrade,
     public int getHealth() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Frontline Carrion Lancer";
+    }
 }

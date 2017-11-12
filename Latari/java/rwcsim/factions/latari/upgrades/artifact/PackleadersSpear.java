@@ -27,4 +27,9 @@ public class PackleadersSpear implements Cost, Latari, Artifact, Unique, Exhaust
     public void reset() {
 
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Packleader's Spear";
+    }
 }

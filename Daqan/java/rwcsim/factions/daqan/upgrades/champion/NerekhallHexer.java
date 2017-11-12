@@ -21,4 +21,9 @@ public class NerekhallHexer extends BaseFigure implements FigureUpgrade, Champio
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Nerekhall Hexer";
+    }
 }

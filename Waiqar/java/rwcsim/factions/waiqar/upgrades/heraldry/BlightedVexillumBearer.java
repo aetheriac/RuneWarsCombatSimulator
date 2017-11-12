@@ -21,4 +21,9 @@ public class BlightedVexillumBearer extends BaseFigure implements FigureUpgrade,
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Blighted Vexillum Bearer";
+    }
 }

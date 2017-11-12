@@ -32,4 +32,9 @@ public class Necromancer extends BaseFigure implements FigureUpgrade, Cost, Waiq
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Necromancer";
+    }
 }

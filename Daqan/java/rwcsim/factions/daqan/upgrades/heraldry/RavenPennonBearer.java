@@ -41,6 +41,11 @@ public class RavenPennonBearer extends BaseFigure implements FigureUpgrade, Cost
     }
 
     @Override
+    public String getUpgradeName() {
+        return "Raven Pennon Bearer";
+    }
+
+    @Override
     public void reset() {
 
     }

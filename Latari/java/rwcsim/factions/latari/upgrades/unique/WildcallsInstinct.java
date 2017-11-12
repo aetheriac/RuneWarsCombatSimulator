@@ -25,4 +25,9 @@ public class WildcallsInstinct implements Cost, Latari, HeroSpecific<AlianaOfSum
     public void registerStages(Unit unit) {
         //<OnMarch, OnShift>
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Wildcall's Instinct";
+    }
 }

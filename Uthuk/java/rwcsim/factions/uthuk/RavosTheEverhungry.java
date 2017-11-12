@@ -21,7 +21,7 @@ import rwcsim.factions.neutral.figures.HeroFigure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RavosTheEverhungry extends UthukUnit implements Hero, Siege, Unique {
+public class RavosTheEverhungry extends UthukUnit implements Hero, Siege {
 
     public RavosTheEverhungry() {
         super();

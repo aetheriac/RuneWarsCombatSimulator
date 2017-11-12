@@ -11,4 +11,9 @@ public class HeartSeeker implements Artifact, Cost, Unique {
     public int price() {
         return 10;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Heart Seeker";
+    }
 }

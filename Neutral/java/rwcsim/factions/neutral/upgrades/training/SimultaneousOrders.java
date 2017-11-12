@@ -9,4 +9,9 @@ public class SimultaneousOrders implements Cost, Training, OnSkill {
     public int price() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Simultaneous Orders";
+    }
 }

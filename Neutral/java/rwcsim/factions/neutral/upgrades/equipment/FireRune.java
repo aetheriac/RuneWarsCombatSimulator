@@ -9,4 +9,9 @@ public class FireRune implements Cost, Equipment, OnSkill {
     public int price() {
         return 7;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Fire Rune";
+    }
 }

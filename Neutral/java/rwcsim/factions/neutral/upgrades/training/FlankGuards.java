@@ -9,4 +9,9 @@ public class FlankGuards implements Cost, Training {
     public int price() {
         return 5;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Flank Guards";
+    }
 }

@@ -40,4 +40,9 @@ public class ArdusIxErebusUpgrade extends BaseFigure implements Figure, FigureUp
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Ardus Ix'Erebus Upgrade";
+    }
 }

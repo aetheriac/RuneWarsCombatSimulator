@@ -57,4 +57,9 @@ public class FrontlineAymhelinScion extends BaseFigure implements FigureUpgrade,
     public void reset() {
 
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Frontline Aymhelin Scion";
+    }
 }

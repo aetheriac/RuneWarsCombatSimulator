@@ -35,4 +35,9 @@ public class AnkaurMaroUpgrade extends BaseFigure implements Figure, FigureUpgra
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Ankaur Maro Upgrade";
+    }
 }

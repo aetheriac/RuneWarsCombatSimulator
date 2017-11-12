@@ -34,4 +34,9 @@ public class MarchingCornicen extends BaseFigure implements FigureUpgrade, Cost,
     public int getArmor() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Marching Cornicen";
+    }
 }

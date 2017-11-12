@@ -36,4 +36,9 @@ public class LionStandardBearer extends BaseFigure implements FigureUpgrade, Cos
     public int getArmor() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Lion Standard Bearer";
+    }
 }

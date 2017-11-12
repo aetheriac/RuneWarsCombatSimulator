@@ -10,4 +10,9 @@ public class CombatIngenuity implements Cost, Waiqar, Training {
     public int price() {
         return 6;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Combat Ingenuity";
+    }
 }

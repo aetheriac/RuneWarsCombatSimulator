@@ -9,4 +9,9 @@ public class TriumphantCry implements Cost, Music {
     public int price() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Triumphant Cry";
+    }
 }

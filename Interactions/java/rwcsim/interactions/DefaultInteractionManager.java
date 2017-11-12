@@ -7,7 +7,7 @@ import rwcsim.basicutils.dice.*;
 import rwcsim.basicutils.managers.RuleSetManager;
 import rwcsim.basicutils.managers.UnitFormationManager;
 import rwcsim.basicutils.slots.UpgradeSlot;
-import rwcsim.basicutils.upgrades.Upgrade;
+import rwcsim.basicutils.concepts.Upgrade;
 import rwcsim.factions.neutral.upgrades.equipment.TemperedSteel;
 import rwcsim.interactions.ai.behaviors.RerollBehavior;
 

@@ -10,4 +10,9 @@ public class ReapingBlade implements Artifact, Cost, Unique {
     public int price() {
         return 4;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Reaping Blade";
+    }
 }

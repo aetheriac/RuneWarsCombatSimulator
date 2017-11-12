@@ -25,4 +25,9 @@ public class DispatchRunner implements Champion, Cost, Exhaustable, OnSkill {
     public void reset() {
 
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Dispatch Runner";
+    }
 }

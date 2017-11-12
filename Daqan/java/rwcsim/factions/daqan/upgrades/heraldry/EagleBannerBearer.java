@@ -22,4 +22,9 @@ public class EagleBannerBearer extends BaseFigure implements FigureUpgrade, Cost
     public Figure getFigure() {
         return null;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Eagle Banner Bearer";
+    }
 }

@@ -40,4 +40,9 @@ public class FrontlineRuneGolem extends BaseFigure implements FigureUpgrade, Daq
     public int getHealth() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Frontline Rune Golem";
+    }
 }

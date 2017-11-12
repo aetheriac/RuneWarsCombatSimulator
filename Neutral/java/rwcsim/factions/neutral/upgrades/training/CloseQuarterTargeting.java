@@ -9,4 +9,9 @@ public class CloseQuarterTargeting implements Cost, Training {
     public int price() {
         return 3;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Close Quarter Targeting";
+    }
 }

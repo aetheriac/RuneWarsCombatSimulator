@@ -33,4 +33,9 @@ public class ProfaneBannerBearer extends BaseFigure implements FigureUpgrade, Co
     public int getArmor() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Profane Banner Bearer";
+    }
 }

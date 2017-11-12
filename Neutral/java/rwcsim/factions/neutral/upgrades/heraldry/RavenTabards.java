@@ -20,4 +20,9 @@ public class RavenTabards implements Cost, Heraldry, InitiativeAdjustment {
     public int price() {
         return 2;
     }
+
+    @Override
+    public String getUpgradeName() {
+        return "Raven Tabards";
+    }
 }
