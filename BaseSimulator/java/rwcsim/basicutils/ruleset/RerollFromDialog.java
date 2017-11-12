@@ -69,7 +69,9 @@ public class RerollFromDialog implements Rule<RerollFromDialog>, RerollBehavior 
 
     @Override
     public void update(Map<Integer, HashSet<DieFace>> dieFaces) {
-        rerollFaces.putAll(dieFaces);
+        if (null != dieFaces) {
+            rerollFaces.putAll(dieFaces);
+        }
     }
 
     @Override
