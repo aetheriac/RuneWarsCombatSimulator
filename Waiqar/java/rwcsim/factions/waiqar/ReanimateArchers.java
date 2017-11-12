@@ -69,7 +69,7 @@ public class ReanimateArchers extends WaiqarUnit implements Infantry {
 
     public void populateFormations() {
         if (legalFormations.size()>0) return;
-        legalFormations.add(Formation.TWO_BY_TWO);
+        legalFormations.add(Formation.TWO_BY_ONE);
         legalFormations.add(Formation.TWO_BY_TWO);
         legalFormations.add(Formation.THREE_BY_TWO);
     }

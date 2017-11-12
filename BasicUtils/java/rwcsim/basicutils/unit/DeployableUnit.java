@@ -23,7 +23,7 @@ public class DeployableUnit {
         this.unit = unit;
         this.formation = formation;
         this.commandTool = unit.getCommandTool();
-        this.unitFormationManager = new UnitFormationManager(this);
+//        this.unitFormationManager = new UnitFormationManager(this);
         this.unitStateManager = new UnitStateManager();
     }
 
@@ -36,6 +36,9 @@ public class DeployableUnit {
     public UnitStateManager getUnitStateManager() {
         return unitStateManager;
     }
+
+    public void setUnitFormationManager(UnitFormationManager unitFormationManager) { this.unitFormationManager = unitFormationManager; }
+    public UnitFormationManager getUnitFormationManager() { return unitFormationManager; }
 
     public DiePool getDiePool(AttackType type) {
         switch (type) {

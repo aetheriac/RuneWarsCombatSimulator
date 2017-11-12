@@ -43,6 +43,7 @@ public class SimulationAttackLoop implements Callable<Statistics> {
 
     List<String> messages = new ArrayList<>();
     int rounds = 0;
+    int[][] runes = new int[8][];
 
     public interface ProgressCallback {
         void progress(int runNumberCompleted);
@@ -94,7 +95,7 @@ public class SimulationAttackLoop implements Callable<Statistics> {
         UnitStateManager firstUSM = firstFormation.setUSMForStats(firstUnit.unitStateManager);
         UnitStateManager secondUSM = secondFormation.setUSMForStats(secondUnit.unitStateManager);
 
-        Statistics stats = new Statistics(rounds, firstUSM, secondUSM);
+        Statistics stats = new Statistics(rounds, runes, firstUSM, secondUSM);
 
         firstInteraction = null;
         secondInteraction = null;
@@ -113,7 +114,6 @@ public class SimulationAttackLoop implements Callable<Statistics> {
     }
 
     public void simulateLoop() {
-        RuneManager.getInstance().throwRunes();
         AttackLoop attackLoop;
 
         InteractionManager attackerInteraction;
@@ -127,23 +127,23 @@ public class SimulationAttackLoop implements Callable<Statistics> {
 
         while ((firstFormation.isAlive() && secondFormation.isAlive()) && rounds <= 7) {
             messages.add("Round "+ rounds);
-            log.debug("Round: "+ rounds);
+//            log.debug("Round: "+ rounds);
 //            System.out.println("Round: "+rounds);
-//            if (rounds % 2 == 0) {
+            if (rounds % 2 == 0) {
                 attackerInteraction = firstInteraction;
                 attackerFormation = firstFormation;
                 attackerBehavior = firstBehavior;
                 defenderInteraction = secondInteraction;
                 defenderFormation = secondFormation;
                 defenderBehavior = secondBehavior;
-//            } else {
-//                defenderInteraction = firstInteraction;
-//                defenderFormation = firstFormation;
-//                defenderBehavior = firstBehavior;
-//                attackerInteraction = secondInteraction;
-//                attackerFormation = secondFormation;
-//                attackerBehavior = secondBehavior;
-//            }
+            } else {
+                defenderInteraction = firstInteraction;
+                defenderFormation = firstFormation;
+                defenderBehavior = firstBehavior;
+                attackerInteraction = secondInteraction;
+                attackerFormation = secondFormation;
+                attackerBehavior = secondBehavior;
+            }
 
             messages.add("First ("+ firstFormation.figuresRemaining()+"): "+ firstFormation.isAlive());
             messages.add("Second ("+ secondFormation.figuresRemaining()+"): "+ secondFormation.isAlive());
