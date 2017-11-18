@@ -9,6 +9,8 @@ import rwcsim.factions.daqan.upgrades.Daqan;
 
 public class WraithStep implements Cost, Daqan, HeroSpecific<KariWraithstalker>, Unique, OnSkill {
     @Override
+    public KariWraithstalker getHero() { return new KariWraithstalker(); }
+    @Override
     public int price() {
         return 1;
     }

@@ -11,6 +11,8 @@ import rwcsim.factions.latari.AlianaOfSummersong;
 import rwcsim.factions.latari.upgrades.Latari;
 
 public class WildcallsInstinct implements Cost, Latari, HeroSpecific<AlianaOfSummersong>, Unique, AddStages {
+    @Override
+    public AlianaOfSummersong getHero() { return new AlianaOfSummersong(); }
 
     public DialFace applyModifier() {
         return new DialFace(Face.MOVE_MOD_TURN);

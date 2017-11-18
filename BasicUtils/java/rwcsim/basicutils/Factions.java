@@ -1,6 +1,7 @@
 package rwcsim.basicutils;
 
 public enum Factions {
+    NEUTRAL("Neutral", "rwcsim.factions.neutral.NeutralUnitManager"),
     DAQAN("Daqan", "rwcsim.factions.daqan.DaqanUnitManager"),
     LATARI("Latari", "rwcsim.factions.latari.LatariUnitManager"),
     UTHUK("Uthuk", "rwcsim.factions.uthuk.UthukUnitManager"),

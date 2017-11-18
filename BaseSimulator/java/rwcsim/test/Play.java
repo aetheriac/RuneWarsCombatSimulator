@@ -9,6 +9,6 @@ import java.util.List;
 
 public class Play {
     public static void main(String[] args) {
-        UpgradeManager.instance().getUpgradeList(Factions.WAIQAR, UpgradeTypes.Artifact);
+        UpgradeManager.instance().getUpgradeList(Factions.WAIQAR, UpgradeTypes.Unique);
     }
 }

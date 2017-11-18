@@ -9,6 +9,8 @@ import rwcsim.factions.daqan.upgrades.Daqan;
 
 public class LatariTraining implements Cost, Daqan, HeroSpecific<KariWraithstalker>, Unique {
     @Override
+    public KariWraithstalker getHero() { return new KariWraithstalker(); }
+    @Override
     public int price() {
         return 6;
     }

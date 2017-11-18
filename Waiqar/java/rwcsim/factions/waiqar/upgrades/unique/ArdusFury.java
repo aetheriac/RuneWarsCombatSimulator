@@ -7,6 +7,8 @@ import rwcsim.basicutils.slots.UpgradeSlot;
 import rwcsim.factions.waiqar.ArdusIxErebus;
 
 public class ArdusFury implements HeroSpecific<ArdusIxErebus>, Unique, AddSurges {
+    @Override
+    public ArdusIxErebus getHero() { return new ArdusIxErebus(); }
 
     @Override
     public int getSurges() {

@@ -9,6 +9,8 @@ import rwcsim.factions.daqan.upgrades.Daqan;
 
 public class MightOfDaqan implements Cost, Daqan, HeroSpecific<LordHawthorne>, Unique {
     @Override
+    public LordHawthorne getHero() { return new LordHawthorne(); }
+    @Override
     public int price() {
         return 4;
     }

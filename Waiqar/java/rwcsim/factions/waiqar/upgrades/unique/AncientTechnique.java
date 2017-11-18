@@ -10,6 +10,9 @@ import rwcsim.factions.waiqar.upgrades.Waiqar;
 
 public class AncientTechnique implements Cost, Waiqar, HeroSpecific<ArdusIxErebus>, Unique, AddAbility<Precise> {
     @Override
+    public ArdusIxErebus getHero() { return new ArdusIxErebus(); }
+
+    @Override
     public int price() {
         return 2;
     }

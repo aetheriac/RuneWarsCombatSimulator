@@ -1,11 +1,11 @@
 package rwcsim.basicutils.managers;
 
-import com.google.common.collect.Multimap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
-import org.reflections.Store;
 import rwcsim.basicutils.Factions;
+import rwcsim.basicutils.upgrades.HeroSpecific;
+import rwcsim.basicutils.upgrades.HeroUpgrade;
 import rwcsim.basicutils.upgrades.UpgradeTypes;
 
 import java.util.*;
@@ -34,6 +34,24 @@ public class UpgradeManager {
         for (Class c:neutralUpgrades) {
             upgrades.add(c.getSimpleName());
         }
+
+        return upgrades.toArray(new String[0]);
+    }
+
+    public static String[] getHeroUpgradeList(Factions faction, UpgradeTypes upgradeType, String hero) {
+//        Reflections neutralReflections = new Reflections("rwcsim.factions.neutral");
+//        Reflections factionReflections = new Reflections("rwcsim.factions."+ faction.getName().toLowerCase());
+//
+//        Set<Class<?>> neutralUpgrades = neutralReflections.getSubTypesOf(upgradeTypes.getClazz());
+//        Set<Class<?>> factionUpgrades = factionReflections.getSubTypesOf(upgradeTypes.getClazz());
+////        Set<Class<?>> heroUpgrades    = factionReflections.getSubTypesOf(heroSpecific.getHero().getClass());
+//
+        List<String> upgrades = Arrays.asList(getUpgradeList(faction, upgradeType));
+
+        
+
+
+
 
         return upgrades.toArray(new String[0]);
     }

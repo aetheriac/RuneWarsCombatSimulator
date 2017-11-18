@@ -10,6 +10,8 @@ import rwcsim.factions.latari.upgrades.Latari;
 
 public class AmbushPredator implements Cost, Latari, HeroSpecific<AlianaOfSummersong>, Unique, AddStages {
     @Override
+    public AlianaOfSummersong getHero() { return new AlianaOfSummersong(); }
+    @Override
     public int price() {
         return 3;
     }

@@ -9,6 +9,8 @@ import rwcsim.factions.waiqar.upgrades.Waiqar;
 
 public class RegenerativeMagic implements Cost, Waiqar,HeroSpecific<AnkaurMaro>, Unique {
     @Override
+    public AnkaurMaro getHero() { return new AnkaurMaro(); }
+    @Override
     public int price() {
         return 5;
     }
