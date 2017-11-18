@@ -2,6 +2,7 @@ package rwcsim.basicutils.concepts;
 
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Formation;
+import rwcsim.basicutils.dials.CommandCache;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.unit.DaqanUnit;
@@ -47,6 +48,8 @@ public interface Unit {
     boolean hasUpgrades();
 
     CommandTool getCommandTool();
+    CommandCache getCommandCache();
+    void setCommandCache(CommandCache commandCache);
 
     default DiePool getAttackPool(AttackType type) {
         switch (type) {

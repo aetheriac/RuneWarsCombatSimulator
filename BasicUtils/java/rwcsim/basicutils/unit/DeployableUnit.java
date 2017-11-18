@@ -3,6 +3,7 @@ package rwcsim.basicutils.unit;
 import rwcsim.basicutils.AttackType;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.dials.CommandCache;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.managers.UnitFormationManager;
@@ -15,6 +16,7 @@ public class DeployableUnit {
     private int unitPrice;
 
     private CommandTool commandTool;
+    private CommandCache commandCache;
 
     public UnitFormationManager unitFormationManager;
     public UnitStateManager unitStateManager;
@@ -23,8 +25,11 @@ public class DeployableUnit {
         this.unit = unit;
         this.formation = formation;
         this.commandTool = unit.getCommandTool();
+        this.commandCache = unit.getCommandCache();
+
 //        this.unitFormationManager = new UnitFormationManager(this);
         this.unitStateManager = new UnitStateManager();
+
     }
 
     public Unit getUnit() { return unit; }

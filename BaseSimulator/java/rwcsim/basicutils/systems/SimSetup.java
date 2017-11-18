@@ -2,6 +2,7 @@ package rwcsim.basicutils.systems;
 
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.Unit;
+import rwcsim.basicutils.dials.CommandCache;
 import rwcsim.basicutils.unit.DeployableUnit;
 import rwcsim.factions.daqan.*;
 import rwcsim.factions.uthuk.FleshRippers;
@@ -27,7 +28,6 @@ public class SimSetup {
     private RerollBehavior secondBehavior;
 
 
-    // TODO FIX THESE TO USE THE selected units
     public SimSetup(Unit firstUnit, Formation firstFormation, RerollBehavior firstBehavior, Unit secondUnit, Formation secondFormation, RerollBehavior secondBehavior) {
         this.firstUnit = firstUnit; //new OathswornCavalry();
         this.firstFormation = firstFormation; //Formation.TWO_BY_TWO;
@@ -43,6 +43,11 @@ public class SimSetup {
         firstFormation = ff;
         secondUnit = su;
         secondFormation = sf;
+    }
+
+    public void setCommandCaches(CommandCache firstCache, CommandCache secondCache) {
+        this.firstUnit.setCommandCache(firstCache);
+        this.secondUnit.setCommandCache(secondCache);
     }
 
 

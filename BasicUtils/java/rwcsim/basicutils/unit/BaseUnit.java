@@ -2,6 +2,7 @@ package rwcsim.basicutils.unit;
 
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.*;
+import rwcsim.basicutils.dials.CommandCache;
 import rwcsim.basicutils.dials.CommandTool;
 import rwcsim.basicutils.dice.DiePool;
 import rwcsim.basicutils.figure.BaseFigure;
@@ -17,6 +18,7 @@ public abstract class BaseUnit implements Unit {
 //    public Map<Integer, List<UpgradeSlot>> upgradeRegister = new HashMap<>();
 //    public EnumSet<UpgradeSlot> allowedUpgrades = EnumSet.noneOf(UpgradeSlot.class);
     public Map<UpgradeSlot, List<Upgrade>> upgradeRegistry = new HashMap<>();
+    private CommandCache commandCache;
 
     public static class NullUnit extends BaseUnit {
         public NullUnit() {}
@@ -220,6 +222,15 @@ public abstract class BaseUnit implements Unit {
         return false;
     }
 
+    @Override
+    public CommandCache getCommandCache() {
+        return commandCache;
+    }
+
+    @Override
+    public void setCommandCache(CommandCache commandCache) {
+        this.commandCache = commandCache;
+    }
 
 //    public void registerUpgrade(UpgradeSlot upgradeSlot, Upgrade upgrade) {
 //        if (!upgradeRegistry.containsKey(upgradeSlot)) {
