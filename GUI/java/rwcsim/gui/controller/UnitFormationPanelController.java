@@ -2,7 +2,7 @@ package rwcsim.gui.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import rwcsim.basicutils.Factions;
+import rwcsim.basicutils.Faction;
 import rwcsim.basicutils.Formation;
 import rwcsim.basicutils.concepts.Unit;
 import rwcsim.basicutils.dice.Die;
@@ -57,7 +57,7 @@ public class UnitFormationPanelController {
     }
 
     public Unit getUnit() {
-        UnitManager um = FactionManager.instance().getUnitManager(Factions.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager um = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
         return um.getUnit(um.getIdFromName((String)unitComboBox.getSelectedItem()));
     }
 
@@ -87,7 +87,7 @@ public class UnitFormationPanelController {
     private void loadUnits() {
         log.info("Loading Units for: "+ factionComboBox.getSelectedItem());
         DefaultComboBoxModel model = (DefaultComboBoxModel) unitComboBox.getModel();
-        UnitManager unitManager = FactionManager.instance().getUnitManager(Factions.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager unitManager = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
         String[] names = unitManager.getAvailableUnitNames();
         Arrays.sort(names);
         for (String n: names) {
@@ -106,7 +106,7 @@ public class UnitFormationPanelController {
     private void loadFormations() {
         log.info("Load Formations for: "+ factionComboBox.getSelectedItem() + " " + unitComboBox.getSelectedItem());
         DefaultComboBoxModel model = (DefaultComboBoxModel) formationComboBox.getModel();
-        UnitManager unitManager = FactionManager.instance().getUnitManager(Factions.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager unitManager = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
         String unit = (String)unitComboBox.getSelectedItem();
         log.info("Loading Formations for "+ unit);
         List<Formation> formations = unitManager.availableFormations(unit);

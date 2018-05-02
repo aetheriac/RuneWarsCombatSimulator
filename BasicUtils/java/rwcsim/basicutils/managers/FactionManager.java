@@ -3,7 +3,7 @@ package rwcsim.basicutils.managers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rwcsim.basicutils.Configuration;
-import rwcsim.basicutils.Factions;
+import rwcsim.basicutils.Faction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class FactionManager {
     private Logger log = LogManager.getLogger(FactionManager.class);
     private static FactionManager factionManager = new FactionManager();
-    Map<Factions, UnitManager> registeredFactions = new HashMap<>();
+    Map<Faction, UnitManager> registeredFactions = new HashMap<>();
     String[] factionList=null;
     String[] leadingNullFactionList=null;
 
@@ -26,7 +26,7 @@ public class FactionManager {
 
     public void registerFactions() {
         try {
-            for (Factions faction : Factions.values()) {
+            for (Faction faction : Faction.values()) {
                 log.info("Loading faction: "+ faction.getName());
                 UnitManager unitManager = (UnitManager) Class.forName(faction.getUnitManager()).newInstance();
                 registeredFactions.put(faction, unitManager);
@@ -45,7 +45,7 @@ public class FactionManager {
         if (null == factionList) {
             factionList = new String[registeredFactions.size()];
             int i = 0;
-            for (Factions faction : registeredFactions.keySet()) {
+            for (Faction faction : registeredFactions.keySet()) {
                 factionList[i++] = faction.getName();
             }
         }
@@ -57,7 +57,7 @@ public class FactionManager {
             leadingNullFactionList = new String[registeredFactions.size()+1];
             leadingNullFactionList[0] = " - ";
             int i = 1;
-            for (Factions faction : registeredFactions.keySet()) {
+            for (Faction faction : registeredFactions.keySet()) {
                 leadingNullFactionList[i++] = faction.getName();
             }
         }
@@ -66,16 +66,16 @@ public class FactionManager {
 
     public UnitManager getUnitManager(int index) {
         int vIndex = index - 1;
-        Factions workingFaction = Factions.values()[vIndex];
+        Faction workingFaction = Faction.values()[vIndex];
         return registeredFactions.get(workingFaction);
     }
 
-    public UnitManager getUnitManager(String faction) {
-        Factions workingFaction = Factions.valueOf(faction);
-        return registeredFactions.get(workingFaction);
-    }
+//    public UnitManager getUnitManager(String faction) {
+//        Faction workingFaction = Faction.valueOf(faction);
+//        return registeredFactions.get(workingFaction);
+//    }
 
-    public UnitManager getUnitManager(Factions faction) {
+    public UnitManager getUnitManager(Faction faction) {
         return registeredFactions.get(faction);
     }
 
