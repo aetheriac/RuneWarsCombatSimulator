@@ -14,12 +14,13 @@ public class Configuration  {
         if (INSTANCE == null) {
             INSTANCE = new Configuration.NullableConfiguration();
         }
+        INSTANCE.reloadProperties();
         return INSTANCE;
     }
 
     public void reloadProperties() {
         try {
-            this.properties = this.load("resources/base.properties");
+            this.properties = this.load("../resources/base.properties");
             this.properties.putAll(System.getProperties());
         } catch (Exception e) {
             System.out.println(e);

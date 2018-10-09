@@ -1,5 +1,7 @@
 package rwcsim.basicutils;
 
+import rwcsim.basicutils.managers.UnitManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +14,15 @@ public class Faction {
     private static Faction[] factions = new Faction[4];
 
     private String name;
-    private String unitManager;
+    private UnitManager unitManager;
 
-    Faction(String name, String unitManager) {
+//    Faction(String name, String unitManager) {
+//        this.name = name;
+//        this.unitManager = unitManager;
+//    }
+
+
+    public Faction(String name, UnitManager unitManager) {
         this.name = name;
         this.unitManager = unitManager;
     }
@@ -27,9 +35,6 @@ public class Faction {
         this.name = name;
     }
 
-    public void setUnitManager(String unitManager) {
-        this.unitManager = unitManager;
-    }
 
     public static Faction[] values() {
         return factions;
@@ -42,7 +47,7 @@ public class Faction {
         return null;
     }
 
-    public String getUnitManager() {
+    public UnitManager getUnitManager() {
         return unitManager;
     }
 }

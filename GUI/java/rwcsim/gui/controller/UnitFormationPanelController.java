@@ -57,7 +57,7 @@ public class UnitFormationPanelController {
     }
 
     public Unit getUnit() {
-        UnitManager um = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager um = FactionManager.instance().getUnitManager((String)factionComboBox.getSelectedItem());
         return um.getUnit(um.getIdFromName((String)unitComboBox.getSelectedItem()));
     }
 
@@ -87,7 +87,7 @@ public class UnitFormationPanelController {
     private void loadUnits() {
         log.info("Loading Units for: "+ factionComboBox.getSelectedItem());
         DefaultComboBoxModel model = (DefaultComboBoxModel) unitComboBox.getModel();
-        UnitManager unitManager = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager unitManager = FactionManager.instance().getUnitManager((String)factionComboBox.getSelectedItem());
         String[] names = unitManager.getAvailableUnitNames();
         Arrays.sort(names);
         for (String n: names) {
@@ -106,7 +106,7 @@ public class UnitFormationPanelController {
     private void loadFormations() {
         log.info("Load Formations for: "+ factionComboBox.getSelectedItem() + " " + unitComboBox.getSelectedItem());
         DefaultComboBoxModel model = (DefaultComboBoxModel) formationComboBox.getModel();
-        UnitManager unitManager = FactionManager.instance().getUnitManager(Faction.valueOfFromString((String)factionComboBox.getSelectedItem()));
+        UnitManager unitManager = FactionManager.instance().getUnitManager((String)factionComboBox.getSelectedItem());
         String unit = (String)unitComboBox.getSelectedItem();
         log.info("Loading Formations for "+ unit);
         List<Formation> formations = unitManager.availableFormations(unit);
